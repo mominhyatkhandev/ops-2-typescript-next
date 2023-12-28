@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .button-primary {
+    @apply flex justify-center items-center text-neutral-white-base font-semibold rounded-lg;
+  }
+  .button-secondary {
+    @apply border-primary-base bg-neutral-white-base border-[2px] flex justify-center items-center text-secondary-base font-semibold rounded-lg;
+  }
+  .heading-primary {
+    @apply font-semibold text-5xl text-secondary-base leading-tight;
+  }
+  /* .card-container {
+    @apply transition duration-300 border-solid border-border-light bg-screen-grey flex flex-col gap-[60px] items-start pt-8 pb-6 px-5 border-[0.5px] rounded-[8px] cursor-pointer hover:bg-primary-base hover:text-white;
+    
+  } */
+  /* @responsive {
+    .button-size-small {
+      @apply py-[14px] px-[30px] gap-10;
+    }
+  } */
+}
