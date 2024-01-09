@@ -35,7 +35,7 @@ const Input = ({
           } h-[60px] rounded-lg p-3 focus:outline-none ${
             touched && error ? 'border-danger-base' : ''
           }`}
-          placeholder="name@example.com"
+          placeholder=""
           autocomplete="off"
           disabled={false}
         />

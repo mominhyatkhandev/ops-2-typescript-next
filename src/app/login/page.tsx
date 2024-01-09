@@ -5,13 +5,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import { POST } from '@/api/helper';
 import eye from '@/assets/icons/eye.svg';
 import LoginBg from '@/assets/images/login-bg.jpg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import loginSchema, { loginInitialValues } from '@/validations/loginSchema';
 
+interface LoginForm {
+  Username: string;
+  Password: string;
+}
+
 const Login = () => {
+  // i am going to make onSubmit function
+  const onSubmit = async (values: LoginForm, { setSubmitting }: any) => {
+    console.log('sending api request');
+    console.log('username and password', values.Password, values.Username);
+    try {
+      const response: any = await POST('auth/login', {
+        // username: values.Username,
+        // password: values.Password,
+        username: 'iqbalsidddique@gmail.com',
+        password: 'iqbannnnl',
+      });
+      console.log('API Response:', response);
+      if (response?.responseCode == 'SUCCESS') {
+        console.log(response, 'successssssssssssssssss');
+      } else {
+        console.log('responsesssssssssss', response.responseMessage);
+      }
+    } catch (error: any) {
+      console.error(
+        'errorsssssssssssss',
+        error?.response?.data?.responseMessage,
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <>
       <div className="relative bg-primary-700 px-[380px] pb-[144px] pt-[120px]">
@@ -29,9 +61,10 @@ const Login = () => {
           <Formik
             initialValues={loginInitialValues}
             validationSchema={loginSchema}
-            onSubmit={() => {
-              console.log('login submitted');
-            }}
+            // onSubmit={() => {
+            //   console.log('login submitted');
+            // }}
+            onSubmit={onSubmit}
           >
             {/* {({ errors, touched }) => ( */}
             {(formik) => (

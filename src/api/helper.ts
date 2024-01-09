@@ -16,6 +16,7 @@ export const POST = async (endpoint: TEndpoint, data: any, config = {}) => {
     return response.data;
   } catch (error) {
     console.error(error);
+    console.log('error from helper', error);
     throw error;
   }
 };
