@@ -2,10 +2,9 @@
 
 import 'react-circular-progressbar/dist/styles.css';
 
-import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import React, { useState } from 'react';
 
+// import { CircularProgressbar } from 'react-circular-progressbar';
 import CartIcon from '@/assets/icons/cartIcon.svg';
 import GlobalIcon from '@/assets/icons/global.svg';
 import QrIcon from '@/assets/icons/scanning.svg';
@@ -13,7 +12,7 @@ import Button from '@/components/UI/Button/PrimaryButton';
 import CheckboxInput from '@/components/UI/Inputs/CheckboxInput';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
-import useAxios from '@/hooks/useAxios';
+// import useAxios from '@/hooks/useAxios';
 
 const AccountOptions = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
@@ -75,7 +74,7 @@ const AccountOptions = () => {
             <Button
               label="Next"
               isDisabled={!selectedOption}
-              path={`/sign-up/personal-info/?option=${selectedOption}`}
+              routeName={`/sign-up/personal-info/?option=${selectedOption}`}
               className="button-primary w-[270px] px-3 py-[19px] text-sm"
             />
           </div>

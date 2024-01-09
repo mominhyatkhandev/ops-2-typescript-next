@@ -33,14 +33,15 @@ const Login = () => {
               console.log('login submitted');
             }}
           >
+            {/* {({ errors, touched }) => ( */}
             {(formik) => (
               <Form className="flex flex-col items-center gap-6">
                 <Input
                   label="Username"
-                  name="username"
+                  name="Username"
                   type="text"
-                  error={formik.errors.username}
-                  touched={formik.touched.username}
+                  error={formik.errors.Username}
+                  touched={formik.touched.Username}
                 />
                 {/* <Input
                   label="Password"
@@ -50,51 +51,26 @@ const Login = () => {
                   touched={formik.touched.password}
                 /> */}
                 <Input
-                  name="password"
+                  name="Password"
                   label="Password"
                   type="password"
-                  error={formik.errors.password}
-                  touched={formik.touched.password}
+                  error={formik.errors.Password}
+                  touched={formik.touched.Password}
                   hasImage={true}
                   image={eye}
                 />
+
                 <Button
                   label="Login"
+                  routeName="/login"
                   type="submit"
-                  path="/"
                   isDisabled={!formik.isValid}
                   className={`button-primary w-[270px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
                 />
               </Form>
             )}
           </Formik>
-          {/* <div className="flex flex-col gap-6">
-            <InputPrimary
-              label="Username or email"
-              type="kmska"
-              className="knak"
-              error={'xyz'}
-              touched={false}
-              // hasImage={false}
-              isDisabled={false}
-            />
-            <Input
-              name={'password'}
-              label="Password"
-              type="password"
-              className="knak"
-              // hasImage={false}
-              isDisabled={false}
-              error={'xyz'}
-              touched={false}
-            />
-          </div>
-          <div className="flex justify-center pt-8 pb-6">
-            <Button
-              label="Login"
-              className="button-primary w-[270px] px-3 py-[19px]"
-            />
-          </div> */}
+
           <span className="flex justify-center pt-6 text-sm font-normal leading-tight">
             Dont have an account? &nbsp;
             <Link

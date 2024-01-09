@@ -85,13 +85,13 @@ const Navbar = () => {
               label="Login"
               // onClickHandler={}
               // onClickHandler={() => router.push('/login')}
-              path="/login"
+              routeName="/login"
               className="button-secondary w-[96px] px-2 py-[11px] text-xs leading-tight"
             />
             {/* <Link href={`/sign-up`}> */}
             <Button
               label="Sign up"
-              path="/sign-up"
+              routeName="/sign-up"
               // onClickHandler={handleOpenModal}
               className="button-primary w-[96px] px-2 py-[11px] text-xs leading-tight"
             />

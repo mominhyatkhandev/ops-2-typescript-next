@@ -1,18 +1,19 @@
 'use client';
 
-import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-interface IInputPrimary {
-  name: string;
-  label: string;
-  type: string;
-  className?: string;
-  hasImage?: boolean;
-  isDisabled?: boolean;
-  image: StaticImageData;
-}
+import type { IInputPrimary } from '@/interfaces/interface';
+
+// interface IInputPrimary {
+//   name: string;
+//   label: string;
+//   type: string;
+//   className?: string;
+//   hasImage?: boolean;
+//   isDisabled?: boolean;
+//   image: React.ReactElement;
+// }
 
 const InputPrimary = ({
   // name,

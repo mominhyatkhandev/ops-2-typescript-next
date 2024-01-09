@@ -1,15 +1,9 @@
-import type { StaticImageData } from 'next/image';
+// import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import React from 'react';
 
 import TickIcon from '@/assets/icons/tick-icon.svg';
-
-interface ICheckboxInput {
-  label: string;
-  logo: StaticImageData;
-  selected: boolean;
-  onSelect: () => void;
-}
+import type { ICheckboxInput } from '@/interfaces/interface';
 
 function CheckboxInput({ label, logo, selected, onSelect }: ICheckboxInput) {
   return (

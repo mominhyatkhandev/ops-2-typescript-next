@@ -35,7 +35,7 @@ const Subscription = () => {
               </p>
             </div>
             <Button
-              path="/"
+              routeName="/login"
               label="Sign up"
               className="button-primary w-[200px] px-3 py-[19px] text-sm leading-tight"
             />

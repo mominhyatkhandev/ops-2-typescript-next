@@ -1,16 +1,10 @@
 'use client';
 
-import type { StaticImageData } from 'next/image';
+// import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-interface ICardProps {
-  label: string;
-  logo: { image1: StaticImageData; image2: StaticImageData };
-  className?: string;
-  children?: React.ReactNode;
-  description?: string;
-}
+import type { ICardProps } from '@/interfaces/interface';
 
 const Card = ({ logo, label, description }: ICardProps) => {
   const [isCardHovered, setIsCardHovered] = useState(false);

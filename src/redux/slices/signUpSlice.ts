@@ -23,7 +23,7 @@ const signupSlice = createSlice({
     },
     resetFormData: (state) => {
       console.log('dispatch workingggg');
-
+      console.log(state);
       state = initialState;
     },
   },

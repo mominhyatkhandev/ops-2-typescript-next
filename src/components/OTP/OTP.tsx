@@ -1,9 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import type { Dispatch, KeyboardEvent, SetStateAction } from 'react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { POST } from '@/api/helper';
 import useCounter from '@/hooks/useCounter';
@@ -21,13 +19,13 @@ function OTP({
 }) {
   // const [otp, setOtp] = useState(new Array(numberOfDigits).fill(''));
   const [otpError] = useState<string | null>(null);
-  const searchParams = useSearchParams();
-  const [expiryTime, setExpiryTime] = useState<number>(10);
+  // const searchParams = useSearchParams();
+  // const [expiryTime, setExpiryTime] = useState<number>(10);
 
-  console.log('EPIRYTIME :', expiryTime);
-
+  // console.log('EPIRYTIME :', expiryTime);
+  // console.log (response)
   const { formattedCount, count, resetCounter } = useCounter({
-    initialCount: expiryTime || 60,
+    initialCount: 60,
   });
 
   // useEffect(() => {
@@ -46,6 +44,7 @@ function OTP({
         notificationText: '',
         template: 'esb_notification',
       });
+      console.log(response);
     } catch (e) {
       console.log(e);
     }

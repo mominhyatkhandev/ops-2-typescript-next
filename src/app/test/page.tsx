@@ -37,11 +37,18 @@
 import React from 'react';
 
 import SuccessModal from '@/components/UI/Modal/SuccessModal';
+// import InputNew from '@/components/UI/Inputs/InputNew';
+// import Input from '@/components/UI/Inputs/Input';
 
 function test() {
   return (
     <div>
-      <SuccessModal />
+      <SuccessModal
+        title="Account Created Successfully"
+        description=" Congratulations! You have signed up successfully for
+                            the Sandbox account for [lorem ipsum]"
+        show={true}
+      />
     </div>
   );
 }

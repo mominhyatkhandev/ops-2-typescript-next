@@ -76,7 +76,7 @@ const OtpInputWithValidation = () => {
               otp={smsOtp}
             />
             <Button
-              // path=""
+              routeName="/login"
               label="Verify"
               className="button-primary w-[270px] px-3 py-[19px]"
               onClickHandler={handleVerify}

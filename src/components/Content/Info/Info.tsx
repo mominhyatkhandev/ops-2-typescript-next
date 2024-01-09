@@ -1,13 +1,9 @@
 import React from 'react';
 
-import type { TCard } from '@/types/static/static';
+import type { IInfoProp } from '@/interfaces/interface';
 
+// import type { TCard } from '@/types/static/static';
 import Card from '../../UI/Card/Card';
-
-interface IInfoProp {
-  title?: string;
-  cardsArray?: TCard[];
-}
 
 const Info = ({ title, cardsArray }: IInfoProp): JSX.Element => {
   return (

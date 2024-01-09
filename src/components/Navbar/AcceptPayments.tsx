@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Dropdown from './Dropdown';
 
@@ -17,7 +17,8 @@ const AcceptPayments = ({
   isHovered: boolean;
   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>;
 }): JSX.Element => {
-  const [selectedOption, setSelectedOption] = useState<string | undefined>('');
+  // const [selectedOption, setSelectedOption] = useState<string | undefined>('');
+  const [selectedOption, setSelectedOption] = useState<string>('');
   // const [isHovered, setIsHovered] = useState<boolean>(false);
 
   useEffect(() => {
@@ -28,9 +29,10 @@ const AcceptPayments = ({
     if (other !== 'AcceptPayments') {
       formattedTitle = '';
     } else {
-      formattedTitle = selectedTitle
-        ?.replace(/-/g, ' ')
-        ?.replace(/(?:^|\s)\S/g, (match) => match.toUpperCase());
+      formattedTitle =
+        selectedTitle
+          ?.replace(/-/g, ' ')
+          ?.replace(/(?:^|\s)\S/g, (match) => match.toUpperCase()) ?? '';
     }
     formattedTitle !== '' && setSelectedOption(formattedTitle);
   }, [other, clickTrigger]);

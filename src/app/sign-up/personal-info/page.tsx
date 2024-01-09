@@ -2,15 +2,15 @@
 
 import { Form, Formik } from 'formik';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { POST } from '@/api/helper';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { addFormData, resetFormData } from '@/redux/slices/signUpSlice';
+import { useAppDispatch } from '@/hooks/redux';
+import { addFormData } from '@/redux/slices/signUpSlice';
 import { signUpInitialValues, signUpSchema } from '@/validations/signUpSchema';
 
 const PersonalInfo = () => {
@@ -182,6 +182,7 @@ const PersonalInfo = () => {
                     label="Sign up"
                     type="submit"
                     // path
+                    routeName="/login"
                     isDisabled={!formik.isValid || !isChecked}
                     className={`button-primary w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
                   />

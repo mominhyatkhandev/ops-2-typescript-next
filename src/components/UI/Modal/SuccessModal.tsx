@@ -13,7 +13,7 @@ import Button from '../Button/PrimaryButton';
 const SuccessModal = ({ title, description, show }: ISuccessModalProps) => {
   const [open, setOpen] = useState(show);
 
-  const handleClose = (e: MouseEvent<HTMLDivElement>) => {
+  const handleClose = (_e: MouseEvent<HTMLDivElement>) => {
     setOpen(false);
     console.log('hello');
   };
@@ -28,10 +28,10 @@ const SuccessModal = ({ title, description, show }: ISuccessModalProps) => {
     <>
       {open ? (
         <div
-          className="overlay fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-secondary-base bg-opacity-75
-        "
+          className="overlay fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-secondary-base/75"
           onClick={handleOverlayClick}
         >
+          {/* // overlay fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-secondary-base /75 bg-opacity-75 */}
           <div className="flex flex-col gap-12 rounded-2xl border-[1px] border-border-dark bg-screen-white p-5">
             <div className="flex flex-col">
               <div className="flex justify-end" onClick={handleClose}>
@@ -59,7 +59,7 @@ const SuccessModal = ({ title, description, show }: ISuccessModalProps) => {
                   <div className="flex justify-center">
                     <Button
                       label="Continue"
-                      // routeName="/login"
+                      routeName="/login"
                       className="button-primary w-[270px] px-3 py-[19px] text-xs leading-tight"
                     />
                   </div>

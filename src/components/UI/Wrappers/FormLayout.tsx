@@ -1,9 +1,11 @@
-import type { ReactNode } from 'react';
+// import type { ReactNode } from 'react';
 import React from 'react';
 
-interface IFormLayout {
-  children: ReactNode;
-}
+import type { IFormLayout } from '@/interfaces/interface';
+
+// interface IFormLayout {
+//   children: ReactNode;
+// }
 
 const FormLayout = ({ children }: IFormLayout) => {
   return (

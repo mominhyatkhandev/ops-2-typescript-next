@@ -3,12 +3,7 @@
 
 // import SignUpForm from '@/app/sign-up/page2';
 
-// interface CustomModalProps {
-//   isOpen: boolean;
-//   onRequestClose: () => void;
-//   contentLabel: string;
-//   className: string;
-// }
+// import { CustomModalProps } from '@/interfaces/interface';
 
 // const CustomModal: React.FC<CustomModalProps> = ({
 //   isOpen,

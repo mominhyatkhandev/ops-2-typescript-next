@@ -1,28 +1,15 @@
 'use client';
 
 import { ErrorMessage, Field } from 'formik';
-import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-interface IInput {
-  name: string;
-  label: string;
-  type: string;
-  className?: string;
-  isDisabled?: boolean;
-  hasImage?: boolean;
-  image?: StaticImageData;
-  error: string | undefined;
-  touched: boolean | undefined;
-}
+import type { IInput } from '@/interfaces/interface';
 
 const Input = ({
-  name,
   label,
   type,
-  className,
-  isDisabled = false,
+  name,
   error,
   touched,
   hasImage,
@@ -33,46 +20,51 @@ const Input = ({
     setIsPasswordVisible((prev) => !prev);
   };
   return (
-    <div className="relative flex w-full flex-col gap-[6px] ">
-      <Field
-        name={name}
-        type={isPasswordVisible ? 'text' : type}
-        id={label}
-        className={`${className} dark:text-white peer block w-full appearance-none rounded-lg border-2 border-border-light bg-neutral-white-base px-2.5 pb-1.5 pt-5 text-base font-500 leading-tight text-secondary-base focus:border-primary-base focus:outline-none focus:ring-0 ${
-          touched && error && 'border-danger-base focus:border-danger-base'
+    <>
+      <div
+        className={`floating-input relative w-full rounded-lg border border-border-light focus-within:border-primary-base focus:shadow-sm focus:outline-none ${
+          touched && error && 'border-danger-base'
         }`}
-        placeholder=" "
-        disabled={isDisabled}
-        // autoComplete="off"
-      />
-      <label
-        htmlFor={label}
-        className="peer-focus:text-blue-600 absolute start-3 top-4 z-10 origin-[0] -translate-y-3 scale-75 text-sm font-500 leading-tight text-secondary-base duration-300 focus:text-xs peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-3 peer-focus:scale-75 rtl:peer-focus:left-auto rtl:peer-focus:translate-x-1/4"
       >
-        {label}
-      </label>
-      {hasImage && image && (
-        <div className="absolute right-2 top-1/2 -translate-y-1/2">
-          {/* Your image component */}
-          <Image
-            src={image}
-            alt="Image"
-            className="h-4 w-4"
-            onMouseDown={handleImageClick}
-            onMouseUp={() => setIsPasswordVisible(false)}
-          />
-        </div>
-      )}
-      {/* Success msg if any  */}
-      {/* {touched && !error && (
-        <p className="p-2 text-primary-base text-xs">Valid</p>
-      )} */}
-      <ErrorMessage
-        name={name}
-        component="div"
-        className="px-2.5 text-xs leading-tight text-danger-base"
-      />
-    </div>
+        <Field
+          name={name}
+          type={isPasswordVisible ? 'text' : type}
+          id={label}
+          className={` ${
+            type === 'password' ? 'w-[95%]' : 'w-full'
+          } h-[60px] rounded-lg p-3 focus:outline-none ${
+            touched && error ? 'border-danger-base' : ''
+          }`}
+          placeholder="name@example.com"
+          autocomplete="off"
+          disabled={false}
+        />
+        <label
+          htmlFor={label}
+          className="pointer-events-none absolute left-0 top-0 h-full origin-left px-3 py-5 transition-all duration-100 ease-in-out"
+        >
+          {label}
+        </label>
+        {hasImage && image && (
+          <div className="absolute right-2 top-[55%] z-20 -translate-y-1/2">
+            <Image
+              src={image}
+              alt="Image"
+              className="h-4 w-4 "
+              onMouseDown={handleImageClick}
+              onMouseUp={() => setIsPasswordVisible(false)}
+            />
+          </div>
+        )}
+      </div>
+      <div className="flex w-full justify-start px-3">
+        <ErrorMessage
+          name={name}
+          component="div"
+          className=" text-xs text-danger-base"
+        />
+      </div>
+    </>
   );
 };
 

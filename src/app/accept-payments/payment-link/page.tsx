@@ -33,7 +33,7 @@ const PaymentLink = () => {
           <Button
             label="Sign up"
             className="button-primary w-[200px] px-3 py-[19px] text-sm leading-tight"
-            path="/"
+            routeName="/login"
           />
         </div>
       </div>

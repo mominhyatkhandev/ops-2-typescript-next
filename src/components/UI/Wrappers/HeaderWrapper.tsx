@@ -3,13 +3,14 @@
 // import { useRouter } from 'next/router';
 import React from 'react';
 
+import type { IHeaderWrapper } from '@/interfaces/interface';
 import { getHeaderTextForSegment } from '@/utils/helper';
 
-interface IHeaderWrapper {
-  heading: string;
-  description?: string;
-  show?: boolean;
-}
+// interface IHeaderWrapper {
+//   heading: string;
+//   description?: string;
+//   show?: boolean;
+// }
 
 const HeaderWrapper = ({
   heading,

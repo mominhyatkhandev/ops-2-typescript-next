@@ -3,30 +3,29 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-interface IButton {
-  label: string;
-  type?: 'button' | 'submit';
-  className?: string;
-  isDisabled?: boolean;
-  path?: string;
-  onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-}
+import type { IButton } from '@/interfaces/interface';
+
+// interface IButton {
+//   label: string;
+//   type?: 'button' | 'submit';
+//   className?: string;
+//   isDisabled?: boolean;
+//   routeName: string;
+//   // onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+// }
 
 const Button = ({
   label,
   type = 'button',
-  onClickHandler,
-  path,
+  // onClickHandler = () => {},
+  routeName,
   className,
   isDisabled = false,
 }: IButton) => {
   const router = useRouter();
-
   const handleClick = () => {
-    if (path) {
-      console.log(`Button was clicked for route: ${path}`);
-      router.push(path);
-    }
+    console.log(`Button was clicked for route: ${routeName}`);
+    router.push(routeName);
   };
 
   return (
@@ -38,7 +37,7 @@ const Button = ({
           : 'cursor-pointer bg-primary-base'
       } ${className}`}
       disabled={isDisabled}
-      onClick={onClickHandler || handleClick}
+      onClick={handleClick}
     >
       <div className="w-full">{label}</div>
     </button>

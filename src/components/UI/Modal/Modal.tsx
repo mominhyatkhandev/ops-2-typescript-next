@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
 
-interface IModalProps {
-  isSuccess: boolean;
-  showModal: boolean;
-  children: React.ReactNode;
-  setShowModal: (showModal: boolean) => void;
-}
+import type { IModalProps } from '@/interfaces/interface';
+
+// interface IModalProps {
+//   isSuccess: boolean;
+//   showModal: boolean;
+//   children: React.ReactNode;
+//   setShowModal: (showModal: boolean) => void;
+// }
 
 const Modal: React.FC<IModalProps> = ({
   isSuccess,

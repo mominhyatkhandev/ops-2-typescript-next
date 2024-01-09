@@ -36,7 +36,7 @@ const HeroBanner = (): JSX.Element => {
         <Button
           label="Sign up"
           className="button-primary w-[200px] px-3 py-[19px] text-sm"
-          path="/"
+          routeName="/login"
         />
       </div>
     </main>

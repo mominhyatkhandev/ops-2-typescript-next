@@ -6,16 +6,12 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import SubscriptionIcon from '@/assets/icons/subscription-icon.svg';
+import type { IDropdownProps } from '@/interfaces/interface';
 
 import Coin from '../../assets/icons/card-coin.svg';
 import Money from '../../assets/icons/money-nav.svg';
 import Scanner from '../../assets/icons/scanner-nav.svg';
 import Shop from '../../assets/icons/shop-nav.svg';
-
-interface IDropdownProps {
-  isHovered: boolean;
-  setSelectedOption: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
 
 const Dropdown = ({ isHovered, setSelectedOption }: IDropdownProps) => {
   const router = usePathname();

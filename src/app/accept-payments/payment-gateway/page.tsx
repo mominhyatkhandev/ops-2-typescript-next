@@ -40,8 +40,8 @@ const PaymentGateway = () => {
               </p>
             </div>
             <Button
+              routeName="/login"
               label="Sign up"
-              path="/"
               className="button-primary w-[200px] px-3 py-[19px] text-sm leading-tight"
             />
           </div>

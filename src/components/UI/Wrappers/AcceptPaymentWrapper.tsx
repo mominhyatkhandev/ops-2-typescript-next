@@ -1,10 +1,12 @@
-import type { ReactNode } from 'react';
+// import type { ReactNode } from 'react';
 import React from 'react';
 
-interface IAcceptPaymentWrapper {
-  children: ReactNode;
-  //   className?: string;
-}
+import type { IAcceptPaymentWrapper } from '@/interfaces/interface';
+
+// interface IAcceptPaymentWrapper {
+//   children: ReactNode;
+//   //   className?: string;
+// }
 
 function AcceptPaymentWrapper({ children }: IAcceptPaymentWrapper) {
   return (

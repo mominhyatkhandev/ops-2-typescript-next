@@ -85,7 +85,7 @@ const SignUpForm = ({ onSubmit }: any) => {
               Sign Up
             </button> */}
             <Button
-              path="/home"
+              routeName="/home"
               label="Sign up"
               type="submit"
               isDisabled={!formik.isValid}

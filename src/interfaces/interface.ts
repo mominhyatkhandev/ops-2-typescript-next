@@ -17,14 +17,14 @@ export default interface IHome {
   className: string;
 }
 
-// export interface IButton {
-//   label: string;
-//   type?: 'button' | 'submit';
-//   className?: string;
-//   isDisabled?: boolean;
-//   routeName: string;
-//   // onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-// }
+export interface IButton {
+  label: string;
+  type?: 'button' | 'submit';
+  className?: string;
+  isDisabled?: boolean;
+  routeName: string;
+  onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
 
 export interface IFormLayout {
   children: ReactNode;
@@ -66,11 +66,11 @@ export interface ICheckboxInput {
   onSelect: () => void;
 }
 
-export interface IButton {
-  label: string;
-  className?: string;
-  onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-}
+// export interface IButton {
+//   label: string;
+//   className?: string;
+//   onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+// }
 // Props
 
 export interface ISuccessModalProps {

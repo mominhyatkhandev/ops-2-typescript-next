@@ -31,7 +31,7 @@ const MiniApps = () => {
           </div>
           <Button
             label="Sign up"
-            path="/"
+            routeName="/login"
             className="button-primary w-[200px] px-3 py-[19px] text-sm leading-tight"
           />
         </div>
