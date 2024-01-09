@@ -1,22 +1,55 @@
 'use client';
 
 import Link from 'next/link';
-import type { KeyboardEvent } from 'react';
-import React, { useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import type { Dispatch, KeyboardEvent, SetStateAction } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
+import { POST } from '@/api/helper';
 import useCounter from '@/hooks/useCounter';
 
 function OTP({
   numberOfDigits = 6,
   description,
+  otp,
+  setOtp,
 }: {
   numberOfDigits?: number;
   description: string;
+  otp: any[];
+  setOtp: Dispatch<SetStateAction<any[]>>;
 }) {
-  const [otp, setOtp] = useState(new Array(numberOfDigits).fill(''));
+  // const [otp, setOtp] = useState(new Array(numberOfDigits).fill(''));
   const [otpError] = useState<string | null>(null);
-  const { formattedCount, count } = useCounter({ initialCount: 10 });
+  const searchParams = useSearchParams();
+  const [expiryTime, setExpiryTime] = useState<number>(10);
+
+  console.log('EPIRYTIME :', expiryTime);
+
+  const { formattedCount, count, resetCounter } = useCounter({
+    initialCount: expiryTime || 60,
+  });
+
+  // useEffect(() => {
+  //   if (searchParams.get('expiry')) {
+  //     setExpiryTime(searchParams.get('expiry') * 60);
+  //   }
+  // }, []);
+
   const otpBoxReference = useRef<HTMLInputElement[]>([]);
+
+  const handleResendOTP = async () => {
+    resetCounter();
+    try {
+      const response = await POST('merchant/sendotp', {
+        managerMobile: '923345674415',
+        notificationText: '',
+        template: 'esb_notification',
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   function handleChange(value: string, index: number) {
     const newArr = [...otp];
@@ -81,11 +114,12 @@ function OTP({
           Resend OTP in 00:{formattedCount}
         </div>
       ) : (
-        <Link href="/">
-          <div className="text-xs font-normal leading-tight text-primary-base underline">
-            Resend OTP
-          </div>
-        </Link>
+        <div
+          onClick={handleResendOTP}
+          className="cursor-pointer text-xs font-normal leading-tight text-primary-base underline"
+        >
+          Resend OTP
+        </div>
       )}
     </article>
   );

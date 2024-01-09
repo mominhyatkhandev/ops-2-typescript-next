@@ -8,22 +8,25 @@ interface IButton {
   type?: 'button' | 'submit';
   className?: string;
   isDisabled?: boolean;
-  path: string;
-  // onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  path?: string;
+  onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({
   label,
   type = 'button',
-  // onClickHandler = () => {},
+  onClickHandler,
   path,
   className,
   isDisabled = false,
 }: IButton) => {
   const router = useRouter();
+
   const handleClick = () => {
-    console.log(`Button was clicked for route: ${path}`);
-    router.push(path);
+    if (path) {
+      console.log(`Button was clicked for route: ${path}`);
+      router.push(path);
+    }
   };
 
   return (
@@ -35,7 +38,7 @@ const Button = ({
           : 'cursor-pointer bg-primary-base'
       } ${className}`}
       disabled={isDisabled}
-      onClick={handleClick}
+      onClick={onClickHandler || handleClick}
     >
       <div className="w-full">{label}</div>
     </button>

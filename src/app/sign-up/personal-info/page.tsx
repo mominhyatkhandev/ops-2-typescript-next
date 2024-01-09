@@ -1,39 +1,50 @@
 'use client';
 
 import { Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
-import apiClient from '@/api/apiClient';
+import { POST } from '@/api/helper';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { addFormData, resetFormData } from '@/redux/slices/signUpSlice';
 import { signUpInitialValues, signUpSchema } from '@/validations/signUpSchema';
-
-const onSubmit = async (values: any, { setSubmitting }: any) => {
-  try {
-    const response = await apiClient.post('api-point', values, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'jwt-token',
-      },
-    });
-
-    // Handle the response as needed
-    if (response.status === 200) {
-      console.log('Form submitted successfully');
-    } else {
-      console.error('Failed to submit form');
-    }
-  } catch (error) {
-    console.error('Error submitting form', error);
-  }
-
-  setSubmitting(false);
-};
 
 const PersonalInfo = () => {
   const [isChecked, setChecked] = useState(false);
+  const searchParams = useSearchParams();
+  const dispatch = useAppDispatch();
+  // const store = useAppSelector((state) => state.signup);
+  const router = useRouter();
+
+  const onSubmit = async (values: SignupForm, { setSubmitting }: any) => {
+    try {
+      dispatch(
+        addFormData({
+          ...values,
+          merchantType: searchParams.get('option') || 'optionNotDefined',
+        }),
+      );
+      // dispatch(resetFormData);
+      const response = await POST('merchant/sendotp', {
+        managerMobile: values.managerMobile,
+        notificationText: '',
+        template: 'esb_notification',
+      });
+      if (response.responseCode === '00') {
+        router.push(
+          `/sign-up/personal-info/otp/?expiry=${response.expirationTime}`,
+        );
+      }
+    } catch (error) {
+      console.error('Error submitting form', error);
+    }
+    setSubmitting(false);
+  };
+
   const handleCheckboxChange = () => {
     // Toggle the state value when the checkbox is clicked
     setChecked(!isChecked);
@@ -83,10 +94,10 @@ const PersonalInfo = () => {
                   />
                   <Input
                     label="Mobile Number"
-                    name="phoneNumber"
+                    name="managerMobile"
                     type="text"
-                    error={formik.errors.phoneNumber}
-                    touched={formik.touched.phoneNumber}
+                    error={formik.errors.managerMobile}
+                    touched={formik.touched.managerMobile}
                   />
                   <Input
                     label="Email"
@@ -170,7 +181,7 @@ const PersonalInfo = () => {
                   <Button
                     label="Sign up"
                     type="submit"
-                    path="/home"
+                    // path
                     isDisabled={!formik.isValid || !isChecked}
                     className={`button-primary w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
                   />

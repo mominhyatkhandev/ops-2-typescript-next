@@ -15,8 +15,8 @@ const MiniApps = () => {
           src={miniAppsBG}
           alt="paymentGateway Backgrounds"
           layout="fill"
-          quality={100}
-          // className="absolute inset-0"
+          objectFit="cover"
+          className="absolute inset-0"
         />
         <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
           <div className="flex flex-col gap-4">

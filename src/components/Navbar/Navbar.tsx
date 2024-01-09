@@ -13,6 +13,8 @@ import AcceptPayments from './AcceptPayments';
 const Navbar = () => {
   const [other, setOther] = useState<string>('');
   const [clickTrigger, setClickTrigger] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
   // const router = useRouter();
@@ -30,15 +32,15 @@ const Navbar = () => {
     setClickTrigger(!clickTrigger);
   };
   return (
-    <nav className="relative z-10 flex items-center justify-between  bg-neutral-white-base px-[150px] shadow-md">
-      <div className="flex items-center py-6">
+    <nav className="relative z-10 flex h-[61px] items-center justify-between  bg-neutral-white-base px-[150px] shadow-md">
+      <div className="flex items-center">
         <Image src={Logo} width={173} height={36} alt="logo" className="" />
       </div>
-      <div className="flex flex-row items-center justify-end py-6">
-        <ul className="w-full items-center gap-[24px] lg:inline-flex">
+      <div className="flex h-full justify-end">
+        <ul className="flex items-center gap-[24px] lg:inline-flex">
           <Link href={'/'}>
             <li
-              className="cursor-pointer py-3 text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
+              className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
               onClick={() => handleOther('Home')}
             >
               Home
@@ -47,12 +49,23 @@ const Navbar = () => {
           <div className="h-[10px] w-[1px] bg-border-dark"></div>
 
           {/* <div className="relative"> */}
-          <AcceptPayments other={other} clickTrigger={clickTrigger} />
+          <div
+            className="flex h-full items-center justify-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <AcceptPayments
+              isHovered={isHovered}
+              setIsHovered={setIsHovered}
+              other={other}
+              clickTrigger={clickTrigger}
+            />
+          </div>
 
           <div className="h-[10px] w-[1px] bg-border-dark"></div>
 
           <div
-            className="cursor-pointer py-3 text-center text-sm text-secondary-base transition duration-300 hover:text-primary-base"
+            className="cursor-pointer text-center text-sm text-secondary-base transition duration-300 hover:text-primary-base"
             onClick={() => handleOther('Developer')}
           >
             Developer
@@ -60,7 +73,7 @@ const Navbar = () => {
           <div className="h-[10px] w-[1px] bg-border-dark"></div>
           <Link href={`/faq`}>
             <li
-              className="cursor-pointer py-3 text-center text-sm text-secondary-base transition duration-300 hover:text-primary-base"
+              className="cursor-pointer text-center text-sm text-secondary-base transition duration-300 hover:text-primary-base"
               onClick={() => handleOther('faq')}
             >
               FAQs
@@ -78,7 +91,7 @@ const Navbar = () => {
             {/* <Link href={`/sign-up`}> */}
             <Button
               label="Sign up"
-              path="/login"
+              path="/sign-up"
               // onClickHandler={handleOpenModal}
               className="button-primary w-[96px] px-2 py-[11px] text-xs leading-tight"
             />

@@ -1,5 +1,6 @@
 'use client';
 
+// import { useRouter } from 'next/router';
 import React from 'react';
 
 import { getHeaderTextForSegment } from '@/utils/helper';
@@ -10,34 +11,37 @@ interface IHeaderWrapper {
   show?: boolean;
 }
 
-function HeaderWrapper({
+const HeaderWrapper = ({
   heading,
   description,
   show = false,
-}: IHeaderWrapper): JSX.Element {
+}: IHeaderWrapper): JSX.Element => {
   // const router = useRouter();
+  // const { query } = router;
   const currentURL: string[] = window.location.pathname.split('/');
+
+  // console.log(query.option, 'optionnnn', router, currentURL);
 
   const getHeaderText = (urlSegments: string[]) => {
     return urlSegments.map((url, index, arr) => (
-      <>
+      <div key={index}>
         {url && index > 0 && (
           <div key={index} className="flex gap-2">
             <span
               className={`${
-                index !== arr.length - 1
+                index !== arr.length - 2
                   ? 'text-secondary-base'
                   : 'text-secondary-400'
               }`}
             >
               {getHeaderTextForSegment(url)}
             </span>
-            {index > 0 && index !== arr.length - 1 && (
+            {index > 0 && index !== arr.length - 2 && (
               <span className="text-[10px] text-border-dark">/</span>
             )}
           </div>
         )}
-      </>
+      </div>
     ));
   };
   return (
@@ -76,6 +80,6 @@ function HeaderWrapper({
       </div>
     </>
   );
-}
+};
 
 export default HeaderWrapper;

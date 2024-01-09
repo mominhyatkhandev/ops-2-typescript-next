@@ -41,10 +41,10 @@ const SignUpForm = ({ onSubmit }: any) => {
             />
             <Input
               label="Mobile Number"
-              name="phoneNumber"
+              name="managerMobile"
               type="text"
-              error={formik.errors.phoneNumber}
-              touched={formik.touched.phoneNumber}
+              error={formik.errors.managerMobile}
+              touched={formik.touched.managerMobile}
             />
             <Input
               label="Email"
