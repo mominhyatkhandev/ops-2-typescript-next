@@ -12,22 +12,26 @@ import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import loginSchema, { loginInitialValues } from '@/validations/loginSchema';
 
-interface LoginForm {
-  Username: string;
-  Password: string;
-}
+// interface LoginForm {
+//  Username: string;
+//   Password: string;
+
+// }
 
 const Login = () => {
   // i am going to make onSubmit function
-  const onSubmit = async (values: LoginForm, { setSubmitting }: any) => {
-    console.log('sending api request');
-    console.log('username and password', values.Password, values.Username);
+  const onSubmit = async (
+    // values:LoginForm,
+    { setSubmitting }: any,
+  ) => {
+    // console.log("sending api request")
+    // console.log("username and password", values.Password, values.Username)
     try {
       const response: any = await POST('auth/login', {
         // username: values.Username,
         // password: values.Password,
         username: 'iqbalsidddique@gmail.com',
-        password: 'iqbannnnl',
+        password: 'iqbal',
       });
       console.log('API Response:', response);
       if (response?.responseCode == 'SUCCESS') {

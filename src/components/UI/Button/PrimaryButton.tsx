@@ -25,7 +25,9 @@ const Button = ({
   const router = useRouter();
   const handleClick = () => {
     console.log(`Button was clicked for route: ${routeName}`);
-    router.push(routeName);
+    if (routeName) {
+      router.push(routeName);
+    }
   };
 
   return (

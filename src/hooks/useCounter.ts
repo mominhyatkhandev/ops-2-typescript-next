@@ -18,6 +18,10 @@ const useCounter = ({
   const [count, setCount] = useState<number>(initialCount);
 
   useEffect(() => {
+    setCount(initialCount);
+  }, [initialCount]);
+
+  useEffect(() => {
     let timer: NodeJS.Timeout;
 
     if (count > 0) {
@@ -35,8 +39,19 @@ const useCounter = ({
     setCount(initialCount);
   };
 
+  // const formatCount = (value: number): string => {
+  //   return value < 10 ? `0${value}` : value.toString();
+  // };
+
   const formatCount = (value: number): string => {
-    return value < 10 ? `0${value}` : value.toString();
+    const minutes = Math.floor(value / 60);
+    const seconds = value % 60;
+
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes.toString();
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds.toString();
+
+    // console.log("formatted minutes and seconds",formattedMinutes, formattedSeconds)
+    return `${formattedMinutes}:${formattedSeconds}`;
   };
 
   const formattedCount = formatCount(count);

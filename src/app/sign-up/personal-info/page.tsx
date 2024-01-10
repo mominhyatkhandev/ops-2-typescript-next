@@ -19,7 +19,7 @@ const PersonalInfo = () => {
   const dispatch = useAppDispatch();
   // const store = useAppSelector((state) => state.signup);
   const router = useRouter();
-
+  //
   const onSubmit = async (values: SignupForm, { setSubmitting }: any) => {
     try {
       dispatch(
@@ -182,7 +182,7 @@ const PersonalInfo = () => {
                     label="Sign up"
                     type="submit"
                     // path
-                    routeName="/login"
+                    // routeName="/"
                     isDisabled={!formik.isValid || !isChecked}
                     className={`button-primary w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
                   />

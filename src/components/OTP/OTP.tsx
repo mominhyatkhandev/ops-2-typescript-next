@@ -1,7 +1,8 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import type { Dispatch, KeyboardEvent, SetStateAction } from 'react';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { POST } from '@/api/helper';
 import useCounter from '@/hooks/useCounter';
@@ -19,20 +20,22 @@ function OTP({
 }) {
   // const [otp, setOtp] = useState(new Array(numberOfDigits).fill(''));
   const [otpError] = useState<string | null>(null);
-  // const searchParams = useSearchParams();
-  // const [expiryTime, setExpiryTime] = useState<number>(10);
-
-  // console.log('EPIRYTIME :', expiryTime);
-  // console.log (response)
+  const searchParams = useSearchParams();
+  const [expiryTime, setExpiryTime] = useState<number>();
   const { formattedCount, count, resetCounter } = useCounter({
-    initialCount: 60,
+    initialCount: expiryTime,
   });
 
-  // useEffect(() => {
-  //   if (searchParams.get('expiry')) {
-  //     setExpiryTime(searchParams.get('expiry') * 60);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const expiryQueryParam = searchParams.get('expiry');
+    if (expiryQueryParam !== null) {
+      console.log('expiry time', expiryQueryParam);
+      const expiry = Number(expiryQueryParam) * 60;
+      // console.log("converted expiry time", expiry)
+      // console.log("expiry", expiry);
+      setExpiryTime(expiry);
+    }
+  }, [expiryTime]);
 
   const otpBoxReference = useRef<HTMLInputElement[]>([]);
 
@@ -44,7 +47,7 @@ function OTP({
         notificationText: '',
         template: 'esb_notification',
       });
-      console.log(response);
+      console.log('otp response is', response);
     } catch (e) {
       console.log(e);
     }
@@ -110,7 +113,7 @@ function OTP({
 
       {count > 0 ? (
         <div className="text-xs font-normal text-secondary-600">
-          Resend OTP in 00:{formattedCount}
+          Resend OTP in {formattedCount}
         </div>
       ) : (
         <div
