@@ -73,10 +73,11 @@ export interface ICheckboxInput {
 // }
 // Props
 
-export interface ISuccessModalProps {
+export interface ICustomModalProps {
   title?: string;
   description?: string;
   show: boolean;
+  setShowModal: (value: boolean) => void;
 }
 
 export interface IInfoProp {

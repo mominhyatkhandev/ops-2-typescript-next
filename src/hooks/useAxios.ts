@@ -3,110 +3,83 @@
 import type { AxiosError, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 
-import apiClient from '@/api/apiClient';
+import { apiClient, loading } from '@/api/apiClient';
 
 interface ApiResponse {
   data: any;
 }
 
 interface IUseAxios {
-  initialUrl: string;
+  initialUrl?: string;
   initialData?: any;
-  config?: any;
-  method: string;
+  initialConfig?: any;
+  initialMethod?: string;
 }
 
 const useAxios = ({
   initialUrl,
   initialData = {},
-  config = {},
-  method,
+  initialConfig = {},
+  initialMethod,
 }: IUseAxios) => {
-  const [url, setUrl] = useState<string>(initialUrl);
+  const [url, setUrl] = useState<string | undefined>(initialUrl);
   const [data, setData] = useState<any>(initialData);
+  const [method, setMethod] = useState<string | undefined>(initialMethod);
+  const [config, setConfig] = useState<any>(initialConfig);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<any>(null);
   const [error, setError] = useState<AxiosError | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      let res: AxiosResponse<ApiResponse>;
+      try {
+        if (url && method === 'post') {
+          console.log('RUNNING post FUNCTION IN USEFFECT');
+          res = await apiClient.post(url, data, config);
+          console.log(res, 'response from useaxios');
 
-      // switch (method) {
-      //   case 'get':
-      //     GET(url);
-      //     break;
-      //   case 'post':
-      //     POST(url, data);
-      //     break;
-      //   case 'patch':
-      //     PATCH(url, data);
-      //     break;
-      //   case 'delete':
-      //     DELETE(url);
-      //     break;
-      //   default:
-      //     break;
-      // }
-      if (method === 'post') {
-        try {
-          const response: AxiosResponse<ApiResponse> = await apiClient.post(
-            url,
-            data,
-            config,
-          );
-          setData(response.data);
+          setResponse(res.data);
           setError(null);
-        } catch (error: any) {
-          setData(null);
-          setError(error);
-        }
-      } else if (method === 'patch') {
-        try {
-          const response: AxiosResponse<ApiResponse> = await apiClient.patch(
-            url,
-            data,
-            config,
-          );
-          setData(response.data);
+        } else if (url && method === 'patch') {
+          res = await apiClient.patch(url, data, config);
+          setResponse(res.data);
           setError(null);
-        } catch (error: any) {
-          setData(null);
-          setError(error);
-        }
-      } else if (method === 'delete') {
-        try {
-          const response: AxiosResponse<ApiResponse> =
-            await apiClient.delete(url);
-          setData(response.data);
+        } else if (url && method === 'delete') {
+          res = await apiClient.delete(url);
+          setResponse(res.data);
           setError(null);
-        } catch (error: any) {
-          setData(null);
-          setError(error);
-        }
-      } else {
-        try {
-          const response: AxiosResponse<ApiResponse> = await apiClient.get(
-            url,
-            config,
-          );
-          setData(response.data);
+        } else {
+          res = await apiClient.get(url, config);
+          setResponse(res.data);
           setError(null);
-        } catch (error: any) {
-          setData(null);
-          setError(error);
         }
+      } catch (error: any) {
+        setResponse(null);
+        setError(error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
+    if (url && method) {
+      fetchData();
+    }
+  }, [url, method, data, config]);
 
-    fetchData();
-  }, [url]);
-
-  const fetchDataWithUrl = (newUrl: string) => {
+  const onApiCall = (
+    newUrl: string,
+    newData: any,
+    newConfig: any,
+    newMethod: string,
+  ) => {
     setUrl(newUrl);
+    setData(newData);
+    setMethod(newMethod);
+    setConfig(newConfig);
   };
 
-  return { data, isLoading, error, fetchDataWithUrl };
+  return { response, isLoading, error, onApiCall };
 };
 
 export default useAxios;

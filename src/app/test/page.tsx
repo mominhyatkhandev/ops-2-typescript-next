@@ -36,9 +36,7 @@
 
 import React from 'react';
 
-import SuccessModal from '@/components/UI/Modal/SuccessModal';
-// import InputNew from '@/components/UI/Inputs/InputNew';
-// import Input from '@/components/UI/Inputs/Input';
+import SuccessModal from '@/components/UI/Modal/CustomModal';
 
 function test() {
   return (

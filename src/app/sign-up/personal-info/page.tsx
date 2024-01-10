@@ -4,9 +4,11 @@ import { Form, Formik } from 'formik';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 
+import { apiClient, loading } from '@/api/apiClient';
 import { POST } from '@/api/helper';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
+import CustomModal from '@/components/UI/Modal/CustomModal';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
 import { useAppDispatch } from '@/hooks/redux';
@@ -17,30 +19,46 @@ const PersonalInfo = () => {
   const [isChecked, setChecked] = useState(false);
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  // const store = useAppSelector((state) => state.signup);
+
+  const [showModal, setShowModal] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const router = useRouter();
   //
   const onSubmit = async (values: SignupForm, { setSubmitting }: any) => {
     try {
-      dispatch(
-        addFormData({
-          ...values,
-          merchantType: searchParams.get('option') || 'optionNotDefined',
-        }),
-      );
-      // dispatch(resetFormData);
-      const response = await POST('merchant/sendotp', {
+      console.log('loading upper', loading);
+
+      const response = await apiClient.post('merchant/sendotp', {
         managerMobile: values.managerMobile,
         notificationText: '',
         template: 'esb_notification',
       });
-      if (response.responseCode === '00') {
+      // dispatch(resetFormData);
+      // const { response, loading } = await POST('merchant/sendotp', {
+      //   managerMobile: values.managerMobile,
+      //   notificationText: '',
+      //   template: 'esb_notification',
+      // });
+      console.log('loading down', loading);
+
+      if (response.data.responseCode === '00') {
+        dispatch(
+          addFormData({
+            ...values,
+            merchantType: searchParams.get('option') || 'optionNotDefined',
+          }),
+        );
         router.push(
-          `/sign-up/personal-info/otp/?expiry=${response.expirationTime}`,
+          `/sign-up/personal-info/otp/?expiry=${response.data.expirationTime}`,
         );
       }
-    } catch (error) {
-      console.error('Error submitting form', error);
+    } catch (e: any) {
+      console.log('Error submitting form', e);
+      setTitle(e.code);
+      setDescription(e.message);
+      setShowModal(true);
+      // <SuccessModal title={e.code} description={e.message} show={true} />;
     }
     setSubmitting(false);
   };
@@ -49,9 +67,18 @@ const PersonalInfo = () => {
     // Toggle the state value when the checkbox is clicked
     setChecked(!isChecked);
   };
+  console.log(loading, 'IN COMPONENT');
 
   return (
     <>
+      {showModal && (
+        <CustomModal
+          title={title}
+          description={description}
+          show={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
       <Formik
         initialValues={signUpInitialValues}
         validationSchema={signUpSchema}
@@ -187,6 +214,11 @@ const PersonalInfo = () => {
                     className={`button-primary w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
                   />
                 </div>
+                {loading && (
+                  <div className="h-100 w-full bg-primary-600 p-10 text-5xl font-semibold text-warning-200">
+                    Loading..
+                  </div>
+                )}
               </FormWrapper>
             </div>
 
