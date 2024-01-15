@@ -57,6 +57,7 @@ export interface IInput {
   image?: StaticImageData | string;
   error: string | undefined;
   touched: boolean | undefined;
+  eyeinput?: boolean;
 }
 
 export interface ICheckboxInput {

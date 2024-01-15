@@ -11,6 +11,7 @@ import LoginBg from '@/assets/images/login-bg.jpg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import loginSchema, { loginInitialValues } from '@/validations/loginSchema';
+// import { error } from 'console';
 
 // interface LoginForm {
 //  Username: string;
@@ -20,18 +21,21 @@ import loginSchema, { loginInitialValues } from '@/validations/loginSchema';
 
 const Login = () => {
   // i am going to make onSubmit function
+
   const onSubmit = async (
     // values:LoginForm,
+    // status: any,setStatus:any,
     { setSubmitting }: any,
   ) => {
     // console.log("sending api request")
     // console.log("username and password", values.Password, values.Username)
     try {
+      // setStatus("xyztry")
       const response: any = await POST('auth/login', {
         // username: values.Username,
         // password: values.Password,
         username: 'iqbalsidddique@gmail.com',
-        password: 'iqbal',
+        password: 'iqbaaaaal',
       });
       console.log('API Response:', response);
       if (response?.responseCode == 'SUCCESS') {
@@ -40,11 +44,17 @@ const Login = () => {
         console.log('responsesssssssssss', response.responseMessage);
       }
     } catch (error: any) {
+      // setStatus("xyz  error")
       console.error(
         'errorsssssssssssss',
-        error?.response?.data?.responseMessage,
+        error,
+        // error?.response?.data?.responseMessage,
       );
+      console.log('should be hereeeeeeeeeeeeeeeeeeeeee');
     } finally {
+      // setStatus("xyz")
+      // console.log("finalllllllllly staussss", status);
+
       setSubmitting(false);
     }
   };
@@ -59,7 +69,7 @@ const Login = () => {
           className="absolute inset-0 max-w-full"
         />
         <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9">
-          <span className="flex w-full justify-center pb-8 text-[40px] font-semibold">
+          <span className="flex w-full justify-center pb-8 text-[40px] font-semibold text-secondary-base">
             Login to your account
           </span>
           <Formik
@@ -72,14 +82,18 @@ const Login = () => {
           >
             {/* {({ errors, touched }) => ( */}
             {(formik) => (
-              <Form className="flex flex-col items-center gap-6">
-                <Input
-                  label="Username"
-                  name="Username"
-                  type="text"
-                  error={formik.errors.Username}
-                  touched={formik.touched.Username}
-                />
+              <Form className="flex flex-col items-center">
+                {/* <div className={`w-full flex items-center flex-col ${formik.errors.Username && formik.touched.Username ? 'gap-2' : 'gap-6'}`}> */}
+                {/* <div></div> */}
+                <div className="mb-6 flex w-full flex-col">
+                  <Input
+                    label="Username"
+                    name="Username"
+                    type="text"
+                    error={formik.errors.Username}
+                    touched={formik.touched.Username}
+                  />
+                </div>
                 {/* <Input
                   label="Password"
                   name="password"
@@ -95,15 +109,17 @@ const Login = () => {
                   touched={formik.touched.Password}
                   hasImage={true}
                   image={eye}
+                  eyeinput={true}
                 />
-
+                {/* <div>{status}</div> */}
                 <Button
                   label="Login"
                   routeName="/login"
                   type="submit"
                   isDisabled={!formik.isValid}
-                  className={`button-primary w-[270px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
+                  className={`button-primary mt-8 w-[270px] px-3 py-[19px] text-sm leading-tight transition duration-300`}
                 />
+                {/* </div> */}
               </Form>
             )}
           </Formik>

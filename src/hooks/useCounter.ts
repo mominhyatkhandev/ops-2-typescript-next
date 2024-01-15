@@ -39,10 +39,6 @@ const useCounter = ({
     setCount(initialCount);
   };
 
-  // const formatCount = (value: number): string => {
-  //   return value < 10 ? `0${value}` : value.toString();
-  // };
-
   const formatCount = (value: number): string => {
     const minutes = Math.floor(value / 60);
     const seconds = value % 60;

@@ -14,11 +14,14 @@ const Input = ({
   touched,
   hasImage,
   image,
+  eyeinput,
 }: IInput) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const handleImageClick = () => {
     setIsPasswordVisible((prev) => !prev);
   };
+  console.log(error, 'formik error', touched, 'formik touched');
+
   return (
     <>
       <div
@@ -31,8 +34,8 @@ const Input = ({
           type={isPasswordVisible ? 'text' : type}
           id={label}
           className={` ${
-            type === 'password' ? 'w-[95%]' : 'w-full'
-          } h-[60px] rounded-lg p-3 focus:outline-none ${
+            eyeinput ? 'w-[95%]' : 'w-full'
+          } h-[60px] rounded-lg p-5 focus:outline-none ${
             touched && error ? 'border-danger-base' : ''
           }`}
           placeholder=""
@@ -41,29 +44,29 @@ const Input = ({
         />
         <label
           htmlFor={label}
-          className="pointer-events-none absolute left-0 top-0 h-full origin-left px-3 py-5 transition-all duration-100 ease-in-out"
+          className="pointer-events-none absolute left-0 top-0 h-full origin-left p-5 text-sm font-medium leading-[18px] text-secondary-base transition-all duration-100 ease-in-out"
         >
           {label}
         </label>
         {hasImage && image && (
-          <div className="absolute right-2 top-[55%] z-20 -translate-y-1/2">
+          <div className="absolute right-5 top-[55%] z-20 -translate-y-1/2">
             <Image
               src={image}
               alt="Image"
-              className="h-4 w-4 "
+              className="h-6 w-6 "
               onMouseDown={handleImageClick}
               onMouseUp={() => setIsPasswordVisible(false)}
             />
           </div>
         )}
       </div>
-      <div className="flex w-full justify-start px-3">
-        <ErrorMessage
-          name={name}
-          component="div"
-          className=" text-xs text-danger-base"
-        />
-      </div>
+      {/* <div className=""> */}
+      <ErrorMessage
+        name={name}
+        component="span"
+        className=" flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base"
+      />
+      {/* </div> */}
     </>
   );
 };
