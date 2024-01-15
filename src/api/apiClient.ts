@@ -1,53 +1,50 @@
+/* eslint-disable import/no-mutable-exports */
 import axios from 'axios';
 
 export const baseURL: string =
-  process.env.BASE_URL ?? 'https://2e61-43-224-238-194.ngrok-free.app/'; // Replace with your API's base URL
+  process.env.BASE_URL ?? 'https://03e9-203-175-72-4.ngrok-free.app/'; // Replace with your API's base URL
 
 const apiClient = axios.create({
   baseURL,
 });
 
-// Initialize loading state
-let loading = false;
+// Initialize isLoading state
+let isLoading: boolean = false;
+let isError = false;
 
 // Request interceptor
 apiClient.interceptors.request.use((config) => {
-  // Set loading to true before the request is sent
+  // Set isLoading to true before the request is sent
 
-  loading = true;
-  console.log('loading in config', loading);
+  isLoading = true;
+  console.log('isLoading in config', isLoading);
   return config;
 });
 
 apiClient.interceptors.response.use(
   (response) => {
-    // Set loading to false when the response is received
-    loading = false;
-    console.log('loading in use', loading);
+    // Set isLoading to false when the response is received
+    isLoading = false;
+    console.log('isLoading in use', isLoading);
 
     return response;
   },
   (error) => {
-    // Set loading to false in case of an error
-    loading = false;
+    isLoading = false;
+    isError = true;
 
-    console.log('loading in error', loading);
+    console.log('isLoading in error', isLoading);
 
-    // Handle errors globally
     if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
       console.error(
         'Response error apiClient:',
         error.response.status,
         error.response.data,
       );
     } else if (error.request) {
-      // The request was made but no response was received
       console.log('Request error apiClient:', error.message);
     } else {
-      // Something happened in setting up the request that triggered an Error
-      console.error('Error:', error.message);
+      console.error('Something went wrongError:', error.message);
     }
 
     // Return the error so that it can be handled further
@@ -55,8 +52,8 @@ apiClient.interceptors.response.use(
   },
 );
 
-// Export the loading state along with the apiClient
-export { apiClient, loading };
+// Export the isLoading state along with the apiClient
+export { apiClient, isError, isLoading };
 
 // const ApiClient = () => {
 //   const defaultOptions = {

@@ -28,12 +28,10 @@ function OTP({
 
   useEffect(() => {
     const expiryQueryParam = searchParams.get('expiry');
-    if (expiryQueryParam !== null) {
+    if (expiryQueryParam) {
       console.log('expiry time', expiryQueryParam);
-      const expiry = Number(expiryQueryParam) * 60;
-      // console.log("converted expiry time", expiry)
-      // console.log("expiry", expiry);
-      setExpiryTime(expiry);
+      const expTime = Number(expiryQueryParam) * 60;
+      setExpiryTime(expTime);
     }
   }, [expiryTime]);
 
