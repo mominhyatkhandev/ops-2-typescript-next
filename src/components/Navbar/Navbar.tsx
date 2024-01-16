@@ -2,42 +2,44 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
+import ChevronRight from '@/assets/icons/chevron-right.svg';
+import CloseIcon from '@/assets/icons/close-icon-nav.svg';
 import Logo from '@/assets/icons/logo.svg';
+import Menu from '@/assets/icons/menu-button.svg';
 
 import Button from '../UI/Button/PrimaryButton';
 import AcceptPayments from './AcceptPayments';
+import Dropdown from './Dropdown';
 
 const Navbar = () => {
   const [other, setOther] = useState<string>('');
   const [clickTrigger, setClickTrigger] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const router = useRouter();
-
-  // const handleOpenModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
+  const [isMobileView, setIsMobileView] = useState<boolean>(false);
+  const [isMobileSubMenu, setIsMobileSubMenu] = useState<boolean>(false);
 
   const handleOther = (itemName: string) => {
     setOther(itemName);
     setClickTrigger(!clickTrigger);
   };
   return (
-    <nav className="relative z-10 flex h-[61px] items-center justify-between  bg-neutral-white-base px-[150px] shadow-md">
-      <div className="flex items-center">
+    <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base shadow-md xs:px-6 xs:py-4 sm:px-6 sm:py-4 md:px-6 md:py-4 lg:px-[150px] xl:px-[150px] 2xl:px-[150px]">
+      <div className="flex items-center justify-between">
+        {isMobileView && !isMobileSubMenu ? (
+          <div className="w-min text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+            Menu
+          </div>
+        ) : (
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+            Accept Payments
+          </div>
+        )}
         <Image src={Logo} width={173} height={36} alt="logo" className="" />
       </div>
-      <div className="flex h-full justify-end">
-        <ul className="flex items-center gap-[24px] lg:inline-flex">
+      <div className="flex h-full items-center justify-between">
+        <ul className="flex items-center gap-[24px] xs:hidden sm:hidden md:hidden">
           <Link href={'/'}>
             <li
               className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
@@ -48,7 +50,6 @@ const Navbar = () => {
           </Link>
           <div className="h-[10px] w-[1px] bg-border-dark"></div>
 
-          {/* <div className="relative"> */}
           <div
             className="flex h-full items-center justify-center"
             onMouseEnter={() => setIsHovered(true)}
@@ -83,22 +84,67 @@ const Navbar = () => {
           <div className="flex flex-row gap-6">
             <Button
               label="Login"
-              // onClickHandler={}
-              // onClickHandler={() => router.push('/login')}
               routeName="/login"
-              className="button-secondary w-[96px] px-2 py-[11px] text-xs leading-tight"
+              className="button-secondary w-24 px-2 py-[11px] text-xs leading-tight"
             />
-            {/* <Link href={`/sign-up`}> */}
             <Button
               label="Sign up"
               routeName="/sign-up"
-              // onClickHandler={handleOpenModal}
-              className="button-primary w-[96px] px-2 py-[11px] text-xs leading-tight"
+              className="button-primary w-24 px-2 py-[11px] text-xs leading-tight"
             />
-            {/* </Link> */}
           </div>
         </ul>
+        <div
+          className="lg:hidden xl:hidden 2xl:hidden"
+          onClick={() => setIsMobileView(!isMobileView)}
+        >
+          {isMobileView ? (
+            <Image src={CloseIcon} width={24} height={24} alt="closeIcon" />
+          ) : (
+            <Image src={Menu} alt="menu" width={24} height={24} />
+          )}
+        </div>
       </div>
+      {isMobileView && !isMobileSubMenu && (
+        <>
+          <div
+            className={`absolute right-0 top-20 z-10 w-full flex-col items-center gap-10 bg-neutral-white-base text-neutral-white-base lg:hidden xl:hidden 2xl:hidden`}
+          >
+            <div className="flex flex-col items-start gap-8 border-y-2 border-border-light px-6 py-8">
+              <div className="leading-tight text-secondary-base">Home</div>
+              <div
+                className="flex w-full items-center justify-between"
+                onClick={() => setIsMobileSubMenu(!isMobileSubMenu)}
+              >
+                <div className="leading-tight text-secondary-base">
+                  Accept Payments
+                </div>
+                <Image
+                  src={ChevronRight}
+                  alt="Chevronright"
+                  width={24}
+                  height={24}
+                  id="Chevronright"
+                />
+              </div>
+              <div className="leading-tight text-secondary-base">Developer</div>
+              <div className="leading-tight text-secondary-base">FAQs</div>
+            </div>
+            <div className="flex w-full flex-col items-start justify-center gap-4 border-b border-solid border-border-light px-6 py-8">
+              <Button
+                label="Sign up"
+                routeName="/sign-up"
+                className="button-primary w-24 px-2 py-[11px] text-xs leading-tight"
+              />
+              <Button
+                label="Login"
+                routeName="/login"
+                className="button-secondary w-24 px-2 py-[11px] text-xs leading-tight"
+              />
+            </div>
+          </div>
+        </>
+      )}
     </nav>
   );
 };

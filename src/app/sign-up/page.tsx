@@ -2,6 +2,7 @@
 
 import 'react-circular-progressbar/dist/styles.css';
 
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 // import { CircularProgressbar } from 'react-circular-progressbar';
@@ -12,6 +13,7 @@ import Button from '@/components/UI/Button/PrimaryButton';
 import CheckboxInput from '@/components/UI/Inputs/CheckboxInput';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
+
 // import useAxios from '@/hooks/useAxios';
 
 const AccountOptions = () => {
@@ -30,12 +32,17 @@ const AccountOptions = () => {
   //   },
   //   method: 'post',
   // });
+  const router = useRouter();
 
   const handleSelectedOption = (option: string) => {
     setSelectedOption(option);
   };
 
-  console.log('selected option : ', selectedOption);
+  // console.log('selected option : ', selectedOption);
+
+  const handleClick = () => {
+    router.push(`/sign-up/personal-info/?option=${selectedOption}`);
+  };
 
   return (
     <>
@@ -74,7 +81,8 @@ const AccountOptions = () => {
             <Button
               label="Next"
               isDisabled={!selectedOption}
-              routeName={`/sign-up/personal-info/?option=${selectedOption}`}
+              onClickHandler={handleClick}
+              // routeName={`/sign-up/personal-info/?option=${selectedOption}`}
               className="button-primary w-[270px] px-3 py-[19px] text-sm"
             />
           </div>

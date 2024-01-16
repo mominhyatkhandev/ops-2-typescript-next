@@ -1,10 +1,13 @@
 'use client';
 
+import { sign } from 'crypto';
 import { useSearchParams } from 'next/navigation';
 import type { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
+import apiClient from '@/api/apiClient';
 import { POST } from '@/api/helper';
+import { useAppSelector } from '@/hooks/redux';
 import useCounter from '@/hooks/useCounter';
 
 function OTP({
@@ -12,10 +15,12 @@ function OTP({
   description,
   otp,
   setOtp,
+  medium,
 }: {
   numberOfDigits?: number;
   description: string;
   otp: any[];
+  medium: string;
   setOtp: Dispatch<SetStateAction<any[]>>;
 }) {
   // const [otp, setOtp] = useState(new Array(numberOfDigits).fill(''));
@@ -25,6 +30,7 @@ function OTP({
   const { formattedCount, count, resetCounter } = useCounter({
     initialCount: expiryTime,
   });
+  const signupForm = useAppSelector((state: any) => state.signup);
 
   useEffect(() => {
     const expiryQueryParam = searchParams.get('expiry');
@@ -35,21 +41,42 @@ function OTP({
     }
   }, [expiryTime]);
 
+  console.log(signupForm, 'REDUXXXX DATAAA');
+
   const otpBoxReference = useRef<HTMLInputElement[]>([]);
 
   const handleResendOTP = async () => {
     resetCounter();
     try {
-      const response = await POST('merchant/sendotp', {
-        managerMobile: '923345674415',
-        notificationText: '',
-        template: 'esb_notification',
-      });
-      console.log('otp response is', response);
+      if (medium === 'sms') {
+        const response = await apiClient.post('merchant/mobileotp', {
+          managerMobile: signupForm.managerMobile,
+        });
+        console.log('sms otp response is', response);
+      } else {
+        const response = await apiClient.post('merchant/emailotp', {
+          managerMobile: signupForm.managerMobile,
+          email: signupForm.email,
+        });
+        console.log('email otp response is', response);
+      }
     } catch (e) {
       console.log(e);
     }
   };
+
+  // const handleEmailResendOTP = async () => {
+  //   resetCounter();
+  //   try {
+  //     const response = await apiClient.post('merchant/emailotp', {
+  //       managerMobile: '923345674415',
+  //       email: 'mominhyatkhandeveloper@gmail.com',
+  //     });
+  //     console.log('email otp response is', response);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   function handleChange(value: string, index: number) {
     const newArr = [...otp];

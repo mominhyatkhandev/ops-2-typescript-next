@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { apiClient } from '@/api/apiClient';
+import apiClient from '@/api/apiClient';
 import { POST } from '@/api/helper';
 import OTP from '@/components/OTP/OTP';
 import Button from '@/components/UI/Button/PrimaryButton';
@@ -17,60 +17,58 @@ const OtpInputWithValidation = () => {
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const signUpForm = useAppSelector((state) => state.signup);
 
   const handleVerify = async () => {
     try {
+      setIsLoading(true);
       const response = await apiClient.post('merchant/verifyotp', {
         managerMobile: signUpForm.managerMobile,
         numberOtp: smsOtp.join(''),
         emailOtp: emailOtp.join(''),
       });
-      // const response = await POST('merchant/verifyotp', {
-      //   managerMobile: signUpForm.managerMobile,
-      //   numberOtp: smsOtp.join(''),
-      //   emailOtp: emailOtp.join(''),
-      // });
       console.log(response);
 
       if (response.data.responseCode === '000') {
-        console.log('Successfully verified!');
         try {
           const res = await apiClient.post(
             '/merchant/onboard/register',
             signUpForm,
           );
-          console.log('MERCHANT/ONBOARD RUNNING', res);
 
           if (res.data.responseCode == '000') {
-            setTitle('Account Created Successfully');
+            setTitle(res.data.responseDescription);
             setDescription(
               'Congratulations! You have signed up successfully for the Sandbox account for lorem ipsum',
             );
-            console.log('Successfully Signed Up!');
           } else if (res.data.responseCode == '009') {
-            setTitle('OTP is expired');
-            setDescription(
-              'Please click on the RESEND link below to get a new OTP.',
-            );
+            setTitle(res.data.responseCode);
+            setDescription(res.data.responseDescription);
           }
-          setShowModal(true);
         } catch (e) {
           console.log(e);
         }
-        console.log(showModal, 'SHOW MODAL');
+      } else {
+        setTitle(response.data.errorDescription);
+        setDescription(response.data.errorDescription);
       }
     } catch (e: any) {
       console.log(e);
       setTitle(e.code);
       setDescription(e.message);
+    } finally {
+      setIsLoading(false);
       setShowModal(true);
     }
   };
 
   return (
     <>
+      {isLoading && (
+        <p className="bg-primary-base p-4 font-semibold">LOADING....</p>
+      )}
       <SuccessModal
         title={title}
         description={description}
@@ -91,14 +89,16 @@ const OtpInputWithValidation = () => {
               description="Enter Email OTP here"
               setOtp={setEmailOtp}
               otp={emailOtp}
+              medium="email"
             />
             <OTP
               description="Enter SMS OTP here"
               setOtp={setSmsOtp}
               otp={smsOtp}
+              medium="sms"
             />
             <Button
-              routeName="/login"
+              // routeName="/login"
               label="Verify"
               className="button-primary w-[270px] px-3 py-[19px]"
               onClickHandler={handleVerify}

@@ -17,18 +17,19 @@ import type { IButton } from '@/interfaces/interface';
 const Button = ({
   label,
   type = 'button',
-  // onClickHandler = () => {},
+  onClickHandler = () => {},
   routeName,
   className,
   isDisabled = false,
 }: IButton) => {
   const router = useRouter();
-  const handleClick = () => {
-    console.log(`Button was clicked for route: ${routeName}`);
-    if (routeName) {
-      router.push(routeName);
-    }
-  };
+  // const handleClick = () => {
+  //   console.log(`Button was clicked for route: ${routeName}`);
+  //   if (routeName) {
+  //     router.push(routeName);
+  //   }
+  //   onClickHandler()
+  // };
 
   return (
     <button
@@ -39,7 +40,7 @@ const Button = ({
           : 'cursor-pointer bg-primary-base'
       } ${className}`}
       disabled={isDisabled}
-      onClick={handleClick}
+      onClick={onClickHandler}
     >
       <div className="w-full">{label}</div>
     </button>
