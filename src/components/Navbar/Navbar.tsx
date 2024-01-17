@@ -50,7 +50,7 @@ const Navbar = () => {
 
           {/* <div className="relative"> */}
           <div
-            className="flex h-full items-center justify-center"
+            className="flex h-full place-items-center"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >

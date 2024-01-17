@@ -73,7 +73,11 @@ export interface ICheckboxInput {
 //   onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 // }
 // Props
-
+export interface ISuccessModalProps {
+  title?: string;
+  description?: string;
+  show: boolean;
+}
 export interface ICustomModalProps {
   title?: string;
   description?: string;
@@ -116,4 +120,9 @@ export interface CustomModalProps {
 export interface IAcceptPaymentWrapper {
   children: ReactNode;
   //   className?: string;
+}
+
+export interface LoginForm {
+  Username: string;
+  Password: string;
 }

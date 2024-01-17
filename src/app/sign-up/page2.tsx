@@ -9,7 +9,7 @@ import { signUpInitialValues, signUpSchema } from '@/validations/signUpSchema';
 
 const SignUpForm = ({ onSubmit }: any) => {
   return (
-    <div className="flex flex-col items-center justify-center bg-neutral-white-base p-3">
+    <div className="flex flex-col place-items-center bg-neutral-white-base p-3">
       <div className="text-5xl font-semibold text-primary-base">Sign Up</div>
       <Formik
         initialValues={signUpInitialValues}

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 import { apiClient } from '@/api/apiClient';
-import { POST } from '@/api/helper';
+// import { POST } from '@/api/helper';
 import OTP from '@/components/OTP/OTP';
 import Button from '@/components/UI/Button/PrimaryButton';
 import SuccessModal from '@/components/UI/Modal/CustomModal';
@@ -86,7 +86,7 @@ const OtpInputWithValidation = () => {
           show={true}
         />
         <FormLayout>
-          <div className="flex flex-col items-center justify-center gap-12">
+          <div className="flex flex-col place-items-center gap-12">
             <OTP
               description="Enter Email OTP here"
               setOtp={setEmailOtp}

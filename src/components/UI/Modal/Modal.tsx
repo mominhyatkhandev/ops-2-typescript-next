@@ -27,14 +27,14 @@ const Modal: React.FC<IModalProps> = ({
   return (
     <div
       onClick={closeModal}
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="fixed inset-0 z-50 flex place-items-center"
     >
       <div
         ref={modalRef}
         className={
           isSuccess
-            ? `bg-slate-200 flex h-1/4 w-1/3 items-center justify-center rounded-lg border-2 p-8`
-            : `bg-slate-200 flex h-1/4 w-1/3 items-center justify-center rounded-lg border-2 p-8`
+            ? `bg-slate-200 flex h-1/4 w-1/3 place-items-center rounded-lg border-2 p-8`
+            : `bg-slate-200 flex h-1/4 w-1/3 place-items-center rounded-lg border-2 p-8`
         }
       >
         <div>{children}</div>

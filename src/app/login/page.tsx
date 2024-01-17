@@ -3,60 +3,58 @@
 import { Form, Formik } from 'formik';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
-import { POST } from '@/api/helper';
+import { apiClient } from '@/api/apiClient';
+// import { POST } from '@/api/helper';
 import eye from '@/assets/icons/eye.svg';
 import LoginBg from '@/assets/images/login-bg.jpg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
+import type { LoginForm } from '@/interfaces/interface';
 import loginSchema, { loginInitialValues } from '@/validations/loginSchema';
-// import { error } from 'console';
-
-// interface LoginForm {
-//  Username: string;
-//   Password: string;
-
-// }
 
 const Login = () => {
-  // i am going to make onSubmit function
+  const router = useRouter();
+  const [apierror, setApierror] = useState('');
 
-  const onSubmit = async (
-    // values:LoginForm,
-    // status: any,setStatus:any,
-    { setSubmitting }: any,
-  ) => {
-    // console.log("sending api request")
-    // console.log("username and password", values.Password, values.Username)
+  useEffect(() => {
+    console.log('api error updated', apierror);
+  }, [apierror]);
+
+  const onSubmit = async (values: LoginForm, { setSubmitting }: any) => {
     try {
-      // setStatus("xyztry")
-      const response: any = await POST('auth/login', {
-        // username: values.Username,
-        // password: values.Password,
-        username: 'iqbalsidddique@gmail.com',
-        password: 'iqbaaaaal',
+      const response: any = await apiClient.post('auth/login', {
+        // await apiClient.post
+        username: values.Username,
+        password: values.Password,
+        // username: 'iqbalsidddique@gmail.com',
+        // password: 'iqbaaaaal',
       });
+
       console.log('API Response:', response);
       if (response?.responseCode == 'SUCCESS') {
         console.log(response, 'successssssssssssssssss');
+        router.push('/');
       } else {
-        console.log('responsesssssssssss', response.responseMessage);
+        console.log('hi');
+        // router.push('/home')
       }
+      setApierror('');
     } catch (error: any) {
-      // setStatus("xyz  error")
-      console.error(
-        'errorsssssssssssss',
-        error,
-        // error?.response?.data?.responseMessage,
-      );
-      console.log('should be hereeeeeeeeeeeeeeeeeeeeee');
+      console.log('errorsssssssssssss', error);
+      // console.log('errorsssssssssssss22222222222', error?.response?.data?.responseMessage);
+      setApierror(error?.response?.data?.responseMessage);
+      if (error.message == 'Network Error') {
+        setApierror('Network Error');
+      }
+      console.log('error from api is', apierror);
+      // console.log('should be hereeeeeeeeeeeeeeeeeeeeee');
     } finally {
-      // setStatus("xyz")
-      // console.log("finalllllllllly staussss", status);
-
       setSubmitting(false);
     }
+    console.log('username and password is', values.Username, values.Password);
   };
   return (
     <>
@@ -94,13 +92,6 @@ const Login = () => {
                     touched={formik.touched.Username}
                   />
                 </div>
-                {/* <Input
-                  label="Password"
-                  name="password"
-                  type="password"
-                  error={formik.errors.password}
-                  touched={formik.touched.password}
-                /> */}
                 <Input
                   name="Password"
                   label="Password"
@@ -111,7 +102,9 @@ const Login = () => {
                   image={eye}
                   eyeinput={true}
                 />
-                {/* <div>{status}</div> */}
+                <div className="flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base">
+                  {apierror}
+                </div>
                 <Button
                   label="Login"
                   routeName="/login"

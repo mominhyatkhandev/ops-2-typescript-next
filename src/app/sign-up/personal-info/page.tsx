@@ -10,13 +10,13 @@ import Input from '@/components/UI/Inputs/Input';
 import CustomModal from '@/components/UI/Modal/CustomModal';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { useAppDispatch } from '@/hooks/redux';
 import { addFormData } from '@/redux/slices/signUpSlice';
 import { signUpInitialValues, signUpSchema } from '@/validations/signUpSchema';
 
 const PersonalInfo = () => {
   const [isChecked, setChecked] = useState(false);
-  const signupForm = useAppSelector((state) => state.signup);
+  // const signupForm = useAppSelector((state) => state.signup);
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);

@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import type { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { POST } from '@/api/helper';
+// import { POST } from '@/api/helper';
 import useCounter from '@/hooks/useCounter';
 
 function OTP({
@@ -40,12 +40,12 @@ function OTP({
   const handleResendOTP = async () => {
     resetCounter();
     try {
-      const response = await POST('merchant/sendotp', {
-        managerMobile: '923345674415',
-        notificationText: '',
-        template: 'esb_notification',
-      });
-      console.log('otp response is', response);
+      // const response = await POST('merchant/sendotp', {
+      //   managerMobile: '923345674415',
+      //   notificationText: '',
+      //   template: 'esb_notification',
+      // });
+      console.log('otp response is');
     } catch (e) {
       console.log(e);
     }

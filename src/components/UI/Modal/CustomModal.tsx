@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import type { MouseEvent } from 'react';
-import React, { useState } from 'react';
+import React from 'react';
 
 import closeIcon from '@/assets/icons/close-icon.svg';
 import Bitmap from '@/assets/images/Bitmap.svg';
@@ -18,6 +18,7 @@ const CustomModal = ({
 }: ICustomModalProps) => {
   const handleClose = (e: MouseEvent<HTMLDivElement>) => {
     // setOpen(false);
+    console.log('e', e);
     setShowModal(false);
     // console.log('hello');
   };
@@ -32,7 +33,7 @@ const CustomModal = ({
     <>
       {show ? (
         <div
-          className="overlay fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-secondary-base/75
+          className="overlay fixed left-0 top-0 z-50 flex h-full w-full place-items-center bg-secondary-base/75
         "
           onClick={handleOverlayClick}
         >

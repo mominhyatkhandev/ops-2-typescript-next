@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 export const baseURL: string =
-  process.env.BASE_URL ?? 'https://03e9-203-175-72-4.ngrok-free.app/'; // Replace with your API's base URL
+  process.env.BASE_URL ?? 'https://ad82-43-224-238-194.ngrok-free.app/'; // Replace with your API's base URL
 
 const apiClient = axios.create({
   baseURL,
