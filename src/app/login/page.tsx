@@ -4,10 +4,9 @@ import { Form, Formik } from 'formik';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { apiClient } from '@/api/apiClient';
-// import { POST } from '@/api/helper';
+import apiClient from '@/api/apiClient';
 import eye from '@/assets/icons/eye.svg';
 import LoginBg from '@/assets/images/login-bg.jpg';
 import Button from '@/components/UI/Button/PrimaryButton';
@@ -19,38 +18,23 @@ const Login = () => {
   const router = useRouter();
   const [apierror, setApierror] = useState('');
 
-  useEffect(() => {
-    console.log('api error updated', apierror);
-  }, [apierror]);
-
   const onSubmit = async (values: LoginForm, { setSubmitting }: any) => {
     try {
       const response: any = await apiClient.post('auth/login', {
-        // await apiClient.post
         username: values.Username,
         password: values.Password,
-        // username: 'iqbalsidddique@gmail.com',
-        // password: 'iqbaaaaal',
       });
 
       console.log('API Response:', response);
-      if (response?.responseCode == 'SUCCESS') {
+      if (response?.data.responseCode == '000') {
         console.log(response, 'successssssssssssssssss');
         router.push('/');
       } else {
-        console.log('hi');
-        // router.push('/home')
+        console.log('hiiiiii  ');
       }
       setApierror('');
     } catch (error: any) {
-      console.log('errorsssssssssssss', error);
-      // console.log('errorsssssssssssss22222222222', error?.response?.data?.responseMessage);
-      setApierror(error?.response?.data?.responseMessage);
-      if (error.message == 'Network Error') {
-        setApierror('Network Error');
-      }
-      console.log('error from api is', apierror);
-      // console.log('should be hereeeeeeeeeeeeeeeeeeeeee');
+      setApierror(error.response.data.responseMessage);
     } finally {
       setSubmitting(false);
     }
@@ -73,16 +57,10 @@ const Login = () => {
           <Formik
             initialValues={loginInitialValues}
             validationSchema={loginSchema}
-            // onSubmit={() => {
-            //   console.log('login submitted');
-            // }}
             onSubmit={onSubmit}
           >
-            {/* {({ errors, touched }) => ( */}
             {(formik) => (
               <Form className="flex flex-col items-center">
-                {/* <div className={`w-full flex items-center flex-col ${formik.errors.Username && formik.touched.Username ? 'gap-2' : 'gap-6'}`}> */}
-                {/* <div></div> */}
                 <div className="mb-6 flex w-full flex-col">
                   <Input
                     label="Username"
@@ -112,7 +90,6 @@ const Login = () => {
                   isDisabled={!formik.isValid}
                   className={`button-primary mt-8 w-[270px] px-3 py-[19px] text-sm leading-tight transition duration-300`}
                 />
-                {/* </div> */}
               </Form>
             )}
           </Formik>
@@ -121,7 +98,6 @@ const Login = () => {
             Dont have an account? &nbsp;
             <Link
               href={'/sign-up'}
-              // className="text-primary-base underline after:translate-y-1"
               className="after:-content-[''] relative inline-block text-primary-base after:absolute after:bottom-0 after:left-0 after:block after:h-0.5 after:w-full after:origin-bottom after:translate-y-1 after:bg-primary-base after:transition-transform"
             >
               Create an account

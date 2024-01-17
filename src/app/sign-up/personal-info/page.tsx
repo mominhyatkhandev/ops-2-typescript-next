@@ -4,7 +4,7 @@ import { Form, Formik } from 'formik';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 
-import { apiClient, isError, isLoading } from '@/api/apiClient';
+import apiClient from '@/api/apiClient';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import CustomModal from '@/components/UI/Modal/CustomModal';
@@ -19,22 +19,22 @@ const PersonalInfo = () => {
   // const signupForm = useAppSelector((state) => state.signup);
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const router = useRouter();
-
+  const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   //
 
   const onSubmit = async (values: SignupForm, { setSubmitting }: any) => {
     try {
+      setIsLoading(true);
       const response = await apiClient.post('merchant/sendotp', {
         managerMobile: values.managerMobile,
-        notificationText: '',
-        template: 'esb_notification',
+        email: values.email,
       });
 
-      if (response.data.responseCode === '00') {
+      if (response.data.responseCode === '000') {
         dispatch(
           addFormData({
             ...values,
@@ -44,12 +44,19 @@ const PersonalInfo = () => {
         router.push(
           `/sign-up/personal-info/otp/?expiry=${response.data.expirationTime}`,
         );
+      } else {
+        setTitle(response.data.responseCode);
+        setDescription(response.data.responseDescription);
+        setShowModal(true);
       }
     } catch (e: any) {
       console.log('Error submitting form', e);
       setTitle(e.code);
       setDescription(e.message);
       setShowModal(true);
+    } finally {
+      setIsLoading(false);
+      // setShowModal(true);
     }
     setSubmitting(false);
   };
@@ -58,18 +65,17 @@ const PersonalInfo = () => {
     // Toggle the state value when the checkbox is clicked
     setChecked(!isChecked);
   };
-  console.log('ISERROR IN PAGE', isError);
 
   return (
     <>
       {isLoading && (
         <p className="bg-primary-600 p-4 text-screen-white">LOADING.......</p>
       )}
-      {isError && (
+      {/* {isError && (
         <p className="bg-danger-600 p-4 text-screen-white">
           ERROR LOADING DATA. Please retry again
         </p>
-      )}
+      )} */}
       {showModal && (
         <CustomModal
           title={title}
@@ -205,19 +211,19 @@ const PersonalInfo = () => {
                 <div className="flex flex-col items-end">
                   <div className="w-full">VERIFY COMPONENT</div>
                   <Button
-                    label="Sign up"
+                    label={`Sign up`}
                     type="submit"
-                    // path
-                    // routeName="/"
                     isDisabled={!formik.isValid || !isChecked}
-                    className={`button-primary w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
+                    className={`button-primary ${
+                      isLoading && 'bg-primary-300'
+                    } w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
                   />
                 </div>
-                {isLoading && (
+                {/* {isLoading && (
                   <div className="h-100 w-full bg-primary-600 p-10 text-5xl font-semibold text-warning-200">
                     Loading..
                   </div>
-                )}
+                )} */}
               </FormWrapper>
             </div>
 

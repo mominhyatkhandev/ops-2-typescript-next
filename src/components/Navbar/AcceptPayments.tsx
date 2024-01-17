@@ -38,13 +38,13 @@ const AcceptPayments = ({
   }, [other, clickTrigger]);
 
   return (
-    <li
+    <div
       onClick={() => setIsHovered(!isHovered)}
       className={`relative cursor-pointer text-center text-sm text-secondary-base
         `}
     >
       <div
-        className={`relative ${
+        className={`relative flex w-full items-start justify-start ${
           isHovered && 'text-primary-base'
         } duration-300 hover:text-primary-base hover:transition`}
       >
@@ -64,7 +64,7 @@ const AcceptPayments = ({
           />
         )}
       </>
-    </li>
+    </div>
   );
 };
 

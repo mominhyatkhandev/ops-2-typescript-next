@@ -20,7 +20,6 @@ const Input = ({
   const handleImageClick = () => {
     setIsPasswordVisible((prev) => !prev);
   };
-  // console.log(error, 'formik error', touched, 'formik touched');
 
   return (
     <>

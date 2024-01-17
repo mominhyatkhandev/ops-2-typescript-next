@@ -12,7 +12,13 @@ function CheckboxInput({ label, logo, selected, onSelect }: ICheckboxInput) {
         className="flex w-full flex-row items-center gap-4 rounded-lg border-[1px] border-border-dark bg-neutral-white-base px-5 py-[16px]"
         onClick={onSelect}
       >
-        <Image src={logo} className="h-6 w-6" alt="tick-icon" />
+        <Image
+          width={6}
+          height={6}
+          src={logo}
+          className="h-6 w-6"
+          alt="tick-icon"
+        />
 
         <label
           htmlFor="checkbox"
