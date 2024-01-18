@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import type { MouseEvent } from 'react';
-import React, { useState } from 'react';
+import React from 'react';
 
 import closeIcon from '@/assets/icons/close-icon.svg';
 import Bitmap from '@/assets/images/Bitmap.svg';
@@ -18,6 +18,8 @@ const CustomModal = ({
 }: ICustomModalProps) => {
   const handleClose = (e: MouseEvent<HTMLDivElement>) => {
     // setOpen(false);
+    console.log(e);
+
     setShowModal(false);
     // console.log('hello');
   };

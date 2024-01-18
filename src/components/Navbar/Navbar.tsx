@@ -11,7 +11,6 @@ import Menu from '@/assets/icons/menu-button.svg';
 
 import Button from '../UI/Button/PrimaryButton';
 import AcceptPayments from './AcceptPayments';
-import Dropdown from './Dropdown';
 
 const Navbar = () => {
   const [other, setOther] = useState<string>('');

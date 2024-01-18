@@ -10,7 +10,7 @@ import userSlice from '../slices/userSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user'],
+  whitelist: ['user', 'signup'],
 };
 
 const rootReducer = combineReducers({

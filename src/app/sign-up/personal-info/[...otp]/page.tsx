@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import apiClient from '@/api/apiClient';
-import { POST } from '@/api/helper';
 import OTP from '@/components/OTP/OTP';
 import Button from '@/components/UI/Button/PrimaryButton';
 import SuccessModal from '@/components/UI/Modal/CustomModal';
@@ -78,9 +77,7 @@ const OtpInputWithValidation = () => {
       <div className="flex flex-col gap-6">
         <HeaderWrapper
           heading={'Enter One Time Password (OTP)'}
-          description={
-            "we've sent verification on your email address (abc@domain.com) and your mobile number (03341234567)"
-          }
+          description={`we've sent verification on your email address (${signUpForm.email}) and your mobile number (+${signUpForm.managerMobile})`}
           show={true}
         />
         <FormLayout>

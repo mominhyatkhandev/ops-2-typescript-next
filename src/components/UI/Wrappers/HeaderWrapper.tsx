@@ -1,6 +1,7 @@
 'use client';
 
 // import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 import type { IHeaderWrapper } from '@/interfaces/interface';
@@ -19,7 +20,9 @@ const HeaderWrapper = ({
 }: IHeaderWrapper): JSX.Element => {
   // const router = useRouter();
   // const { query } = router;
-  const currentURL: string[] = window.location.pathname.split('/');
+  const pathName = usePathname();
+  const currentURL: string[] = pathName.split('/');
+  console.log('CURRENT URL', currentURL);
 
   // console.log(query.option, 'optionnnn', router, currentURL);
 

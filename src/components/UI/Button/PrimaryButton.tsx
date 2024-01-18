@@ -1,36 +1,16 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import type { IButton } from '@/interfaces/interface';
-
-// interface IButton {
-//   label: string;
-//   type?: 'button' | 'submit';
-//   className?: string;
-//   isDisabled?: boolean;
-//   routeName: string;
-//   // onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-// }
 
 const Button = ({
   label,
   type = 'button',
   onClickHandler = () => {},
-  routeName,
   className,
   isDisabled = false,
 }: IButton) => {
-  const router = useRouter();
-  // const handleClick = () => {
-  //   console.log(`Button was clicked for route: ${routeName}`);
-  //   if (routeName) {
-  //     router.push(routeName);
-  //   }
-  //   onClickHandler()
-  // };
-
   return (
     <button
       type={type}
