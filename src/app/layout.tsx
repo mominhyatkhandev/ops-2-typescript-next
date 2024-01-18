@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google';
 
 import Footer from '@/components/Footer/Footer';
 // import TanstackProvider from '@/providers/TanstackProvider'
-import Navbar from '@/components/Navbar/Navbar';
+// import Navbar from '@/components/Navbar/Navbar';
 import ReduxProvider from '@/services/providers/ReduxProvider';
 
 // const inter = Inter({ subsets: ['latin'] })
@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* <TanstackProvider> */}
         <ReduxProvider>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
           <Footer />
         </ReduxProvider>

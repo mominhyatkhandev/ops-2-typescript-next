@@ -28,7 +28,7 @@ const SuccessModal = ({ title, description, show }: ISuccessModalProps) => {
     <>
       {open ? (
         <div
-          className="overlay fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-secondary-base/75"
+          className="overlay fixed left-0 top-0 z-50 flex h-full w-full place-items-center bg-secondary-base/75"
           onClick={handleOverlayClick}
         >
           {/* // overlay fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-secondary-base /75 bg-opacity-75 */}

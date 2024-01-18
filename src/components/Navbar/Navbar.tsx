@@ -11,6 +11,10 @@ import Menu from '@/assets/icons/menu-button.svg';
 
 import Button from '../UI/Button/PrimaryButton';
 import AcceptPayments from './AcceptPayments';
+<<<<<<< HEAD
+=======
+// import Dropdown from './Dropdown';
+>>>>>>> 32b739a7ef2a9447dcc831f4f554cb1c5185ee24
 
 const Navbar = () => {
   const [other, setOther] = useState<string>('');
@@ -24,7 +28,7 @@ const Navbar = () => {
     setClickTrigger(!clickTrigger);
   };
   return (
-    <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base shadow-md xs:px-6 xs:py-4 sm:px-6 sm:py-4 md:px-6 md:py-4 lg:px-[150px] xl:px-[150px] 2xl:px-[150px]">
+    <nav className="xs:px-6 xs:py-4 relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base shadow-md sm:px-6 sm:py-4 md:px-6 md:py-4 lg:px-[150px] xl:px-[150px] 2xl:px-[150px]">
       <div className="flex items-center justify-between">
         {isMobileView && !isMobileSubMenu ? (
           <div className="w-min text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
@@ -38,7 +42,7 @@ const Navbar = () => {
         <Image src={Logo} width={173} height={36} alt="logo" className="" />
       </div>
       <div className="flex h-full items-center justify-between">
-        <ul className="flex items-center gap-[24px] xs:hidden sm:hidden md:hidden">
+        <ul className="xs:hidden flex items-center gap-[24px] sm:hidden md:hidden">
           <Link href={'/'}>
             <li
               className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
@@ -50,7 +54,7 @@ const Navbar = () => {
           <div className="h-[10px] w-[1px] bg-border-dark"></div>
 
           <div
-            className="flex h-full items-center justify-center"
+            className="flex h-full place-items-center"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >

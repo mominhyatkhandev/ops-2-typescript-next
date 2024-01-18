@@ -4,13 +4,21 @@
 
 @layer utilities {
   .button-primary {
-    @apply flex justify-center items-center text-neutral-white-base font-semibold rounded-lg;
+    @apply flex place-items-center text-neutral-white-base font-semibold rounded-lg;
   }
   .button-secondary {
-    @apply border-primary-base bg-neutral-white-base border-[2px] flex justify-center items-center text-secondary-base font-semibold rounded-lg;
+    @apply border-primary-base bg-neutral-white-base border-[2px] flex place-items-center text-secondary-base font-semibold rounded-lg;
   }
   .heading-primary {
-    @apply font-semibold text-5xl text-secondary-base leading-tight;
+    @apply font-semibold text-5xl text-secondary-base leading-tight  ;
+
+    /* @screen sm:md-max{
+      text-[32px]
+    } */
+
+    /* @screen sm:md-max{
+      font-semibold
+    } */
   }
   /* .card-container {
     @apply transition duration-300 border-solid border-border-light bg-screen-grey flex flex-col gap-[60px] items-start pt-8 pb-6 px-5 border-[0.5px] rounded-[8px] cursor-pointer hover:bg-primary-base hover:text-white;
@@ -38,4 +46,8 @@
 .floating-input > input:not(:placeholder-shown) ~ label {
   @apply opacity-75 scale-75 -translate-y-3 translate-x-1;
 }
+
+/* .invisible {
+  visibility: hidden;
+} */
 

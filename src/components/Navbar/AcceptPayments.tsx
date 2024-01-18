@@ -44,7 +44,7 @@ const AcceptPayments = ({
         `}
     >
       <div
-        className={`relative w-full flex items-start justify-start ${
+        className={`relative flex w-full items-start justify-start ${
           isHovered && 'text-primary-base'
         } duration-300 hover:text-primary-base hover:transition`}
       >

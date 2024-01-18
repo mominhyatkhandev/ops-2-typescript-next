@@ -21,17 +21,20 @@ module.exports = {
       },
     },
     screens: {
-      xs: { min: '337px', max: '640px' },
-
-      sm: { min: '640px', max: '768px' },
-
-      md: { min: '768px', max: '1140px' },
-
-      lg: { min: '1140px', max: '1280px' },
-
-      xl: { min: '1280px', max: '1536px' },
-
-      '2xl': { min: '1536px' },
+      sm: '640px',
+      'sm-max': { max: '640px' },
+      md: '768px',
+      'md-max': { max: '768px' },
+      lg: '992px',
+      'lg-max': { max: '992px' },
+      xl: '1200px',
+      'xl-max': { max: '1200px' },
+      '2xl': '1320px',
+      '2xl-max': { max: '1320px' },
+      '3xl': '1600px',
+      '3xl-max': { max: '1600px' },
+      '4xl': '1850px',
+      '4xl-max': { max: '1850px' },
     },
     colors: {
       primary: {

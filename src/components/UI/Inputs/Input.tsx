@@ -60,11 +60,18 @@ const Input = ({
         )}
       </div>
       {/* <div className=""> */}
+
+      {/* <div className={error?'':'block'}> */}
+
       <ErrorMessage
         name={name}
         component="span"
-        className=" flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base"
+        className="flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base"
+        // className={`flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base ${
+        //   error ? 'visible' : 'invisible'
+        // }`}
       />
+      {/* </div> */}
       {/* </div> */}
     </>
   );

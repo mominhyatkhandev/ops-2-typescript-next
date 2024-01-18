@@ -1,7 +1,5 @@
 'use client';
 
-import 'react-circular-progressbar/dist/styles.css';
-
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
