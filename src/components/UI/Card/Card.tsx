@@ -10,7 +10,7 @@ const Card = ({ logo, label, description }: ICardProps) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   return (
     <div
-      className={`group flex cursor-pointer flex-col items-start justify-start gap-[60px] rounded-[8px] border-[0.5px] border-solid border-border-light bg-screen-grey px-5 py-6 duration-300 ease-out hover:bg-primary-base hover:text-neutral-white-base sm:md-max:gap-[24px] sm:md-max:py-4`}
+      className={`sm:md-max:gap-[24px] sm:md-max:py-4 group flex cursor-pointer flex-col items-start justify-start gap-[60px] rounded-[8px] border-[0.5px] border-solid border-border-light bg-screen-grey px-5 py-6 duration-300 ease-out hover:bg-primary-base hover:text-neutral-white-base`}
       // className={`group flex min-h-[300px] cursor-pointer flex-col items-start justify-start gap-[60px] rounded-[8px] border-[0.5px] border-solid border-border-light bg-screen-grey px-5 py-6 duration-300 ease-out hover:bg-primary-base hover:text-neutral-white-base sm:md-max:gap-[24px] sm:md-max:py-4`}
 
       onMouseEnter={() => setIsCardHovered(true)}
@@ -27,11 +27,11 @@ const Card = ({ logo, label, description }: ICardProps) => {
       )}
 
       <div className="flex flex-col items-start gap-4 self-stretch">
-        <div className="w-full text-2xl font-semibold leading-tight text-secondary-base group-hover:text-neutral-white-base sm:md-max:text-base">
+        <div className="sm:md-max:text-base w-full text-2xl font-semibold leading-tight text-secondary-base group-hover:text-neutral-white-base">
           <>
             {label === 'Online Payments' ? (
               <>
-                Online <span className="block sm:md-max:inline">{''}</span>
+                Online <span className="sm:md-max:inline block">{''}</span>
                 Payments
               </>
             ) : /* <>
@@ -40,7 +40,7 @@ const Card = ({ logo, label, description }: ICardProps) => {
 
             label === 'QR Integration' ? (
               <>
-                QR <span className="block sm:md-max:inline">{''}</span>
+                QR <span className="sm:md-max:inline block">{''}</span>
                 Integration
               </>
             ) : // <>
@@ -48,12 +48,12 @@ const Card = ({ logo, label, description }: ICardProps) => {
             // </>
             label === 'Mini APPS' ? (
               <>
-                Mini <span className="block sm:md-max:inline">{''}</span>
+                Mini <span className="sm:md-max:inline block">{''}</span>
                 Apps
               </>
             ) : label === 'Payment Link' ? (
               <>
-                Payment <span className="block sm:md-max:inline">{''}</span>
+                Payment <span className="sm:md-max:inline block">{''}</span>
                 Link
               </>
             ) : (
@@ -61,7 +61,7 @@ const Card = ({ logo, label, description }: ICardProps) => {
             )}
           </>
         </div>
-        <div className="w-full text-base font-normal leading-tight text-secondary-600 group-hover:text-neutral-white-base sm:md-max:text-sm">
+        <div className="sm:md-max:text-sm w-full text-base font-normal leading-tight text-secondary-600 group-hover:text-neutral-white-base">
           {description}
         </div>
       </div>

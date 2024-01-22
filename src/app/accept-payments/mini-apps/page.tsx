@@ -3,6 +3,7 @@ import React from 'react';
 
 import miniAppsBG from '@/assets/images/mini-apps.jpg';
 import Info from '@/components/Content/Info/Info';
+import Footer from '@/components/Footer/Footer';
 import Button from '@/components/UI/Button/PrimaryButton';
 import AcceptPaymentWrapper from '@/components/UI/Wrappers/AcceptPaymentWrapper';
 import { cards } from '@/utils/data';
@@ -39,6 +40,7 @@ const MiniApps = () => {
       <div className="flex flex-col">
         <Info title={'mini apps'} cardsArray={cards} />
       </div>
+      <Footer />
     </>
   );
 };

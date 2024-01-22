@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 
 import { Form, Formik } from 'formik';
 import Image from 'next/image';
@@ -20,13 +20,19 @@ const Login = () => {
 
   const onSubmit = async (values: LoginForm, { setSubmitting }: any) => {
     try {
-      const response: any = await apiClient.post('auth/login', {
-        username: values.Username,
-        password: values.Password,
-      });
+      const response: any = await apiClient.post(
+        'auth/login',
+        {},
+        {
+          headers: {
+            username: values.Username,
+            password: values.Password,
+          },
+        },
+      );
 
       console.log('API Response:', response);
-      if (response?.data.responseCode == '000') {
+      if (response?.headers.responseCode == '000') {
         console.log(response, 'successssssssssssssssss');
         router.push('/');
       } else {
@@ -34,7 +40,7 @@ const Login = () => {
       }
       setApierror('');
     } catch (error: any) {
-      setApierror(error.response.data.responseMessage);
+      setApierror(error.response.headers.responseMessage);
     } finally {
       setSubmitting(false);
     }
@@ -42,7 +48,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="relative bg-primary-700 px-[380px] pb-[144px] pt-[120px]">
+      <div className="relative flex-col items-center justify-center bg-primary-700 px-[380px] pb-[144px] pt-[120px]">
         <Image
           src={LoginBg}
           alt="LoginBg"
@@ -109,4 +115,4 @@ const Login = () => {
   );
 };
 
-// export default Login;
+export default Login;

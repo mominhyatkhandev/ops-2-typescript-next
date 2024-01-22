@@ -17,19 +17,13 @@ export default interface IHome {
   className: string;
 }
 
-export interface ISuccessModalProps {
-  title: string;
-  description: string;
-  show: boolean;
-}
-
 export interface IButton {
   label: string;
   type?: 'button' | 'submit';
   className?: string;
   isDisabled?: boolean;
   routeName?: string;
-  onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClickHandler?: () => void;
 }
 
 export interface IFormLayout {

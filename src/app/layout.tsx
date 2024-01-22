@@ -1,18 +1,23 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
-import Footer from '@/components/Footer/Footer';
+// import Footer from '@/components/Footer/Footer';
+import Navbar from '@/components/Navbar/Navbar';
 // import TanstackProvider from '@/providers/TanstackProvider'
 // import Navbar from '@/components/Navbar/Navbar';
 import ReduxProvider from '@/services/providers/ReduxProvider';
 
 // const inter = Inter({ subsets: ['latin'] })
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
+// const inter = Inter({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-inter',
+// });
+
+const myFont = localFont({
+  src: '../assets/fonts/sf-pro/SF-Pro-Display/sf-pro-display_regular.woff2',
 });
 
 export const metadata: Metadata = {
@@ -27,12 +32,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={myFont.className}>
         {/* <TanstackProvider> */}
         <ReduxProvider>
-          {/* <Navbar /> */}
+          <Navbar />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </ReduxProvider>
         {/* </TanstackProvider> */}
       </body>

@@ -22,7 +22,7 @@ const HeaderWrapper = ({
   // const { query } = router;
   const pathName = usePathname();
   const currentURL: string[] = pathName.split('/');
-  console.log('CURRENT URL', currentURL);
+  // console.log('CURRENT URL', currentURL);
 
   // console.log(query.option, 'optionnnn', router, currentURL);
 
@@ -50,37 +50,22 @@ const HeaderWrapper = ({
   };
   return (
     <>
-      <div className="px-[150px]">
-        {show ? (
+      <div className="flex flex-col gap-9 px-[150px]">
+        {show && (
           <header className="text-secondary-base">
             <div className="flex gap-2 pt-[24px] text-xs font-normal">
               {getHeaderText(currentURL)}
             </div>
           </header>
-        ) : // <div className="pt-[24px] text-xs flex gap-2 font-normal">
-        //   Sign Up <span className="text-[10px] text-border-dark">/</span>
-        //   <span className="text-secondary-400">Personal information</span>
-        // </div>
-        null}
-        {show ? (
-          <div className="flex flex-col gap-2 pb-[24px] pt-[36px]">
-            <div className="flex w-full text-5xl font-semibold text-secondary-base">
-              {heading}
-            </div>
-            <div className="text-base font-normal text-secondary-600">
-              {description}
-            </div>
-          </div>
-        ) : (
-          <div className={`flex flex-col gap-2 pt-[76px]`}>
-            <div className="flex w-full text-5xl font-semibold text-secondary-base">
-              {heading}
-            </div>
-            <div className="text-base font-normal text-secondary-600">
-              {description}
-            </div>
-          </div>
         )}
+        <div className="flex flex-col gap-2">
+          <div className="flex w-full text-5xl font-semibold text-secondary-base">
+            {heading}
+          </div>
+          <div className="text-base font-normal text-secondary-600">
+            {description}
+          </div>
+        </div>
       </div>
     </>
   );

@@ -3,16 +3,13 @@
 import React, { useState } from 'react';
 
 import apiClient from '@/api/apiClient';
-<<<<<<< HEAD:src/app/sign-up/personal-info/[...otp]/page.tsx
-=======
-// import { POST } from '@/api/helper';
->>>>>>> 32b739a7ef2a9447dcc831f4f554cb1c5185ee24:src/app/sign-up/personal-info/otp/page.tsx
 import OTP from '@/components/OTP/OTP';
 import Button from '@/components/UI/Button/PrimaryButton';
 import SuccessModal from '@/components/UI/Modal/CustomModal';
 import FormLayout from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
-import { useAppSelector } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { resetFormData } from '@/redux/slices/signUpSlice';
 
 const OtpInputWithValidation = () => {
   const [emailOtp, setEmailOtp] = useState(new Array(6).fill(''));
@@ -23,6 +20,7 @@ const OtpInputWithValidation = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const signUpForm = useAppSelector((state) => state.signup);
+  const dispatch = useAppDispatch();
 
   const handleVerify = async () => {
     try {
@@ -46,6 +44,7 @@ const OtpInputWithValidation = () => {
             setDescription(
               'Congratulations! You have signed up successfully for the Sandbox account for lorem ipsum',
             );
+            dispatch(resetFormData);
           } else if (res.data.responseCode == '009') {
             setTitle(res.data.responseCode);
             setDescription(res.data.responseDescription);
@@ -78,7 +77,7 @@ const OtpInputWithValidation = () => {
         show={showModal}
         setShowModal={setShowModal}
       />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 pb-[52px]">
         <HeaderWrapper
           heading={'Enter One Time Password (OTP)'}
           description={`we've sent verification on your email address (${signUpForm.email}) and your mobile number (+${signUpForm.managerMobile})`}
@@ -101,7 +100,7 @@ const OtpInputWithValidation = () => {
             <Button
               // routeName="/login"
               label="Verify"
-              className="button-primary w-[270px] px-3 py-[19px]"
+              className="button-primary w-[270px] px-3 py-[19px] text-sm leading-tight"
               onClickHandler={handleVerify}
             />
           </div>

@@ -7,9 +7,9 @@ import phoneIcon from '@/assets/images/phoneIcon.png';
 
 const Footer = () => {
   return (
-    <footer className="flex w-full flex-col items-center justify-center gap-[60px] px-[150px] pb-[60px] sm:md-max:px-[24px]">
+    <footer className="sm:md-max:px-[24px] flex w-full flex-col items-center justify-center gap-[60px] px-[150px] pb-[60px]">
       <div className="h-[1px] w-full bg-border-light"></div>
-      <div className="flex w-full items-start justify-between gap-[499px] sm:md-max:flex-col sm:md-max:gap-[36px]">
+      <div className="sm:md-max:flex-col sm:md-max:gap-[36px] flex w-full items-start justify-between gap-[499px]">
         {/* <div className="flex w-full items-start justify-between gap-[499px]"> */}
 
         {/* easypaisaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */}
@@ -20,12 +20,12 @@ const Footer = () => {
               alt="logo"
               height={36}
               width={173}
-              className="h-[36px] w-[173px]  sm:md-max:h-[24px] sm:md-max:w-[116px]"
+              className="sm:md-max:h-[24px] sm:md-max:w-[116px]  h-[36px] w-[173px]"
             />
           </div>
           <div
             id="Copyright"
-            className="block text-base font-normal leading-tight text-secondary-600 sm:md-max:hidden sm:md-max:text-sm"
+            className="sm:md-max:hidden sm:md-max:text-sm block text-base font-normal leading-tight text-secondary-600"
           >
             Copyright © 2023 Easypaisa | All Rights Reserved{' '}
           </div>
@@ -35,19 +35,19 @@ const Footer = () => {
         <div className="flex flex-col items-start justify-between gap-6">
           <div
             id="FooterTitle"
-            className="text-2xl font-semibold text-secondary-base sm:md-max:text-base sm:md-max:leading-5"
+            className="sm:md-max:text-base sm:md-max:leading-5 text-2xl font-semibold text-secondary-base"
           >
             Contact us
           </div>
           <div className="flex flex-row items-start gap-3">
             <Image src={emailIcon} alt="email" height={20} width={20} />
-            <div className=" text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm">
+            <div className=" sm:md-max:text-sm text-base font-normal leading-tight text-secondary-600">
               businesspartnersupport@telenorbank.pk
             </div>
           </div>
           <div className="flex flex-row items-center gap-3">
             <Image src={phoneIcon} alt="phone" height={20} width={20} />
-            <div className=" text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm">
+            <div className=" sm:md-max:text-sm text-base font-normal leading-tight text-secondary-600">
               62632 (10 AM to 5 PM)
             </div>
           </div>
@@ -56,7 +56,7 @@ const Footer = () => {
 
         <div
           id="Copyright"
-          className="hidden text-base font-normal leading-tight text-secondary-600 sm:md-max:block sm:md-max:text-sm"
+          className="sm:md-max:block sm:md-max:text-sm hidden text-base font-normal leading-tight text-secondary-600"
         >
           Copyright © 2023 Easypaisa | All Rights Reserved{' '}
         </div>

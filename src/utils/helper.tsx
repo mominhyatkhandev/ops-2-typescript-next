@@ -4,7 +4,7 @@ import home from '@/assets/icons/home-sign-up.svg';
 
 export const getHeaderTextForSegment = (segment: string) => {
   const lowercasedSegment = segment.toLowerCase();
-  console.log('LOWER SEGMENT: ', lowercasedSegment);
+  // console.log('LOWER SEGMENT: ', lowercasedSegment);
 
   switch (lowercasedSegment) {
     case 'sign-up':

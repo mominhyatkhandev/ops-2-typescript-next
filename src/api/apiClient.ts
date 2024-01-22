@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 export const baseURL =
-  process.env.BASE_URL || 'https://68d0-43-224-238-194.ngrok-free.app/'; // Replace with your API's base URL
+  process.env.BASE_URL || 'https://ccd6-43-224-238-194.ngrok-free.app/'; // Replace with your API's base URL
 
 const apiClient = axios.create({
   baseURL,
@@ -23,7 +23,7 @@ apiClient.interceptors.response.use(
     } else if (error.request) {
       console.log('Request error apiClient:', error.message);
     } else {
-      console.error('Something went wrongError:', error.message);
+      console.error('Network Error ----Something went wrong:', error.message);
     }
     return Promise.reject(error);
   },

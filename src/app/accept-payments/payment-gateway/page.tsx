@@ -4,6 +4,7 @@ import React from 'react';
 import paymentGatewayBG from '@/assets/images/payment-gateway.jpg';
 import Info from '@/components/Content/Info/Info';
 import Partners from '@/components/Content/Partners/Partners';
+import Footer from '@/components/Footer/Footer';
 import Button from '@/components/UI/Button/PrimaryButton';
 import { cards } from '@/utils/data';
 
@@ -51,6 +52,7 @@ const PaymentGateway = () => {
         <Info title={'payment gateway'} cardsArray={cards} />
         <Partners />
       </div>
+      <Footer />
     </>
   );
 };

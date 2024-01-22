@@ -2,7 +2,7 @@
 
 import { ErrorMessage, Field } from 'formik';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import type { IInput } from '@/interfaces/interface';
 
@@ -15,31 +15,48 @@ const Input = ({
   hasImage,
   image,
   eyeinput,
+  isDisabled = false,
 }: IInput) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const fieldRef = useRef<HTMLInputElement>(null);
+
   const handleImageClick = () => {
     setIsPasswordVisible((prev) => !prev);
   };
 
+  const handleMouseDown = () => {
+    if (fieldRef?.current) {
+      fieldRef?.current?.focus(); // Focus the field
+      // setFieldTouched(name, true, false); // Set the field as touched without validating
+      // Optionally, you can set a default value
+      // setFieldValue(name, 'Your default value', false);
+    }
+  };
+
   return (
-    <>
+    <div className="w-full">
       <div
-        className={`floating-input relative w-full rounded-lg border border-border-light focus-within:border-primary-base focus:shadow-sm focus:outline-none ${
-          touched && error && 'border-danger-base'
-        }`}
+        className={`floating-input relative w-full rounded-lg border border-border-light focus-within:border-primary-base hover:border-primary-base hover:shadow-sm focus:shadow-sm focus:outline-none ${
+          touched && error ? 'border-danger-base' : ''
+        } ${isHovered ? 'focus-within' : ''}`}
+        onClick={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <Field
+          innerRef={fieldRef}
           name={name}
+          onMouseEnter={handleMouseDown}
           type={isPasswordVisible ? 'text' : type}
           id={label}
-          className={` ${
+          className={`font-500 text-neutral-black-base ${
             eyeinput ? 'w-[95%]' : 'w-full'
           } h-[60px] rounded-lg p-5 focus:outline-none ${
             touched && error ? 'border-danger-base' : ''
           }`}
           placeholder=""
           // autocomplete="off"
-          disabled={false}
+          disabled={isDisabled}
         />
         <label
           htmlFor={label}
@@ -66,14 +83,14 @@ const Input = ({
       <ErrorMessage
         name={name}
         component="span"
-        className="flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base"
+        className="flex w-full justify-start px-5 pt-[6px] text-xs text-danger-base"
         // className={`flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base ${
         //   error ? 'visible' : 'invisible'
         // }`}
       />
       {/* </div> */}
       {/* </div> */}
-    </>
+    </div>
   );
 };
 
