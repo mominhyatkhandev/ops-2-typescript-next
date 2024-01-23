@@ -23,7 +23,7 @@ export interface IButton {
   className?: string;
   isDisabled?: boolean;
   routeName?: string;
-  onClickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClickHandler?: () => void;
 }
 
 export interface IFormLayout {

@@ -4,7 +4,8 @@ import React from 'react';
 import subscriptionBG from '@/assets/images/subscription.jpg';
 import Info from '@/components/Content/Info/Info';
 import Partners from '@/components/Content/Partners/Partners';
-import Button from '@/components/UI/Button/PrimaryButton';
+// import Footer from '@/components/Footer/Footer';
+// import Button from '@/components/UI/Button/PrimaryButton';
 import { cards } from '@/utils/data';
 
 const Subscription = () => {
@@ -34,12 +35,11 @@ const Subscription = () => {
                 enable growth for your subscription <br /> based businesses
               </p>
             </div>
-            <Button
-              routeName="/login"
-              label="Sign up"
-              className="button-primary w-[200px] px-3 py-[19px] text-sm leading-tight"
-            />
           </div>
+        </div>
+        <div className="flex flex-col pb-[120px]">
+          <Info title={'subscription'} cardsArray={cards} />
+          <Partners />
         </div>
       </div>
       <div className="flex flex-col pb-[120px] sm:md-max:pb-[80px]">

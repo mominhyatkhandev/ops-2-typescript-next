@@ -1,9 +1,9 @@
 // 'use client';
 
 // import type { AxiosError, AxiosResponse } from 'axios';
-// import { useState } from 'react';
+// import { useEffect, useState } from 'react';
 
-// import apiClient from '@/api/apiClient';
+// import { apiClient, isLoading } from '@/api/apiClient';
 
 // interface ApiResponse {
 //   data: any;

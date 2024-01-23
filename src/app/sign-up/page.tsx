@@ -1,8 +1,5 @@
 'use client';
 
-import 'react-circular-progressbar/dist/styles.css';
-
-import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 // import { CircularProgressbar } from 'react-circular-progressbar';
@@ -14,39 +11,16 @@ import CheckboxInput from '@/components/UI/Inputs/CheckboxInput';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
 
-// import useAxios from '@/hooks/useAxios';
-
 const AccountOptions = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
-  // const { data, isLoading, error } = useAxios({
-  //   initialUrl:
-  //     'https://f6e9-43-224-238-194.ngrok-free.app/merchant/onboard/register',
-  //   initialData: {
-  //     firstName: 'Iqbal',
-  //     lastName: 'Doe',
-  //     merchantName: 'ABC Store',
-  //     managerMobile: '123456789000',
-  //     website: 'abcstore.com',
-  //     emailAddress: 'john.doe@email.com',
-  //     password: 'abc123456',
-  //   },
-  //   method: 'post',
-  // });
-  const router = useRouter();
 
   const handleSelectedOption = (option: string) => {
     setSelectedOption(option);
   };
 
-  // console.log('selected option : ', selectedOption);
-
-  const handleClick = () => {
-    router.push(`/sign-up/personal-info/?option=${selectedOption}`);
-  };
-
   return (
     <>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 pt-[76px]">
         <HeaderWrapper
           heading="What would you like to Sign up for?"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -81,8 +55,7 @@ const AccountOptions = () => {
             <Button
               label="Next"
               isDisabled={!selectedOption}
-              onClickHandler={handleClick}
-              // routeName={`/sign-up/personal-info/?option=${selectedOption}`}
+              routeName={`/sign-up/personal-info/?option=${selectedOption}`}
               className="button-primary w-[270px] px-3 py-[19px] text-sm"
             />
           </div>

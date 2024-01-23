@@ -1,10 +1,12 @@
 'use client';
 
 import { Form, Formik } from 'formik';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 
 import apiClient from '@/api/apiClient';
+import TickIcon from '@/assets/icons/tick-icon.svg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import CustomModal from '@/components/UI/Modal/CustomModal';
@@ -16,15 +18,14 @@ import { signUpInitialValues, signUpSchema } from '@/validations/signUpSchema';
 
 const PersonalInfo = () => {
   const [isChecked, setChecked] = useState(false);
-  // const signupForm = useAppSelector((state) => state.signup);
-  const searchParams = useSearchParams();
-  const dispatch = useAppDispatch();
-  const router = useRouter();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  //
+
+  const searchParams = useSearchParams();
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const onSubmit = async (values: SignupForm, { setSubmitting }: any) => {
     try {
@@ -91,18 +92,18 @@ const PersonalInfo = () => {
       >
         {(formik) => (
           <Form>
-            <HeaderWrapper
-              heading="Please fill in the Information below"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmodtempor incididunt ut labore et dolore"
-              show
-            />
-            <div className="flex w-full flex-col gap-6">
+            <div className="flex w-full flex-col gap-6 pb-[76px]">
+              <HeaderWrapper
+                heading="Please fill in the Information below"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmodtempor incididunt ut labore et dolore"
+                show
+              />
               <FormWrapper>
                 <div className="flex w-full flex-col items-start justify-between gap-4">
                   <div className=" text-base font-semibold leading-tight text-secondary-base ">
                     Personal Information
                   </div>
-                  {/* <div className="flex flex-col w-full"> */}
+                  {/* <div className={`flex w-full flex-col ${!formik.errors.firstName && 'gap-4'}`}> */}
                   <Input
                     label="First Name"
                     name="firstName"
@@ -145,6 +146,7 @@ const PersonalInfo = () => {
                     error={formik.errors.website}
                     touched={formik.touched.website}
                   />
+                  {/* </div> */}
                 </div>
               </FormWrapper>
               <FormWrapper
@@ -176,7 +178,7 @@ const PersonalInfo = () => {
                     Terms & Conditions
                   </div>
                   <div className="bg-neutral-white-base p-6">
-                    <div className="text-xs leading-tight">
+                    <div className="text-xs leading-tight text-secondary-base">
                       In using this website, you are deemed to have read and
                       agreed to the following terms and conditions. The
                       following terminology applies to these Terms and
@@ -198,11 +200,33 @@ const PersonalInfo = () => {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <input
-                      type="checkbox"
-                      checked={isChecked}
-                      onChange={handleCheckboxChange}
-                    />
+                    {isChecked ? (
+                      <div
+                        className="flex h-4 w-4 items-center justify-center rounded-sm border-[1px] border-border-dark bg-primary-base"
+                        onClick={handleCheckboxChange}
+                      >
+                        <Image
+                          src={TickIcon}
+                          alt="checkbox"
+                          height={10}
+                          width={8}
+                          className="bg-primary-base"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="flex h-4 w-4 items-center justify-center rounded-sm border-[1px] border-border-dark bg-neutral-white-base"
+                        onClick={handleCheckboxChange}
+                      ></div>
+                    )}
+                    {/* <Image
+                      src={CheckBox}
+                      alt="checkbox"
+                      height={16}
+                      width={16}
+                      onClick={handleCheckboxChange}
+                      className="bg-primary-base"
+                    /> */}
                     <p className="text-xs font-semibold leading-tight">
                       I agree to easypaisa Terms & Conditions
                     </p>
@@ -221,10 +245,21 @@ const PersonalInfo = () => {
                 </div>
                 {/* {isLoading && (
                   <div className="h-100 w-full bg-primary-600 p-10 text-5xl font-semibold text-warning-200">
-                    Loading..
+                  Loading..
                   </div>
                 )} */}
               </FormWrapper>
+              <div className="flex flex-col items-end gap-9 px-[150px]">
+                <div className="w-full">VERIFY COMPONENT</div>
+                <Button
+                  label={`Next`}
+                  type="submit"
+                  isDisabled={!formik.isValid || !isChecked}
+                  className={`button-primary ${
+                    isLoading && 'bg-primary-300'
+                  } w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
+                />
+              </div>
             </div>
 
             {/* </div> */}

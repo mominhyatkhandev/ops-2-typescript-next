@@ -13,16 +13,16 @@ import Money from '../../assets/icons/money-nav.svg';
 import Scanner from '../../assets/icons/scanner-nav.svg';
 import Shop from '../../assets/icons/shop-nav.svg';
 
+export const dropDownList = [
+  { title: 'Payment Gateway', link: 'payment-gateway', icon: Coin },
+  { title: 'QR Payments', link: 'qr-payments', icon: Scanner },
+  { title: 'Mini Apps', link: 'mini-apps', icon: Shop },
+  { title: 'Payment Link', link: 'payment-link', icon: Money },
+  { title: 'Subscription', link: 'subscription', icon: SubscriptionIcon },
+];
+
 const Dropdown = ({ isHovered, setSelectedOption }: IDropdownProps) => {
   const router = usePathname();
-
-  const dropDownList = [
-    { title: 'Payment Gateway', link: 'payment-gateway', icon: Coin },
-    { title: 'QR Payments', link: 'qr-payments', icon: Scanner },
-    { title: 'Mini Apps', link: 'mini-apps', icon: Shop },
-    { title: 'Payment Link', link: 'payment-link', icon: Money },
-    { title: 'Subscription', link: 'subscription', icon: SubscriptionIcon },
-  ];
 
   return (
     <>

@@ -1,4 +1,4 @@
-// // import { DELETE, GET, PATCH, POST } from '../helper';
+// import { DELETE, GET, PATCH, POST } from '../helper';
 
 // export const getAllUsers = async (): Promise<User[]> => {
 //   const allUsers = await GET('user');

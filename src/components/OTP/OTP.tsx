@@ -21,7 +21,6 @@ function OTP({
   medium: string;
   setOtp: Dispatch<SetStateAction<any[]>>;
 }) {
-  // const [otp, setOtp] = useState(new Array(numberOfDigits).fill(''));
   const [otpError] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const [expiryTime, setExpiryTime] = useState<number>();
@@ -38,8 +37,6 @@ function OTP({
       setExpiryTime(expTime);
     }
   }, [expiryTime]);
-
-  console.log(signupForm, 'REDUXXXX DATAAA');
 
   const otpBoxReference = useRef<HTMLInputElement[]>([]);
 
@@ -62,19 +59,6 @@ function OTP({
       console.log(e);
     }
   };
-
-  // const handleEmailResendOTP = async () => {
-  //   resetCounter();
-  //   try {
-  //     const response = await apiClient.post('merchant/emailotp', {
-  //       managerMobile: '923345674415',
-  //       email: 'mominhyatkhandeveloper@gmail.com',
-  //     });
-  //     console.log('email otp response is', response);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   function handleChange(value: string, index: number) {
     const newArr = [...otp];

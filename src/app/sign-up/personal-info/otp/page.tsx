@@ -3,13 +3,13 @@
 import React, { useState } from 'react';
 
 import apiClient from '@/api/apiClient';
-// import { POST } from '@/api/helper';
 import OTP from '@/components/OTP/OTP';
 import Button from '@/components/UI/Button/PrimaryButton';
 import SuccessModal from '@/components/UI/Modal/CustomModal';
 import FormLayout from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
-import { useAppSelector } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { resetFormData } from '@/redux/slices/signUpSlice';
 
 const OtpInputWithValidation = () => {
   const [emailOtp, setEmailOtp] = useState(new Array(6).fill(''));
@@ -20,6 +20,7 @@ const OtpInputWithValidation = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const signUpForm = useAppSelector((state) => state.signup);
+  const dispatch = useAppDispatch();
 
   const handleVerify = async () => {
     try {
@@ -43,6 +44,7 @@ const OtpInputWithValidation = () => {
             setDescription(
               'Congratulations! You have signed up successfully for the Sandbox account for lorem ipsum',
             );
+            dispatch(resetFormData);
           } else if (res.data.responseCode == '009') {
             setTitle(res.data.responseCode);
             setDescription(res.data.responseDescription);
@@ -75,12 +77,10 @@ const OtpInputWithValidation = () => {
         show={showModal}
         setShowModal={setShowModal}
       />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 pb-[52px]">
         <HeaderWrapper
           heading={'Enter One Time Password (OTP)'}
-          description={
-            "we've sent verification on your email address (abc@domain.com) and your mobile number (03341234567)"
-          }
+          description={`we've sent verification on your email address (${signUpForm.email}) and your mobile number (+${signUpForm.managerMobile})`}
           show={true}
         />
         <FormLayout>

@@ -2,8 +2,8 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      shadow: {
-        custom: '0px 2px 6px 0px rgba(51, 51, 51, 0.08)',
+      ShadowRoot: {
+        custom: '0px 2px 6px 0px rgba(212, 98, 157, 0.08)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

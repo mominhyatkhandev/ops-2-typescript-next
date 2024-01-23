@@ -20,13 +20,19 @@ const Login = () => {
 
   const onSubmit = async (values: LoginForm, { setSubmitting }: any) => {
     try {
-      const response: any = await apiClient.post('auth/login', {
-        username: values.Username,
-        password: values.Password,
-      });
+      const response: any = await apiClient.post(
+        'auth/login',
+        {},
+        {
+          headers: {
+            username: values.Username,
+            password: values.Password,
+          },
+        },
+      );
 
       console.log('API Response:', response);
-      if (response?.data.responseCode == '000') {
+      if (response?.headers.responseCode == '000') {
         console.log(response, 'successssssssssssssssss');
         router.push('/');
       } else {
@@ -34,7 +40,7 @@ const Login = () => {
       }
       setApierror('');
     } catch (error: any) {
-      setApierror(error.response.data.responseMessage);
+      setApierror(error.response.headers.responseMessage);
     } finally {
       setSubmitting(false);
     }

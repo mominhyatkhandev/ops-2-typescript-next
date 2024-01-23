@@ -9,16 +9,10 @@ function CheckboxInput({ label, logo, selected, onSelect }: ICheckboxInput) {
   return (
     <>
       <div
-        className="flex w-full flex-row items-center gap-4 rounded-lg border-[1px] border-border-light bg-neutral-white-base px-5 py-[16px]"
+        className="flex w-full flex-row items-center justify-between gap-4 rounded-lg border-[0.5px] border-border-light bg-neutral-white-base px-5 py-4"
         onClick={onSelect}
       >
-        <Image
-          width={6}
-          height={6}
-          src={logo}
-          className="h-6 w-6"
-          alt="tick-icon"
-        />
+        <Image width={24} height={24} src={logo} alt="left-icon" />
 
         <label
           htmlFor="checkbox"
@@ -27,11 +21,11 @@ function CheckboxInput({ label, logo, selected, onSelect }: ICheckboxInput) {
           {label}
         </label>
         {selected ? (
-          <div className="flex h-6 w-6 justify-center rounded-full bg-primary-base px-[7px] py-[8px]">
+          <div className="flex h-6 w-6 justify-center rounded-full bg-primary-base px-[7px] py-2">
             <Image src={TickIcon} width={10} height={8} alt="tick-icon" />
           </div>
         ) : (
-          <div className="flex h-6 w-6 justify-center rounded-full border-[1px] border-border-dark px-[7px] py-[8px]" />
+          <div className="flex h-6 w-6 justify-center rounded-full border-2 border-border-dark px-[7px] py-2" />
         )}
       </div>
     </>

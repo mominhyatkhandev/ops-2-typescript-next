@@ -7,6 +7,7 @@ import paymentLink from '@/assets/images/paymentLink.png';
 import qrPayments from '@/assets/images/qrpayments.png';
 import HeroBanner from '@/components/Content/HeroBanner/HeroBanner';
 import Info from '@/components/Content/Info/Info';
+import Footer from '@/components/Footer/Footer';
 import type IHome from '@/interfaces/interface';
 import { cards } from '@/utils/data';
 
@@ -142,6 +143,7 @@ const Home = (): JSX.Element => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
