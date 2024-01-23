@@ -12,7 +12,9 @@ function AcceptPaymentWrapper({ children }: IAcceptPaymentWrapper) {
   return (
     <>
       <div className="flex flex-col">
-        <div className="relative flex min-h-[660px] items-center justify-start p-[150px]">
+        <div className="relative flex h-[594px] items-center justify-start p-[150px] sm:md-max:p-[24px]">
+          {/* <div className="relative flex min-h-[660px] items-center justify-start p-[150px] sm:md-max:p-[24px]"> */}
+
           {children}
         </div>
       </div>

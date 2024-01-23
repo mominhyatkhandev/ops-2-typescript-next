@@ -9,7 +9,7 @@ function CheckboxInput({ label, logo, selected, onSelect }: ICheckboxInput) {
   return (
     <>
       <div
-        className="flex w-full flex-row items-center gap-4 rounded-lg border-[1px] border-border-dark bg-neutral-white-base px-5 py-[16px]"
+        className="flex w-full flex-row items-center gap-4 rounded-lg border-[1px] border-border-light bg-neutral-white-base px-5 py-[16px]"
         onClick={onSelect}
       >
         <Image

@@ -51,7 +51,7 @@ const InputPrimary = ({
   return (
     <div
       id="InputFieldRoot"
-      className={`flex w-full items-center justify-between gap-4 border-solid border-border-light bg-screen-white ${
+      className={`flex w-full items-center justify-between gap-4 border-solid border-border-light bg-screen-white  ${
         active && !isFilled ? 'border-primary-base py-[15px]' : 'py-6'
       }  rounded-lg border px-5`}
     >

@@ -24,7 +24,7 @@ const Input = ({
   return (
     <>
       <div
-        className={`floating-input relative w-full rounded-lg border border-border-light focus-within:border-primary-base focus:shadow-sm focus:outline-none ${
+        className={`floating-input relative w-full rounded-lg border border-border-light focus-within:border-primary-base hover:border-primary-base focus:shadow-sm focus:outline-none ${
           touched && error && 'border-danger-base'
         }`}
       >
@@ -38,7 +38,7 @@ const Input = ({
             touched && error ? 'border-danger-base' : ''
           }`}
           placeholder=""
-          // autocomplete="off"
+          autocomplete="off"
           disabled={false}
         />
         <label
@@ -59,20 +59,11 @@ const Input = ({
           </div>
         )}
       </div>
-      {/* <div className=""> */}
-
-      {/* <div className={error?'':'block'}> */}
-
       <ErrorMessage
         name={name}
         component="span"
         className="flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base"
-        // className={`flex w-full justify-start px-3 pt-[8px] text-xs text-danger-base ${
-        //   error ? 'visible' : 'invisible'
-        // }`}
       />
-      {/* </div> */}
-      {/* </div> */}
     </>
   );
 };

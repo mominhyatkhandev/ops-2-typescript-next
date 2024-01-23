@@ -10,7 +10,7 @@ const Card = ({ logo, label, description }: ICardProps) => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   return (
     <div
-      className={`group flex cursor-pointer flex-col items-start justify-start gap-[60px] rounded-[8px] border-[0.5px] border-solid border-border-light bg-screen-grey px-5 py-6 duration-300 ease-out hover:bg-primary-base hover:text-neutral-white-base sm:md-max:gap-[24px] sm:md-max:py-4`}
+      className={`group flex cursor-pointer flex-col items-start justify-start gap-[60px] rounded-[8px] border-[0.5px] border-solid border-border-light bg-screen-grey px-5 py-6 duration-300 ease-out hover:bg-primary-base hover:text-neutral-white-base sm:md-max:gap-[24px] sm:md-max:py-4 `}
       // className={`group flex min-h-[300px] cursor-pointer flex-col items-start justify-start gap-[60px] rounded-[8px] border-[0.5px] border-solid border-border-light bg-screen-grey px-5 py-6 duration-300 ease-out hover:bg-primary-base hover:text-neutral-white-base sm:md-max:gap-[24px] sm:md-max:py-4`}
 
       onMouseEnter={() => setIsCardHovered(true)}

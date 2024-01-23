@@ -84,7 +84,7 @@ const OtpInputWithValidation = () => {
           show={true}
         />
         <FormLayout>
-          <div className="flex flex-col place-items-center gap-12">
+          <div className="flex flex-col gap-12">
             <OTP
               description="Enter Email OTP here"
               setOtp={setEmailOtp}
@@ -97,12 +97,14 @@ const OtpInputWithValidation = () => {
               otp={smsOtp}
               medium="sms"
             />
-            <Button
-              // routeName="/login"
-              label="Verify"
-              className="button-primary w-[270px] px-3 py-[19px]"
-              onClickHandler={handleVerify}
-            />
+            <div className="flex justify-center">
+              <Button
+                // routeName="/login"
+                label="Verify"
+                className="button-primary w-[270px] px-3 py-[19px]"
+                onClickHandler={handleVerify}
+              />
+            </div>
           </div>
         </FormLayout>
       </div>

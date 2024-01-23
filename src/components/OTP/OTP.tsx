@@ -108,7 +108,7 @@ function OTP({
         {description}
       </p>
 
-      <div className="flex w-max items-center gap-9 text-lg text-secondary-900">
+      <div className="flex w-full justify-between gap-9 text-lg text-secondary-900">
         {otp.map((digit, index) => (
           <input
             key={index}

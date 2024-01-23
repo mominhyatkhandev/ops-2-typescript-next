@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 
 import apiClient from '@/api/apiClient';
 import eye from '@/assets/icons/eye.svg';
-import LoginBg from '@/assets/images/login-bg.jpg';
+import LoginBg from '@/assets/images/login-bg.svg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import type { LoginForm } from '@/interfaces/interface';
@@ -42,7 +42,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="relative bg-primary-700 px-[380px] pb-[144px] pt-[120px]">
+      <div className="relative bg-primary-700 px-[380px] pb-[144px] pt-[120px] sm:md-max:px-[24px] sm:md-max:pb-[262px] sm:md-max:pt-[164px]">
         <Image
           src={LoginBg}
           alt="LoginBg"
@@ -50,8 +50,10 @@ const Login = () => {
           objectFit="cover"
           className="absolute inset-0 max-w-full"
         />
-        <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9">
-          <span className="flex w-full justify-center pb-8 text-[40px] font-semibold text-secondary-base">
+        <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full">
+          {/* <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full"> */}
+
+          <span className="flex w-full justify-center pb-8 text-[40px] font-semibold text-secondary-base sm:md-max:text-[32px]">
             Login to your account
           </span>
           <Formik

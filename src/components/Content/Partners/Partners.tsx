@@ -17,38 +17,42 @@ import ublbankLogo from '@/assets/images/Partners/ubl-banking.png';
 const Partners = (): JSX.Element => {
   const partnersImages = [
     albarakabankLogo,
-    alfalahbankLogo,
     alliedbankLogo,
+    mufgbankLogo,
+    soneribankLogo,
+    ublbankLogo,
+    mustakeembankLogo,
+    khushalibankLogo,
     askaribankLogo,
+    alfalahbankLogo,
     faysalbankLogo,
     habibbankLogo,
     islamibankLogo,
-    khushalibankLogo,
-    mufgbankLogo,
-    mustakeembankLogo,
-    soneribankLogo,
-    ublbankLogo,
   ];
 
   return (
     <>
-      <div className="inline-flex w-full flex-col place-items-center gap-9 px-[150px]">
-        <div className="flex flex-col place-items-center gap-9">
-          <h1 className="text-center text-5xl font-semibold">
+      <div className="grid w-full flex-col gap-9 px-[150px] align-middle sm:md-max:gap-[20px] sm:md-max:px-[24px]">
+        <div className="flex flex-col justify-center gap-9 align-middle">
+          <h1 className="text-center text-5xl font-semibold sm:md-max:text-start sm:md-max:text-[32px]">
             We power Pakistan’s biggest{' '}
             <span className="text-primary-base">online brands</span>
           </h1>
         </div>
-        <div className="grid w-full grid-cols-2 gap-5 sm:grid-cols-2 lg:grid-cols-6 ">
+        {/* <div className="flex w-full gap-5 sm:md-max:gap-[24px]"> */}
+        {/* <div className="grid w-full grid-cols-2 gap-5 sm:md-max:grid-cols-4 lg:grid-cols-6 sm:md-max:gap-[20px]"> */}
+        <div className="grid w-full  grid-cols-6 gap-5 sm:md-max:grid-cols-4 sm:md-max:gap-[24px]">
           {partnersImages.map((item, index) => (
-            <div key={index} className="flex place-items-center px-5 py-9">
+            <div key={index} className="flex aspect-[3/4] sm:md-max:p-[0px]">
+              {/* <div key={index} className="flex h-[173px] w-full sm:md-max:px-[0px] sm:md-max:py-[0px]"> */}
+
+              {/* <div key={index} className="flex justify-center align-middle px-5 py-9 sm:md-max:px-[0px] sm:md-max:py-[0px]"> */}
+
               <Image
                 src={item}
                 key={index}
                 alt={`Partner Logo ${index}`}
-                width={100}
-                height={100}
-                className="object-contain"
+                className="h-full w-full object-contain"
               />
             </div>
           ))}

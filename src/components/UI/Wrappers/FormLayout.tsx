@@ -9,8 +9,8 @@ import type { IFormLayout } from '@/interfaces/interface';
 
 const FormLayout = ({ children }: IFormLayout) => {
   return (
-    <div className="px-[150px]">
-      <div className="rounded-lg border-[0.5px] border-border-light bg-screen-grey px-[290px] py-[60px]">
+    <div className="px-[150px] sm:md-max:px-[24px]">
+      <div className="rounded-lg border-[0.5px] border-border-light bg-screen-grey px-[290px] py-[60px] sm:md-max:px-[20px]">
         {children}
       </div>
     </div>

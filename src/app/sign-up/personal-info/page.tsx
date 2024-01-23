@@ -99,7 +99,7 @@ const PersonalInfo = () => {
             <div className="flex w-full flex-col gap-6">
               <FormWrapper>
                 <div className="flex w-full flex-col items-start justify-between gap-4">
-                  <div className=" text-base font-semibold leading-tight text-secondary-base">
+                  <div className=" text-base font-semibold leading-tight text-secondary-base ">
                     Personal Information
                   </div>
                   {/* <div className="flex flex-col w-full"> */}
@@ -208,15 +208,15 @@ const PersonalInfo = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
+                <div className="flex flex-col items-center sm:md-max:items-center">
                   <div className="w-full">VERIFY COMPONENT</div>
                   <Button
-                    label={`Sign up`}
+                    label={`Next`}
                     type="submit"
                     isDisabled={!formik.isValid || !isChecked}
                     className={`button-primary ${
                       isLoading && 'bg-primary-300'
-                    } w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300`}
+                    } w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300 sm:md-max:w-[270px] sm:md-max:px-[12px]`}
                   />
                 </div>
                 {/* {isLoading && (

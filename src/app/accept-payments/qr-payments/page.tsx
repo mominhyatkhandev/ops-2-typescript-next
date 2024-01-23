@@ -10,7 +10,7 @@ const QRPayments = () => {
   return (
     <div className="flex flex-col">
       {/* <div className="pg-bg flex items-center justify-start bg-center bg-cover bg-no-repeat p-[200px] mb-[20px] h-[660px] relative"> */}
-      <div className="relative flex min-h-[640px] items-center justify-start p-[150px]">
+      <div className="relative flex min-h-[640px] items-center justify-start p-[150px] sm:md-max:p-[24px]">
         <Image
           src={qrPaymentBG}
           alt="qrPayment Background"
@@ -21,12 +21,12 @@ const QRPayments = () => {
         />
         <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
           <div className="flex flex-col gap-4">
-            <p className="heading-primary">
+            <p className="heading-primary sm:md-max:text-[32px]">
               <span className="text-primary-base"> Safe, secure and easy</span>{' '}
               <br />
               payments through QR code
             </p>
-            <p className="w-[720px] text-base font-normal leading-tight text-secondary-base">
+            <p className="w-[720px] text-base font-normal leading-tight text-secondary-base sm:md-max:text-sm">
               Hassel free real time settlements by receiving payment through
               easypaisa QR/Till in a fast and <br /> secure way! Enjoy amazing
               cash back offerings on becoming easypaisa QR Merchant.

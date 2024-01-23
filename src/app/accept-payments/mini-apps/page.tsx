@@ -20,11 +20,11 @@ const MiniApps = () => {
         />
         <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
           <div className="flex flex-col gap-4">
-            <p className="heading-primary">
+            <p className="heading-primary sm:md-max:text-[32px]">
               <span className="text-primary-base"> easypaisa</span>
               <br /> Mini App Store
             </p>
-            <p className="w-[657] text-base font-normal leading-tight text-secondary-base">
+            <p className="w-[657] text-base font-normal leading-tight text-secondary-base sm:md-max:text-sm">
               A Feature Rich Ecosystem for Your Brand Showcase your Products and
               Services to Pakistan’s <br /> Largest online Audience.
             </p>
