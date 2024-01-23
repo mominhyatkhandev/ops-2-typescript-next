@@ -63,7 +63,7 @@ const HeaderWrapper = ({
         // </div>
         null}
         {show ? (
-          <div className="flex flex-col gap-2 pb-[24px] pt-[36px]">
+          <div className="flex flex-col gap-2 pt-[36px]">
             <div className="flex w-full text-5xl font-semibold text-secondary-base sm:md-max:text-[32px]">
               {heading}
             </div>
@@ -81,14 +81,14 @@ const HeaderWrapper = ({
             </div>
           </div>
         )}
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
           <div className="flex w-full text-5xl font-semibold text-secondary-base">
             {heading}
           </div>
           <div className="text-base font-normal text-secondary-600">
             {description}
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

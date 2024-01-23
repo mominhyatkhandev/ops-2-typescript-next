@@ -126,3 +126,9 @@ export interface LoginForm {
   Username: string;
   Password: string;
 }
+
+// export interface IAcceptPaymentsProps {
+// Image
+// heading
+// description
+// }

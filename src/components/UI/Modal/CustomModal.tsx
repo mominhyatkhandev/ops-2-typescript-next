@@ -34,8 +34,7 @@ const CustomModal = ({
     <>
       {show ? (
         <div
-          className="overlay fixed left-0 top-0 z-50 flex h-full w-full place-items-center items-center justify-center bg-secondary-base/75
-        "
+          className="overlay fixed left-0 top-0 z-50 flex h-full w-full  items-center justify-center bg-secondary-base/75 sm:md-max:px-[24px] sm:md-max:py-[264px]"
           onClick={handleOverlayClick}
         >
           <div className="flex w-[600px] flex-col gap-12 rounded-2xl border-[1px] border-border-dark bg-screen-white p-5">
