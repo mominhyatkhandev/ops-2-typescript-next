@@ -4,13 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import ChevronRight from '@/assets/icons/chevron-right.svg';
 import CloseIcon from '@/assets/icons/close-icon-nav.svg';
 import Logo from '@/assets/icons/logo.svg';
 import Menu from '@/assets/icons/menu-button.svg';
 
 import Button from '../UI/Button/PrimaryButton';
 import AcceptPayments from './AcceptPayments';
+import NavMobileMenu from './MobileView/NavMobileMenu';
+import NavMobileSubMenu from './MobileView/NavMobileSubMenu';
 // import Dropdown from './Dropdown';
 
 const Navbar = () => {
@@ -19,15 +20,16 @@ const Navbar = () => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isMobileView, setIsMobileView] = useState<boolean>(false);
   const [isMobileSubMenu, setIsMobileSubMenu] = useState<boolean>(false);
+  const [selectedSubMenuItem, setSelectedSubMenuItem] = useState<string>('');
+  const [selectedMenuItem, setSelectedMenuItem] = useState<string>('');
 
   const handleOther = (itemName: string) => {
     setOther(itemName);
     setClickTrigger(!clickTrigger);
   };
 
-  // const handleClick = (e) => {
-  //   console.log('click handler', e.target.getAttribute('data-label'));
-  // };
+  console.log('selected SUB MENUT ITEM', selectedSubMenuItem);
+
   return (
     <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] xs:px-6 xs:py-4 sm:px-6 sm:py-4 md:px-6 md:py-4 lg:px-[150px] xl:px-[150px] 2xl:px-[150px]">
       <div className="flex items-center justify-between">
@@ -35,15 +37,26 @@ const Navbar = () => {
           <div className="w-min text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
             Menu
           </div>
-        ) : (
+        ) : isMobileView &&
+          isMobileSubMenu &&
+          selectedMenuItem === 'acceptPayments' ? (
           <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
             Accept Payments
           </div>
+        ) : !isMobileView && selectedSubMenuItem ? (
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+            {selectedSubMenuItem}
+          </div>
+        ) : !isMobileView && selectedMenuItem ? (
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+            {selectedMenuItem}
+          </div>
+        ) : (
+          <Image src={Logo} width={173} height={36} alt="logo" className="" />
         )}
-        <Image src={Logo} width={173} height={36} alt="logo" className="" />
       </div>
       <div className="flex h-full items-center justify-between">
-        <ul className="flex items-center gap-[24px] xs:hidden sm:hidden md:hidden">
+        <ul className="items-center gap-[24px] xs:hidden sm:hidden md:hidden lg:flex xl:flex 2xl:flex">
           <Link href={'/'}>
             <li
               className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
@@ -100,7 +113,10 @@ const Navbar = () => {
         </ul>
         <div
           className="lg:hidden xl:hidden 2xl:hidden"
-          onClick={() => setIsMobileView(!isMobileView)}
+          onClick={() => {
+            setIsMobileView(!isMobileView);
+            setIsMobileSubMenu(false);
+          }}
         >
           {isMobileView ? (
             <Image src={CloseIcon} width={24} height={24} alt="closeIcon" />
@@ -109,46 +125,32 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {isMobileView && !isMobileSubMenu && (
-        <>
-          <div
-            className={`absolute right-0 top-20 z-10 w-full flex-col items-center gap-10 bg-neutral-white-base text-neutral-white-base lg:hidden xl:hidden 2xl:hidden`}
-          >
-            <div className="flex flex-col items-start gap-8 border-y-2 border-border-light px-6 py-8">
-              <div className="leading-tight text-secondary-base">Home</div>
-              <div
-                className="flex w-full items-center justify-between"
-                onClick={() => setIsMobileSubMenu(!isMobileSubMenu)}
-              >
-                <div className="leading-tight text-secondary-base">
-                  Accept Payments
-                </div>
-                <Image
-                  src={ChevronRight}
-                  alt="Chevronright"
-                  width={24}
-                  height={24}
-                  id="Chevronright"
-                />
-              </div>
-              <div className="leading-tight text-secondary-base">Developer</div>
-              <div className="leading-tight text-secondary-base">FAQs</div>
-            </div>
-            <div className="flex w-full flex-col items-start justify-center gap-4 border-b border-solid border-border-light px-6 py-8">
-              <Button
-                label="Sign up"
-                routeName="/sign-up"
-                className="button-primary w-24 px-2 py-[11px] text-xs leading-tight"
-              />
-              <Button
-                label="Login"
-                routeName="/login"
-                className="button-secondary w-24 px-2 py-[11px] text-xs leading-tight"
-              />
-            </div>
-          </div>
-        </>
-      )}
+      {isMobileView &&
+        (!isMobileSubMenu ? (
+          <NavMobileMenu
+            setIsMobileSubMenu={setIsMobileSubMenu}
+            setIsMobileView={setIsMobileView}
+            isMobileSubMenu={isMobileSubMenu}
+            setSelectedMenuItem={setSelectedMenuItem}
+            setSelectedSubMenuItem={setSelectedSubMenuItem}
+          />
+        ) : (
+          <NavMobileSubMenu
+            setSelectedSubMenuItem={setSelectedSubMenuItem}
+            selectedSubMenuItem={selectedSubMenuItem}
+            setIsMobileSubMenu={setIsMobileSubMenu}
+            setIsMobileView={setIsMobileView}
+            isMobileSubMenu={isMobileSubMenu}
+          />
+        ))}
+      {/* {isMobileView && !isMobileSubMenu ? (
+        <NavMobileMenu
+          setIsMobileSubMenu={setIsMobileSubMenu}
+          isMobileSubMenu={isMobileSubMenu}
+        />
+      ) : (
+        <NavMobileSubMenu />
+      )} */}
     </nav>
   );
 };
