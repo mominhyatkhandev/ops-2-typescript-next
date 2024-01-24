@@ -61,7 +61,7 @@ const Card = ({ logo, label, description }: ICardProps) => {
             )}
           </>
         </div>
-        <div className="w-full text-base font-normal leading-tight text-secondary-600 group-hover:text-neutral-white-base sm:md-max:text-sm">
+        <div className="w-full text-base font-normal leading-tight text-secondary-400 group-hover:text-neutral-white-base sm:md-max:text-sm">
           {description}
         </div>
       </div>

@@ -120,19 +120,19 @@ const Home = (): JSX.Element => {
                   <span className="text-primary-base">{item.label.sub}</span>
                 </div>
                 {typeof item.description === 'string' ? (
-                  <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm">
+                  <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm sm:md-max:text-secondary-400">
                     {item.description}
                   </div>
                 ) : (
                   <>
                     <div className="grid gap-9 md:grid-cols-1 lg:grid-cols-3">
-                      <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm">
+                      <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm sm:md-max:text-secondary-400">
                         {item.description.desc1}
                       </div>
-                      <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm">
+                      <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm sm:md-max:text-secondary-400">
                         {item.description.desc2}
                       </div>
-                      <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm">
+                      <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm sm:md-max:text-secondary-400">
                         {item.description.desc3}
                       </div>
                     </div>

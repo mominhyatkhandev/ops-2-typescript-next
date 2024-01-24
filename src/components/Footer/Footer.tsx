@@ -27,7 +27,7 @@ const Footer = () => {
             Copyright © 2023 Easypaisa | All Rights Reserved{' '}
           </div>
         </div>
-        <div className="flex flex-col items-start justify-between gap-6">
+        <div className="flex flex-col items-start justify-between gap-6 sm:md-max:gap-4">
           <div
             id="FooterTitle"
             className="text-2xl font-semibold text-secondary-base sm:md-max:text-base sm:md-max:leading-5"

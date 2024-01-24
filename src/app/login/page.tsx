@@ -56,7 +56,7 @@ const Login = () => {
           objectFit="cover"
           className="absolute inset-0 max-w-full"
         />
-        <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full">
+        <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full sm:md-max:px-[20px] sm:md-max:py-8">
           {/* <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full"> */}
 
           <span className="flex w-full justify-center pb-8 text-[40px] font-semibold text-secondary-base sm:md-max:text-[32px]">

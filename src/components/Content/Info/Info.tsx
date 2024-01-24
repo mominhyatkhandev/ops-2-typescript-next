@@ -75,7 +75,7 @@ const Info = ({ title, cardsArray }: IInfoProp): JSX.Element => {
                 Designed for{' '}
                 <span className="text-primary-base">Entrepreneurs</span>
               </h1>
-              <p className="text-base font-normal leading-tight sm:md-max:text-sm ">
+              <p className="text-base font-normal leading-tight text-secondary-400 sm:md-max:text-sm ">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmodtempor incididunt ut labore et dolore
               </p>

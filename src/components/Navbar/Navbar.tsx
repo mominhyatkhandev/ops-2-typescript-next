@@ -31,24 +31,24 @@ const Navbar = () => {
   console.log('selected SUB MENUT ITEM', selectedSubMenuItem);
 
   return (
-    <nav className="xs:px-6 xs:py-4 relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:px-6 sm:py-4 md:px-6 md:py-4 lg:px-[150px] xl:px-[150px] 2xl:px-[150px]">
+    <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base px-[150px] py-4 shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:px-6 sm:md-max:py-4 ">
       <div className="flex items-center justify-between">
         {isMobileView && !isMobileSubMenu ? (
-          <div className="w-min text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+          <div className="w-min text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
             Menu
           </div>
         ) : isMobileView &&
           isMobileSubMenu &&
           selectedMenuItem === 'acceptPayments' ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
             Accept Payments
           </div>
         ) : !isMobileView && selectedSubMenuItem ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
             {selectedSubMenuItem}
           </div>
         ) : !isMobileView && selectedMenuItem ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
             {selectedMenuItem}
           </div>
         ) : (
@@ -56,7 +56,7 @@ const Navbar = () => {
         )}
       </div>
       <div className="flex h-full items-center justify-between">
-        <ul className="xs:hidden items-center gap-[24px] sm:hidden md:hidden lg:flex xl:flex 2xl:flex">
+        <ul className="items-center gap-[24px] sm:hidden  md:flex xl:flex 2xl:flex">
           <Link href={'/'}>
             <li
               className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
@@ -112,7 +112,7 @@ const Navbar = () => {
           </div>
         </ul>
         <div
-          className="lg:hidden xl:hidden 2xl:hidden"
+          className="md:hidden xl:hidden 2xl:hidden"
           onClick={() => {
             setIsMobileView(!isMobileView);
             setIsMobileSubMenu(false);
