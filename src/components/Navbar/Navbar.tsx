@@ -12,6 +12,8 @@ import Button from '../UI/Button/PrimaryButton';
 import AcceptPayments from './AcceptPayments';
 import NavMobileMenu from './MobileView/NavMobileMenu';
 import NavMobileSubMenu from './MobileView/NavMobileSubMenu';
+// import arrowDown from '@/assets/icons/arrow-down.svg';
+// import bellIcon from '@/assets/icons/bell-icon.svg'
 // import Dropdown from './Dropdown';
 
 const Navbar = () => {
@@ -98,6 +100,37 @@ const Navbar = () => {
             </li>
           </Link>
           <div className="h-[10px] w-[1px] bg-border-dark"></div>
+          {/* <div className='flex gap-4'>
+            <div className='flex border-[1px] rounded-2xl border-border-light px-4 py-2 gap-4'>
+              <div>
+              <div className='text-base text-secondary-base font-semibold'>
+                Babar azam
+              </div>
+              <div className='text-xs text-secondary-600 font-normal'>
+                babarazam@gmail.com
+              </div>
+              </div>
+              <div className='flex items-center'>
+                <Image
+                  src={arrowDown}
+                  alt={'arrow down'}
+                  // height={24}
+                  // width={24}
+                  // onClick={() => handleToggle(index)}
+                />
+              </div>
+            </div>
+            <div className='flex items-center rounded-2xl px-2 py-3 border-[1px] border-border-light'>
+
+              <Image
+                src={bellIcon}
+                alt={'bell icon'}
+              height={32}
+              width={32}
+              // onClick={() => handleToggle(index)}
+              />
+            </div>
+          </div> */}
           <div className="flex flex-row gap-6">
             <Button
               label="Login"

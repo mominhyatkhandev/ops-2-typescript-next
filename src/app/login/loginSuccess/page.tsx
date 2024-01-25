@@ -22,6 +22,12 @@ const LoginSucess = () => {
         'All you need is to select payment mode of your integration need and follow step by step integration guide to begin testing ',
       routeName: 'xyz',
     },
+    // {
+    //   title: 'Continue to My Dashboard',
+    //   description:
+    //     'All you need is to select payment mode of your integration need and follow step by step integration guide to begin testing ',
+    //   routeName: 'xyz',
+    // },
   ];
   return (
     <>
