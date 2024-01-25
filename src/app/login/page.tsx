@@ -34,7 +34,7 @@ const Login = () => {
       console.log('API Response:', response);
       if (response?.headers.responseCode == '000') {
         console.log(response, 'successssssssssssssssss');
-        router.push('/');
+        router.push('/login/loginSuccess');
       } else {
         console.log('hiiiiii  ');
       }

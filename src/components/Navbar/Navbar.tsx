@@ -40,15 +40,15 @@ const Navbar = () => {
         ) : isMobileView &&
           isMobileSubMenu &&
           selectedMenuItem === 'acceptPayments' ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base xl:hidden 2xl:hidden">
             Accept Payments
           </div>
         ) : !isMobileView && selectedSubMenuItem ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base xl:hidden 2xl:hidden">
             {selectedSubMenuItem}
           </div>
         ) : !isMobileView && selectedMenuItem ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base xl:hidden 2xl:hidden">
             {selectedMenuItem}
           </div>
         ) : (

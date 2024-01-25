@@ -127,6 +127,12 @@ export interface LoginForm {
   Password: string;
 }
 
+export interface ILoginCard {
+  title: string;
+  description: string;
+  routeName: string;
+}
+
 // export interface IAcceptPaymentsProps {
 // Image
 // heading
