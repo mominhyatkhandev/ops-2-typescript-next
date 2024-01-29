@@ -22,7 +22,9 @@ function CheckboxInput({ label, logo, selected, onSelect }: ICheckboxInput) {
         </label>
         {selected ? (
           <div className="flex h-6 w-6 justify-center rounded-full bg-primary-base px-[7px] py-2">
-            <Image src={TickIcon} width={10} height={8} alt="tick-icon" />
+            <div className="h-[8px] w-[10px]">
+              <Image src={TickIcon} width={100} height={100} alt="tick-icon" />
+            </div>
           </div>
         ) : (
           <div className="flex h-6 w-6 justify-center rounded-full border-2 border-border-dark px-[7px] py-2" />

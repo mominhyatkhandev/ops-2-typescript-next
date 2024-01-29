@@ -7,7 +7,9 @@ import Button from '../../UI/Button/PrimaryButton';
 
 const HeroBanner = (): JSX.Element => {
   return (
-    <main className="relative flex min-h-[640px] items-center justify-start p-[150px] sm:md-max:p-[24px]">
+    <main className="relative flex min-h-[594px] items-center justify-start p-[150px] sm:md-max:p-[24px]">
+      {/* <main className="relative flex min-h-[640px] items-center justify-start p-[150px] sm:md-max:p-[24px]"> */}
+
       {/* <div className='bg-primary-600'> */}
       <div className="bg-primary-600">
         <Image

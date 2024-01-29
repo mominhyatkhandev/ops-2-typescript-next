@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 export const baseURL =
-  process.env.BASE_URL || 'https://ccd6-43-224-238-194.ngrok-free.app/'; // Replace with your API's base URL
+  process.env.BASE_URL || 'https://2e8a-43-224-238-194.ngrok-free.app/'; // Replace with your API's base URL
 
 const apiClient = axios.create({
   baseURL,
@@ -11,6 +11,8 @@ const apiClient = axios.create({
 
 apiClient.interceptors.response.use(
   (response) => {
+    console.log('API CLIENT WALA RESPONSE', response);
+
     return response;
   },
   (error) => {

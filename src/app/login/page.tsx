@@ -32,7 +32,9 @@ const Login = () => {
       );
 
       console.log('API Response:', response);
-      if (response?.headers.responseCode == '000') {
+
+      if (response?.config?.headers?.Responsecode == '000') {
+        // if (response?.headers.responseCode == '000') {
         console.log(response, 'successssssssssssssssss');
         router.push('/login/loginSuccess');
       } else {
