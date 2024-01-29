@@ -6,85 +6,62 @@ import ChevronRight from '@/assets/icons/chevron-right.svg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import NavMobileViewLayout from '@/components/UI/Wrappers/NavMobileViewLayout';
 
+import { getNavMenu } from '../Utils/utils';
+
 interface INavMobileMenu {
   setIsMobileSubMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsMobileView: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedSubMenuItem: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedMenuItem: React.Dispatch<React.SetStateAction<string>>;
-  isMobileSubMenu: boolean;
+  setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const NavMobileMenu = ({
   setIsMobileSubMenu,
-  setIsMobileView,
-  setSelectedSubMenuItem,
-  setSelectedMenuItem,
-  isMobileSubMenu,
+  setIsOpenMenu,
 }: INavMobileMenu) => {
+  const navMenu = getNavMenu();
   return (
     <NavMobileViewLayout>
       <>
         <div className="flex flex-col items-start gap-8 border-y-2 border-border-light px-6 py-8">
-          <Link href={`/`}>
-            <div
-              className="leading-tight text-secondary-base"
-              onClick={() => {
-                setIsMobileView(false);
-                setSelectedSubMenuItem('');
-                setSelectedMenuItem('Home');
-              }}
-            >
-              Home
-            </div>
-          </Link>
-          <div
-            className="flex w-full items-center justify-between"
-            onClick={() => {
-              setIsMobileSubMenu(!isMobileSubMenu);
-              setSelectedMenuItem('acceptPayments');
-            }}
-          >
-            <div className="leading-tight text-secondary-base">
-              Accept Payments
-            </div>
-            <Image
-              src={ChevronRight}
-              alt="Chevronright"
-              width={24}
-              height={24}
-              id="Chevronright"
-            />
-          </div>
-          <Link href={`developer`}>
-            <div
-              className="leading-tight text-secondary-base"
-              onClick={() => {
-                setIsMobileView(false);
-                setSelectedMenuItem('Developer');
-                setSelectedSubMenuItem('');
-              }}
-            >
-              Developer
-            </div>
-          </Link>
-          <Link href={`/faq`}>
-            <div
-              className="leading-tight text-secondary-base"
-              onClick={() => {
-                setIsMobileView(false);
-                setSelectedMenuItem('FAQ');
-                setSelectedSubMenuItem('');
-              }}
-            >
-              FAQs
-            </div>
-          </Link>
+          {navMenu.map((item, index) => (
+            <>
+              {item.name === 'accept-payments' ? (
+                <div
+                  className="flex w-full items-center justify-between"
+                  onClick={() => {
+                    setIsMobileSubMenu(true);
+                    // setIsOpenMenu(false);
+                  }}
+                >
+                  <div className="leading-tight text-secondary-base">
+                    {item.title}
+                  </div>
+                  <Image
+                    src={ChevronRight}
+                    alt="Chevronright"
+                    width={24}
+                    height={24}
+                    id="Chevronright"
+                  />
+                </div>
+              ) : (
+                <Link key={index} href={item.link}>
+                  <div
+                    className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
+                    onClick={() => {
+                      setIsOpenMenu(false);
+                    }}
+                  >
+                    {item.title}
+                  </div>
+                </Link>
+              )}
+            </>
+          ))}
         </div>
         <div className="flex w-full flex-col items-start justify-center gap-4 border-b border-solid border-border-light px-6 py-8">
           <div
             onClick={() => {
-              setIsMobileView(false);
-              setSelectedSubMenuItem('');
+              setIsOpenMenu(false);
             }}
           >
             <Button
@@ -95,8 +72,7 @@ const NavMobileMenu = ({
           </div>
           <div
             onClick={() => {
-              setIsMobileView(false);
-              setSelectedSubMenuItem('');
+              setIsOpenMenu(false);
             }}
           >
             <Button

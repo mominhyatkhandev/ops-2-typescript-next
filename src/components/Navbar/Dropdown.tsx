@@ -21,9 +21,8 @@ export const dropDownList = [
   { title: 'Subscription', link: 'subscription', icon: SubscriptionIcon },
 ];
 
-const Dropdown = ({ isHovered, setSelectedOption }: IDropdownProps) => {
-  const router = usePathname();
-
+const Dropdown = ({ isHovered }: IDropdownProps) => {
+  const pathname = usePathname();
   return (
     <>
       {isHovered && (
@@ -32,9 +31,8 @@ const Dropdown = ({ isHovered, setSelectedOption }: IDropdownProps) => {
             <Link key={index} href={`/accept-payments/${item.link}`}>
               <div
                 key={index}
-                onClick={() => setSelectedOption(item.title)}
                 className={`flex flex-row items-start gap-4 duration-300 hover:text-primary-base hover:transition ${
-                  router === `/accept-payments/${item.link}`
+                  pathname === `/accept-payments/${item.link}`
                     ? 'text-primary-base'
                     : ''
                 }`}

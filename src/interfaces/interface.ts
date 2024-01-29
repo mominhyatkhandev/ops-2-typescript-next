@@ -92,7 +92,6 @@ export interface IInfoProp {
 
 export interface IDropdownProps {
   isHovered: boolean;
-  setSelectedOption: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface ICardProps {
