@@ -87,12 +87,13 @@ function OTP({
   }
 
   return (
-    <article className="flex flex-col gap-4">
+    <article className="flex flex-col gap-4 ">
       <p className="text-base font-semibold text-secondary-base">
         {description}
       </p>
 
-      <div className="flex w-full justify-between gap-9 text-lg text-secondary-900">
+      <div className="flex w-full justify-between gap-9 text-lg  text-secondary-900 sm:md-max:gap-[10px]">
+        {/* <div className='flex rounded-md border-[1px] border-border-light'> */}
         {otp.map((digit, index) => (
           <input
             key={index}
@@ -104,9 +105,11 @@ function OTP({
               otpBoxReference.current[index] = ref!;
               return null;
             }}
-            className={`text-blue bg-black block h-[60px] w-[60px] appearance-none rounded-md border-[1px] border-border-light p-3 text-center text-2xl focus:border-2 focus:outline-none`}
+            // className={`text-blue bg-black w-full block appearance-none  p-3 text-center text-2xl focus:border-2 focus:outline-none sm:md-max:max-h-[48px] sm:md-max:max-w-[48px]`}
+            className={`text-blue bg-black block w-full appearance-none rounded-md border-[1px] border-border-light p-3 text-center text-2xl focus:border-2 focus:outline-none sm:md-max:max-h-[48px] sm:md-max:max-w-[48px]`}
           />
         ))}
+        {/* </div> */}
       </div>
       {otpError ? (
         <p

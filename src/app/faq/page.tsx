@@ -136,7 +136,7 @@ const FAQ = () => {
     <>
       {' '}
       <div className="flex flex-col gap-20 pb-[120px] sm:md-max:gap-12 sm:md-max:pb-[80px]">
-        <div id="NewRootRoot" className="flex w-full bg-primary-600">
+        <div className="flex w-full bg-primary-600">
           <div className="flex w-full flex-col items-start justify-end bg-screen-grey">
             <div className="flex w-full flex-col items-start justify-end gap-8 px-[150px] pt-[120px] sm:md-max:gap-[50px] sm:md-max:px-[24px] sm:md-max:pt-[124px]">
               <div className="text-5xl font-semibold leading-tight text-secondary-base sm:md-max:text-[32px]">
@@ -181,9 +181,11 @@ const FAQ = () => {
                       <div className="flex w-full flex-col items-start justify-start gap-3">
                         <div
                           onClick={() => handleToggle(index)}
-                          className="flex w-full cursor-pointer items-center justify-between gap-20 font-medium leading-tight text-secondary-base"
+                          className="flex w-full cursor-pointer items-center justify-between gap-20 "
                         >
-                          <div>{faq.question}</div>
+                          <div className="text-base font-medium leading-tight text-secondary-base sm:md-max:text-sm ">
+                            {faq.question}
+                          </div>
                           <div onClick={() => handleToggle(index)}>
                             {activeQuestion === index ? (
                               <Image
@@ -205,7 +207,7 @@ const FAQ = () => {
                           </div>
                         </div>
                         {activeQuestion === index && (
-                          <div className="w-4/5 text-sm leading-tight text-secondary-500">
+                          <div className="w-4/5 text-sm font-normal leading-tight text-secondary-500 sm:md-max:text-xs">
                             {faq.answer}
                           </div>
                         )}

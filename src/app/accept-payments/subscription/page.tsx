@@ -13,17 +13,14 @@ const Subscription = () => {
   return (
     <>
       <AcceptPaymentWrapper>
-        {/* <div className="flex flex-col"> */}
-        {/* <div className="relative flex min-h-[640px] items-center justify-start p-[150px] sm:md-max:p-[24px]"> */}
         <Image
           src={subscriptionBG}
           alt="Subscription Background"
           layout="fill"
           objectFit="cover"
           quality={100}
-          className="absolute inset-0"
+          className="absolute inset-0 object-left"
         />
-        {/* <div className="flex items-start justify-center gap-9"> */}
         <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
           <div className="flex flex-col gap-4">
             <p className="heading-primary sm:md-max:text-[32px]">
@@ -44,14 +41,11 @@ const Subscription = () => {
             routeName="/login"
           />
         </div>
-        {/* </div> */}
       </AcceptPaymentWrapper>
 
       <div className="flex flex-col pb-[120px] sm:md-max:pb-[80px]">
         <Info title={'subscription'} cardsArray={cards} />
-        {/* <Partners /> */}
       </div>
-      {/* </div> */}
       <Footer />
     </>
   );

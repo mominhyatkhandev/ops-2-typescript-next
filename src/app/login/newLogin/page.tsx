@@ -8,13 +8,15 @@ import React, { useState } from 'react';
 
 import apiClient from '@/api/apiClient';
 import eye from '@/assets/icons/eye.svg';
-import LoginBg from '@/assets/images/login-bg.svg';
+import elipseBottomLeft from '@/assets/images/Ellipse Bottom Left.svg';
+import elipseTopRight from '@/assets/images/Ellipse Top Right.svg';
+// import LoginBg from '@/assets/images/login-bg.svg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import type { LoginForm } from '@/interfaces/interface';
 import loginSchema, { loginInitialValues } from '@/validations/loginSchema';
 
-const Login = () => {
+const NewLogin = () => {
   const router = useRouter();
   const [apierror, setApierror] = useState('');
 
@@ -50,18 +52,11 @@ const Login = () => {
   };
   return (
     <>
-      <div className="relative bg-primary-700 px-[380px] pb-[144px] pt-[120px] sm:md-max:px-[24px] sm:md-max:pb-[262px] sm:md-max:pt-[164px]">
-        <Image
-          src={LoginBg}
-          alt="LoginBg"
-          layout="fill"
-          objectFit="cover"
-          className="absolute inset-0 max-w-full object-left"
-        />
-        <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full sm:md-max:px-[20px] sm:md-max:py-8">
+      <div className="relative flex w-full bg-primary-900 px-[380px] pb-[144px] pt-[120px] ">
+        <div className="relative z-10 h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full sm:md-max:px-[20px] sm:md-max:py-8">
           {/* <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full"> */}
 
-          <span className="flex w-full justify-center pb-8 text-[40px] font-semibold text-secondary-base sm:md-max:text-[32px]">
+          <span className="flex w-full  justify-center pb-8 text-[40px] font-semibold text-secondary-base sm:md-max:text-[32px]">
             Login to your account
           </span>
           <Formik
@@ -114,9 +109,27 @@ const Login = () => {
             </Link>
           </span>
         </div>
+
+        <div className="h-full">
+          <Image
+            src={elipseBottomLeft}
+            alt="bottomLeftElipse"
+            layout="fill"
+            objectFit="cover"
+            className="absolute inset-0"
+          />
+
+          <Image
+            src={elipseTopRight}
+            alt="topRightElipse"
+            layout="fill"
+            objectFit="cover"
+            className="absolute inset-0"
+          />
+        </div>
       </div>
     </>
   );
 };
 
-export default Login;
+export default NewLogin;

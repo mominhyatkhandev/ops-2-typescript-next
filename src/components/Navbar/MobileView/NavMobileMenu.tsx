@@ -24,7 +24,7 @@ const NavMobileMenu = ({
   return (
     <NavMobileViewLayout>
       <>
-        <div className="flex flex-col items-start gap-8 border-y-2 border-border-light px-6 py-8">
+        <div className="flex flex-col items-start gap-8 border-y-[1px] border-border-light px-6 py-8">
           <Link href={`/`}>
             <div
               className="leading-tight text-secondary-base"

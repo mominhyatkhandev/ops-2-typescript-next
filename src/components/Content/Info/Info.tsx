@@ -5,6 +5,60 @@ import type { IInfoProp } from '@/interfaces/interface';
 // import type { TCard } from '@/types/static/static';
 import Card from '../../UI/Card/Card';
 
+// const cardHeader=[
+//   {
+//     title: 'payment gateway,
+//     heading: {
+//       main:' 6 powerful reasons to chose Easypaisa',
+//       sub: 'Payment Gateway'
+//     },
+//     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmodtempor incididunt ut labore et dolore'
+//   }
+// ,
+//     {
+//       title: 'payment link',
+//     heading: {
+//       main: '  Get Registered, start accepting payments.',
+//       sub: 'It’s that simple!'
+//     },
+//       description: '   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmodtempor incididunt ut labore et dolore'
+//   }
+//   ,
+//   // 'qr payments'
+//   {
+//     title: 'qr payments',
+//     heading: {
+//       main: '  Get Registered, start accepting payments.',
+//       sub: 'It’s that simple!'
+//     },
+//     description: '   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmodtempor incididunt ut labore et dolore'
+//   },
+//   {
+//     title: 'subscription',
+//     heading: {
+//       main: '  Get Registered, start accepting payments.',
+//       sub: 'It’s that simple!'
+//     },
+//     description: '   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmodtempor incididunt ut labore et dolore'
+//   },
+//   {
+//     title: 'mini apps',
+//     heading: {
+//       main: '  Get Registered, start accepting payments.',
+//       sub: 'It’s that simple!'
+//     },
+//     description: '   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmodtempor incididunt ut labore et dolore'
+//   },
+//   {
+//     title: 'home',
+//     heading: {
+//       main: ' Designed for',
+//       sub: 'Entrepreneurs'
+//     },
+//     description: '   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmodtempor incididunt ut labore et dolore'
+//   },
+// ]
+
 const Info = ({ title, cardsArray }: IInfoProp): JSX.Element => {
   return (
     <div className="inline-flex w-full flex-col items-start justify-center px-[150px] pb-[120px] pt-[80px] sm:md-max:px-[24px] sm:md-max:pb-[80px]">
@@ -75,7 +129,7 @@ const Info = ({ title, cardsArray }: IInfoProp): JSX.Element => {
                 Designed for{' '}
                 <span className="text-primary-base">Entrepreneurs</span>
               </h1>
-              <p className="text-base font-normal leading-tight text-secondary-400 sm:md-max:text-sm ">
+              <p className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm ">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmodtempor incididunt ut labore et dolore
               </p>

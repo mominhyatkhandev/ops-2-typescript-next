@@ -17,7 +17,7 @@ const MiniApps = () => {
           alt="paymentGateway Backgrounds"
           layout="fill"
           objectFit="cover"
-          className="absolute inset-0"
+          className="absolute inset-0 object-left"
         />
         <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
           <div className="flex flex-col gap-4">
@@ -38,7 +38,7 @@ const MiniApps = () => {
         </div>
       </AcceptPaymentWrapper>
       <div className="flex flex-col">
-        <Info title={'mini apps'} cardsArray={cards} />
+        <Info cardsArray={cards} />
       </div>
       <Footer />
     </>

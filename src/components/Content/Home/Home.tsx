@@ -87,7 +87,10 @@ const Home = (): JSX.Element => {
   return (
     <>
       <HeroBanner />
-      <Info cardsArray={cards} />
+      <Info
+        cardsArray={cards}
+        //  title={'home'}
+      />
       <div id="NewRootRoot" className="flex w-full flex-col">
         <div className="flex flex-col gap-5 pb-[93px] sm:md-max:pb-[80px] ">
           {/* <div className="min-h-[640px] max-w-full bg-50%_50% bg-blend-normal bg-no-repeat flex flex-col justify-end shrink-0 items-end pr-40 py-24 relative"> */}
@@ -100,7 +103,7 @@ const Home = (): JSX.Element => {
                 layout="fill"
                 objectFit="cover"
                 quality={100}
-                className="absolute inset-0"
+                className="absolute inset-0 object-left"
               />
               {/* <div className="shadow-[0px_4px_16px_0px_rgba(51,_51,_51,_0.08)] bg-neutral-white-base max-w-[560px] flex flex-col justify-center py-[40px] px-[32px] gap-12 shrink-0 items-start rounded-lg relative "> */}
               <div
@@ -112,9 +115,6 @@ const Home = (): JSX.Element => {
                       'relative flex shrink-0 flex-col place-items-center gap-12 rounded-lg bg-neutral-white-base p-10 shadow-[0px_4px_16px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:gap-6 sm:md-max:px-[20px] sm:md-max:py-4'
                 }
               >
-                {/* Content goes here */}
-                {/* </div> */}
-
                 <div className="text-5xl font-semibold leading-tight text-secondary-base sm:md-max:text-[32px]">
                   {item.label.main} {''}
                   <span className="text-primary-base">{item.label.sub}</span>

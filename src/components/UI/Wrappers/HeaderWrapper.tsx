@@ -64,15 +64,15 @@ const HeaderWrapper = ({
         null}
         {show ? (
           <div className="flex flex-col gap-2 pt-[36px]">
-            <div className="flex w-full text-5xl font-semibold text-secondary-base sm:md-max:text-[32px]">
+            <div className="flex w-full text-5xl font-semibold text-secondary-base sm:md-max:text-[32px] sm:md-max:leading-tight">
               {heading}
             </div>
-            <div className="text-base font-normal text-secondary-600 sm:md-max:text-sm">
+            <div className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm">
               {description}
             </div>
           </div>
         ) : (
-          <div className={`flex flex-col gap-2 pt-[76px]`}>
+          <div className={`flex flex-col gap-2 pt-[76px] sm:md-max:pt-[36px]`}>
             <div className="flex w-full text-5xl font-semibold text-secondary-base sm:md-max:text-[32px]">
               {heading}
             </div>

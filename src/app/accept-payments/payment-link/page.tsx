@@ -12,15 +12,13 @@ const PaymentLink = () => {
   return (
     <>
       <AcceptPaymentWrapper>
-        {/* <div className="flex flex-col"> */}
-        {/* <div className="relative flex min-h-[640px] items-center justify-start p-[150px]"> */}
         <Image
           src={paymentLinkBG}
           alt="paymentGateway Background"
           layout="fill"
           objectFit="cover"
           quality={100}
-          className="absolute inset-0"
+          className="absolute inset-0 object-left"
         />
         <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
           <div className="flex flex-col gap-4">
@@ -40,13 +38,10 @@ const PaymentLink = () => {
             routeName="/login"
           />
         </div>
-        {/* </div> */}
       </AcceptPaymentWrapper>
       <div className="flex flex-col">
         <Info title={'payment link'} cardsArray={cards} />
-        {/* <Partners /> */}
       </div>
-      {/* </div> */}
       <Footer />
     </>
   );

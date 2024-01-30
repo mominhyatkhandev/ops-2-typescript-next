@@ -13,14 +13,12 @@ const PaymentGateway = () => {
   return (
     <>
       <AcceptPaymentWrapper>
-        {/* <div className="flex flex-col">
-        <div className="relative flex min-h-[660px] items-center justify-start p-[150px] sm:md-max:p-[24px]"> */}
         <Image
           src={paymentGatewayBG}
           alt="paymentGateway Background"
           layout="fill"
           objectFit="cover"
-          className="absolute inset-0"
+          className="absolute inset-0 object-left"
         />
         <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
           <div className="flex flex-col gap-2">
@@ -47,9 +45,6 @@ const PaymentGateway = () => {
             label="Sign up"
             className="button-primary w-[200px] px-3 py-[19px] text-sm leading-tight"
           />
-
-          {/* </div>
-        </div> */}
         </div>
       </AcceptPaymentWrapper>
       <div className="flex flex-col pb-[120px] sm:md-max:pb-[80px]">

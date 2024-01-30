@@ -26,7 +26,7 @@ const Card = ({ logo, label, description }: ICardProps) => {
         </div>
       )}
 
-      <div className="flex flex-col items-start gap-4 self-stretch">
+      <div className="flex flex-col items-start gap-4 self-stretch sm:md-max:gap-2">
         <div className="w-full text-2xl font-semibold leading-tight text-secondary-base group-hover:text-neutral-white-base sm:md-max:text-base">
           <>
             {label === 'Online Payments' ? (
@@ -61,7 +61,7 @@ const Card = ({ logo, label, description }: ICardProps) => {
             )}
           </>
         </div>
-        <div className="w-full text-base font-normal leading-tight text-secondary-400 group-hover:text-neutral-white-base sm:md-max:text-sm">
+        <div className="w-full text-base font-normal leading-tight text-secondary-600 group-hover:text-neutral-white-base sm:md-max:text-sm">
           {description}
         </div>
       </div>

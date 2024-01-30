@@ -7,7 +7,7 @@ import Button from '../../UI/Button/PrimaryButton';
 
 const HeroBanner = (): JSX.Element => {
   return (
-    <main className="relative flex min-h-[594px] items-center justify-start p-[150px] sm:md-max:p-[24px]">
+    <main className="relative flex min-h-[594px] items-center justify-start p-[150px] sm:md-max:items-start sm:md-max:px-[24px] sm:md-max:pt-[124px] ">
       {/* <main className="relative flex min-h-[640px] items-center justify-start p-[150px] sm:md-max:p-[24px]"> */}
 
       {/* <div className='bg-primary-600'> */}
@@ -19,13 +19,13 @@ const HeroBanner = (): JSX.Element => {
           objectFit="cover"
           // width={50}
           quality={100}
-          className="absolute inset-0 max-w-full"
+          className="absolute inset-0 max-w-full object-left"
         />
       </div>
       {/* </div> */}
       <div className="relative flex flex-col items-start justify-center gap-9 rounded-lg">
-        <div className="flex flex-col gap-2">
-          <span className="flex items-center justify-start gap-2">
+        <div className="flex flex-col gap-2 ">
+          <span className="flex items-center justify-start gap-2 ">
             <p className="text-2xl font-semibold text-secondary-base sm:md-max:text-base">
               Welcome to
             </p>

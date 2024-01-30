@@ -27,7 +27,9 @@ function CheckboxInput({ label, logo, selected, onSelect }: ICheckboxInput) {
             </div>
           </div>
         ) : (
-          <div className="flex h-6 w-6 justify-center rounded-full border-2 border-border-dark px-[7px] py-2" />
+          <div className="flex h-6 w-6 justify-center rounded-full border-2 border-border-dark px-[7px] py-2">
+            <div className="h-[8px] w-[10px]"></div>
+          </div>
         )}
       </div>
     </>
