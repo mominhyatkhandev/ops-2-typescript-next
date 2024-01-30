@@ -19,7 +19,7 @@ const QRPayments = () => {
         <Image
           src={qrPaymentBG}
           alt="qrPayment Background"
-          // layout="fill"
+          layout="fill"
           objectFit="cover"
           quality={100}
           // width={100}

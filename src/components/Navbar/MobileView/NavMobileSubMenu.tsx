@@ -3,7 +3,7 @@ import React from 'react';
 
 import NavMobileViewLayout from '@/components/UI/Wrappers/NavMobileViewLayout';
 
-import { dropDownList } from '../Dropdown';
+import { getDropDownMenu } from '../Utils/utils';
 
 interface INavMobileSubMenu {
   setIsMobileSubMenu: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +14,7 @@ const NavMobileSubMenu = ({
   setIsMobileSubMenu,
   setIsOpenMenu,
 }: INavMobileSubMenu) => {
-  // const router = usePathname();
+  const dropDownList = getDropDownMenu();
 
   return (
     <NavMobileViewLayout>

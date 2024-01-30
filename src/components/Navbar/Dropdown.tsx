@@ -5,23 +5,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import SubscriptionIcon from '@/assets/icons/subscription-icon.svg';
 import type { IDropdownProps } from '@/interfaces/interface';
 
-import Coin from '../../assets/icons/card-coin.svg';
-import Money from '../../assets/icons/money-nav.svg';
-import Scanner from '../../assets/icons/scanner-nav.svg';
-import Shop from '../../assets/icons/shop-nav.svg';
-
-export const dropDownList = [
-  { title: 'Payment Gateway', link: 'payment-gateway', icon: Coin },
-  { title: 'QR Payments', link: 'qr-payments', icon: Scanner },
-  { title: 'Mini Apps', link: 'mini-apps', icon: Shop },
-  { title: 'Payment Link', link: 'payment-link', icon: Money },
-  { title: 'Subscription', link: 'subscription', icon: SubscriptionIcon },
-];
+import { getDropDownMenu } from './Utils/utils';
 
 const Dropdown = ({ isHovered }: IDropdownProps) => {
+  const dropDownList = getDropDownMenu();
   const pathname = usePathname();
   return (
     <>

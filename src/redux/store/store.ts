@@ -3,7 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import signupReducer from '@/redux/slices/signUpSlice';
+import signupSlice from '@/redux/slices/signUpSlice';
 
 import userSlice from '../slices/userSlice';
 
@@ -15,7 +15,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userSlice,
-  signup: signupReducer,
+  signup: signupSlice,
 });
 
 const persistedReducer = persistReducer<any>(persistConfig, rootReducer);

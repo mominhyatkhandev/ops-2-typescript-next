@@ -2,7 +2,8 @@
 
 import useCurrentTab from '@/hooks/useCurrentTab';
 
-import Dropdown, { dropDownList } from './Dropdown';
+import Dropdown from './Dropdown';
+import { getDropDownMenu } from './Utils/utils';
 
 const AcceptPayments = ({
   isHovered,
@@ -14,6 +15,7 @@ const AcceptPayments = ({
   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>;
 }): JSX.Element => {
   const { currentTab } = useCurrentTab();
+  const dropDownList = getDropDownMenu();
 
   return (
     <div
@@ -36,7 +38,6 @@ const AcceptPayments = ({
             ) : null;
           })}
       </div>
-      {/* )} */}
 
       <>{isHovered && <Dropdown isHovered={isHovered} />}</>
     </div>

@@ -11,75 +11,89 @@ import useCurrentTab from '@/hooks/useCurrentTab';
 
 import Button from '../UI/Button/PrimaryButton';
 import AcceptPayments from './AcceptPayments';
-import { dropDownList } from './Dropdown';
 import NavMobileMenu from './MobileView/NavMobileMenu';
 import NavMobileSubMenu from './MobileView/NavMobileSubMenu';
-import { getNavMenu } from './Utils/utils';
+import { getDropDownMenu, getNavMenu } from './Utils/utils';
 
 const Navbar = () => {
   const navMenu = getNavMenu();
+  const dropDownList = getDropDownMenu();
+
   const { currentTab } = useCurrentTab();
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const [isMobileSubMenu, setIsMobileSubMenu] = useState<boolean>(false);
+  const isCurrentTabNotInNavMenu = !navMenu.some(
+    (item) => item.name === currentTab,
+  );
+  const isCurrentTabNotInSubMenu = !dropDownList.some(
+    (item) => item.link === currentTab,
+  );
 
   return (
     <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base px-[150px] py-4 shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:px-6 sm:md-max:py-4 ">
       <div className="flex items-center justify-between">
+        <div className="sm:hidden md:flex md:items-center md:justify-between">
+          <Image src={Logo} width={173} height={36} alt="logo" className="" />
+        </div>
         {isOpenMenu && !isMobileSubMenu ? (
-          <div className="w-min text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
+          <div className="w-min text-xl font-semibold leading-tight text-secondary-base md:hidden">
             Menu
           </div>
         ) : !isOpenMenu && !isMobileSubMenu ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base xl:hidden 2xl:hidden">
-            {dropDownList.map((item, index) => {
-              return (
-                currentTab === item.link && (
-                  <span key={index}>{item.title}</span>
-                )
-              );
-            })}
-            {navMenu.map((item, index) => {
-              return (
-                currentTab === item.name &&
-                (!item.name ? (
-                  <Image
-                    key={index}
-                    src={Logo}
-                    width={173}
-                    height={36}
-                    alt="logo"
-                    className=""
-                  />
-                ) : (
-                  <div
-                    key={index}
-                    className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden"
-                  >
-                    {item.title}
-                  </div>
-                ))
-              );
-            })}
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden">
+            {isCurrentTabNotInNavMenu && isCurrentTabNotInSubMenu ? (
+              <Image
+                src={Logo}
+                width={116}
+                height={24}
+                alt="logo"
+                className="md:hidden"
+              />
+            ) : !isCurrentTabNotInNavMenu ? (
+              navMenu.map((item, index) => {
+                return (
+                  currentTab === item.name &&
+                  (!item.name ? (
+                    <Image
+                      key={index}
+                      src={Logo}
+                      width={116}
+                      height={24}
+                      alt="logo"
+                      className="md:hidden"
+                    />
+                  ) : (
+                    <div
+                      key={index}
+                      className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden"
+                    >
+                      {item.title}
+                    </div>
+                  ))
+                );
+              })
+            ) : (
+              !isCurrentTabNotInSubMenu &&
+              dropDownList.map((item, index) => {
+                return (
+                  currentTab === item.link && (
+                    <span key={index}>{item.title}</span>
+                  )
+                );
+              })
+            )}
           </div>
         ) : (
           isMobileSubMenu && (
-            <div className="w-full text-xl font-semibold leading-tight text-secondary-base lg:hidden xl:hidden 2xl:hidden">
+            <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden">
               Accept Payments
             </div>
           )
         )}
-        <Image
-          src={Logo}
-          width={173}
-          height={36}
-          alt="logo"
-          className="xs:hidden sm:hidden"
-        />
       </div>
       <div className="flex h-full items-center justify-between">
-        {/* {isBrowser && ( */}
-        <ul className="h-full items-center gap-6 sm:hidden md:flex lg:flex xl:flex 2xl:flex">
+        <ul className="h-full items-center gap-6 sm:hidden md:flex">
           {navMenu.map((item, index) => (
             <>
               {item.title === 'Accept Payments' ? (
@@ -118,7 +132,7 @@ const Navbar = () => {
           </div>
         </ul>
         <div
-          className="md:hidden xl:hidden 2xl:hidden"
+          className="md:hidden"
           onClick={() => {
             setIsOpenMenu(!isOpenMenu);
             setIsMobileSubMenu(false);
@@ -130,7 +144,6 @@ const Navbar = () => {
             <Image src={Menu} alt="menu" width={24} height={24} />
           )}
         </div>
-        {/* )} */}
       </div>
       {isOpenMenu &&
         (!isMobileSubMenu ? (
