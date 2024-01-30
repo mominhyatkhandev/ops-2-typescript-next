@@ -2,7 +2,7 @@
 
 import { ErrorMessage, Field } from 'formik';
 import Image from 'next/image';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import type { IInput } from '@/interfaces/interface';
 
@@ -17,20 +17,10 @@ const Input = ({
   eyeinput, // isDisabled = false,
 }: IInput) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const fieldRef = useRef<HTMLInputElement>(null);
+  // const [isHovered, setIsHovered] = useState(false);
 
   const handleImageClick = () => {
     setIsPasswordVisible((prev) => !prev);
-  };
-
-  const handleMouseDown = () => {
-    if (fieldRef?.current) {
-      fieldRef?.current?.focus(); // Focus the field
-      // setFieldTouched(name, true, false); // Set the field as touched without validating
-      // Optionally, you can set a default value
-      // setFieldValue(name, 'Your default value', false);
-    }
   };
 
   return (
@@ -38,14 +28,11 @@ const Input = ({
       <div
         className={`floating-input relative w-full rounded-lg border border-border-light focus-within:border-primary-base hover:border-primary-base hover:shadow-sm focus:shadow-sm focus:outline-none ${
           touched && error ? 'border-danger-base' : ''
-        } ${isHovered ? 'focus-within' : ''}`}
-        onClick={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        }`}
       >
         <Field
-          innerRef={fieldRef}
           name={name}
-          onMouseEnter={handleMouseDown}
+          // onMouseDown={setIsHovered(true)}
           type={isPasswordVisible ? 'text' : type}
           id={label}
           className={`font-500 text-neutral-black-base ${
