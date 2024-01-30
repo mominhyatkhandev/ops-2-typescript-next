@@ -52,7 +52,7 @@ const NewLogin = () => {
   };
   return (
     <>
-      <div className="relative flex w-full bg-primary-900 px-[380px] pb-[144px] pt-[120px] ">
+      <div className="relative flex h-[611px] w-full  items-center justify-center bg-primary-900 px-[380px] align-middle">
         <div className="relative z-10 h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full sm:md-max:px-[20px] sm:md-max:py-8">
           {/* <div className="relative h-max w-[680px] rounded-lg border-[1px] border-border-light bg-neutral-white-base px-[60px] py-9 sm:md-max:w-full"> */}
 
