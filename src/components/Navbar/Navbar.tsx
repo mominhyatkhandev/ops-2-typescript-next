@@ -37,7 +37,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base px-[150px] py-4 shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:px-6 sm:md-max:py-4 ">
+    <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base px-[150px] shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:px-6 sm:md-max:py-4 ">
       <div className="flex items-center justify-between">
         <div className="sm:hidden md:flex md:items-center md:justify-between">
           <Image src={Logo} width={173} height={36} alt="logo" className="" />
@@ -110,7 +110,10 @@ const Navbar = () => {
       <div className="flex h-full items-center justify-between">
         <ul className="h-full items-center gap-6 sm:hidden md:flex">
           {navMenu.map((item, index) => (
-            <>
+            <div
+              key={index}
+              className="flex h-full items-center justify-center space-x-6"
+            >
               {item.title === 'Accept Payments' ? (
                 <div
                   className="flex h-full place-items-center"
@@ -124,14 +127,14 @@ const Navbar = () => {
                   />
                 </div>
               ) : (
-                <Link key={index} href={item.link}>
+                <Link href={item.link}>
                   <li className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base">
                     {item.title}
                   </li>
                 </Link>
               )}
-              <div className="h-[10px] w-[1px] bg-border-dark" />
-            </>
+              <div key={index} className="h-[10px] w-[1px] bg-border-dark" />
+            </div>
           ))}
           <div className="flex flex-row gap-6">
             <Button
