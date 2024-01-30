@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+import ChevronLeft from '@/assets/icons/chevron-left.svg';
 import CloseIcon from '@/assets/icons/close-icon-nav.svg';
 import Logo from '@/assets/icons/logo.svg';
 import Menu from '@/assets/icons/menu-button.svg';
@@ -29,6 +30,11 @@ const Navbar = () => {
   const isCurrentTabNotInSubMenu = !dropDownList.some(
     (item) => item.link === currentTab,
   );
+
+  const handleBackButton = () => {
+    setIsOpenMenu(true);
+    setIsMobileSubMenu(false);
+  };
 
   return (
     <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base px-[150px] py-4 shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:px-6 sm:md-max:py-4 ">
@@ -86,8 +92,17 @@ const Navbar = () => {
           </div>
         ) : (
           isMobileSubMenu && (
-            <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden">
-              Accept Payments
+            <div className="flex gap-2 md:hidden" onClick={handleBackButton}>
+              <Image
+                src={ChevronLeft}
+                height={24}
+                width={24}
+                alt="chevron-right"
+              />
+
+              <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden">
+                Accept Payments
+              </div>
             </div>
           )
         )}
