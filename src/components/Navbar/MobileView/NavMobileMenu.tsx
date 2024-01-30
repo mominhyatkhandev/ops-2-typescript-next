@@ -23,7 +23,7 @@ const NavMobileMenu = ({
       <>
         <div className="flex flex-col items-start gap-8 border-y-2 border-border-light px-6 py-8">
           {navMenu.map((item, index) => (
-            <>
+            <div key={index} className="w-full flex-col ">
               {item.name === 'accept-payments' ? (
                 <div
                   className="flex w-full items-center justify-between"
@@ -55,7 +55,7 @@ const NavMobileMenu = ({
                   </div>
                 </Link>
               )}
-            </>
+            </div>
           ))}
         </div>
         <div className="flex w-full flex-col items-start justify-center gap-4 border-b border-solid border-border-light px-6 py-8">

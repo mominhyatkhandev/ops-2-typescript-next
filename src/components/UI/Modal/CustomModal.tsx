@@ -16,25 +16,27 @@ const CustomModal = ({
   show,
   setShowModal,
 }: ICustomModalProps) => {
-  const handleClose = (e: MouseEvent<HTMLDivElement>) => {
+  const handleClose = () => {
     // setOpen(false);
-    console.log(e);
+    // console.log(e);
 
-    setShowModal(false);
+    setShowModal(!show);
     // console.log('hello');
   };
 
   const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
-      handleClose(e);
+      console.log('E TARGET', e.target);
+      console.log('E CURRENT TARGET', e.currentTarget);
+      handleClose();
     }
   };
 
   return (
     <>
-      {show ? (
+      {!show ? (
         <div
-          className="overlay fixed left-0 top-0 z-50 flex h-full w-full  items-center justify-center bg-secondary-base/75 sm:md-max:px-[24px] sm:md-max:py-[264px]"
+          className="overlay fixed left-0 top-0 z-50 flex h-full w-full  items-center justify-center bg-secondary-base/75 sm:px-6"
           onClick={handleOverlayClick}
         >
           <div className="flex w-[600px] flex-col gap-12 rounded-2xl border-[1px] border-border-dark bg-screen-white p-5">
@@ -42,7 +44,7 @@ const CustomModal = ({
               <div className="flex justify-end" onClick={handleClose}>
                 <Image src={closeIcon} alt="close-icon" />
               </div>
-              <div className="px-[78px] py-[40px]">
+              <div className="md:px-[78px] md:py-[40px]">
                 <div className="flex flex-col gap-12">
                   <div>
                     <div className="flex flex-col gap-9">
@@ -50,12 +52,17 @@ const CustomModal = ({
                         <Image src={Bitmap} alt="bitmap-icon" />
                       </div>
                       <div>
-                        <div className="flex flex-col items-center gap-2">
-                          <p className="flex justify-center text-2xl font-semibold leading-tight text-secondary-base">
+                        <div className="flex flex-col items-center justify-center gap-2">
+                          <p className="flex justify-center text-center text-2xl font-semibold leading-tight text-secondary-base">
                             {title}
+                            SUCCESSFULLY RESOLVED!
                           </p>
-                          <p className="flex text-base leading-tight text-secondary-600">
+                          <p className="flex text-center text-base leading-tight text-secondary-600">
                             {description}
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Earum aliquid ratione, perspiciatis non natus
+                            id delectus libero nam quisquam sunt numquam omnis
+                            ipsum magni qui laborum alias in commodi deserunt.
                           </p>
                         </div>
                       </div>
