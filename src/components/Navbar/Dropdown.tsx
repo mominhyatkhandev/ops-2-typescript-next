@@ -5,25 +5,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-import SubscriptionIcon from '@/assets/icons/subscription-icon.svg';
 import type { IDropdownProps } from '@/interfaces/interface';
 
-import Coin from '../../assets/icons/card-coin.svg';
-import Money from '../../assets/icons/money-nav.svg';
-import Scanner from '../../assets/icons/scanner-nav.svg';
-import Shop from '../../assets/icons/shop-nav.svg';
+import { getDropDownMenu } from './Utils/utils';
 
-export const dropDownList = [
-  { title: 'Payment Gateway', link: 'payment-gateway', icon: Coin },
-  { title: 'QR Payments', link: 'qr-payments', icon: Scanner },
-  { title: 'Mini Apps', link: 'mini-apps', icon: Shop },
-  { title: 'Payment Link', link: 'payment-link', icon: Money },
-  { title: 'Subscription', link: 'subscription', icon: SubscriptionIcon },
-];
-
-const Dropdown = ({ isHovered, setSelectedOption }: IDropdownProps) => {
-  const router = usePathname();
-
+const Dropdown = ({ isHovered }: IDropdownProps) => {
+  const dropDownList = getDropDownMenu();
+  const pathname = usePathname();
   return (
     <>
       {isHovered && (
@@ -32,9 +20,8 @@ const Dropdown = ({ isHovered, setSelectedOption }: IDropdownProps) => {
             <Link key={index} href={`/accept-payments/${item.link}`}>
               <div
                 key={index}
-                onClick={() => setSelectedOption(item.title)}
                 className={`flex flex-row items-start gap-4 duration-300 hover:text-primary-base hover:transition ${
-                  router === `/accept-payments/${item.link}`
+                  pathname === `/accept-payments/${item.link}`
                     ? 'text-primary-base'
                     : ''
                 }`}

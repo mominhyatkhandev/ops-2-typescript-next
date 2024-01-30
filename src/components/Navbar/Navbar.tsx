@@ -4,133 +4,138 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+import ChevronLeft from '@/assets/icons/chevron-left.svg';
 import CloseIcon from '@/assets/icons/close-icon-nav.svg';
 import Logo from '@/assets/icons/logo.svg';
 import Menu from '@/assets/icons/menu-button.svg';
+import useCurrentTab from '@/hooks/useCurrentTab';
 
 import Button from '../UI/Button/PrimaryButton';
 import AcceptPayments from './AcceptPayments';
 import NavMobileMenu from './MobileView/NavMobileMenu';
 import NavMobileSubMenu from './MobileView/NavMobileSubMenu';
-// import arrowDown from '@/assets/icons/arrow-down.svg';
-// import bellIcon from '@/assets/icons/bell-icon.svg'
-// import Dropdown from './Dropdown';
+import { getDropDownMenu, getNavMenu } from './Utils/utils';
 
 const Navbar = () => {
-  const [other, setOther] = useState<string>('');
-  const [clickTrigger, setClickTrigger] = useState<boolean>(false);
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [isMobileView, setIsMobileView] = useState<boolean>(false);
-  const [isMobileSubMenu, setIsMobileSubMenu] = useState<boolean>(false);
-  const [selectedSubMenuItem, setSelectedSubMenuItem] = useState<string>('');
-  const [selectedMenuItem, setSelectedMenuItem] = useState<string>('');
+  const navMenu = getNavMenu();
+  const dropDownList = getDropDownMenu();
 
-  const handleOther = (itemName: string) => {
-    setOther(itemName);
-    setClickTrigger(!clickTrigger);
+  const { currentTab } = useCurrentTab();
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+  const [isMobileSubMenu, setIsMobileSubMenu] = useState<boolean>(false);
+  const isCurrentTabNotInNavMenu = !navMenu.some(
+    (item) => item.name === currentTab,
+  );
+  const isCurrentTabNotInSubMenu = !dropDownList.some(
+    (item) => item.link === currentTab,
+  );
+
+  const handleBackButton = () => {
+    setIsOpenMenu(true);
+    setIsMobileSubMenu(false);
   };
 
-  console.log('selected SUB MENUT ITEM', selectedSubMenuItem);
-
   return (
-    <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base px-[150px] py-4 shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:px-6 sm:md-max:py-4 ">
+    <nav className="relative z-10 flex h-[84px] items-center justify-between bg-neutral-white-base px-[150px] shadow-[0px_2px_6px_0px_rgba(51,_51,_51,_0.08)] sm:md-max:px-6 sm:md-max:py-4 ">
       <div className="flex items-center justify-between">
-        {isMobileView && !isMobileSubMenu ? (
-          <div className="w-min text-xl font-semibold leading-tight text-secondary-base md:hidden xl:hidden 2xl:hidden">
+        <div className="sm:hidden md:flex md:items-center md:justify-between">
+          <Image src={Logo} width={173} height={36} alt="logo" className="" />
+        </div>
+        {isOpenMenu && !isMobileSubMenu ? (
+          <div className="w-min text-xl font-semibold leading-tight text-secondary-base md:hidden">
             Menu
           </div>
-        ) : isMobileView &&
-          isMobileSubMenu &&
-          selectedMenuItem === 'acceptPayments' ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base xl:hidden 2xl:hidden">
-            Accept Payments
-          </div>
-        ) : !isMobileView && selectedSubMenuItem ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base xl:hidden 2xl:hidden">
-            {selectedSubMenuItem}
-          </div>
-        ) : !isMobileView && selectedMenuItem ? (
-          <div className="w-full text-xl font-semibold leading-tight text-secondary-base xl:hidden 2xl:hidden">
-            {selectedMenuItem}
+        ) : !isOpenMenu && !isMobileSubMenu ? (
+          <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden">
+            {isCurrentTabNotInNavMenu && isCurrentTabNotInSubMenu ? (
+              <Image
+                src={Logo}
+                width={116}
+                height={24}
+                alt="logo"
+                className="md:hidden"
+              />
+            ) : !isCurrentTabNotInNavMenu ? (
+              navMenu.map((item, index) => {
+                return (
+                  currentTab === item.name &&
+                  (!item.name ? (
+                    <Image
+                      key={index}
+                      src={Logo}
+                      width={116}
+                      height={24}
+                      alt="logo"
+                      className="md:hidden"
+                    />
+                  ) : (
+                    <div
+                      key={index}
+                      className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden"
+                    >
+                      {item.title}
+                    </div>
+                  ))
+                );
+              })
+            ) : (
+              !isCurrentTabNotInSubMenu &&
+              dropDownList.map((item, index) => {
+                return (
+                  currentTab === item.link && (
+                    <span key={index}>{item.title}</span>
+                  )
+                );
+              })
+            )}
           </div>
         ) : (
-          <Image src={Logo} width={173} height={36} alt="logo" className="" />
+          isMobileSubMenu && (
+            <div className="flex gap-2 md:hidden" onClick={handleBackButton}>
+              <Image
+                src={ChevronLeft}
+                height={24}
+                width={24}
+                alt="chevron-right"
+              />
+
+              <div className="w-full text-xl font-semibold leading-tight text-secondary-base md:hidden">
+                Accept Payments
+              </div>
+            </div>
+          )
         )}
       </div>
       <div className="flex h-full items-center justify-between">
-        <ul className="items-center gap-[24px] sm:hidden  md:flex xl:flex 2xl:flex">
-          <Link href={'/'}>
-            <li
-              className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base"
-              onClick={() => handleOther('Home')}
+        <ul className="h-full items-center gap-6 sm:hidden md:flex">
+          {navMenu.map((item, index) => (
+            <div
+              key={index}
+              className="flex h-full items-center justify-center space-x-6"
             >
-              Home
-            </li>
-          </Link>
-          <div className="h-[10px] w-[1px] bg-border-dark"></div>
-
-          <div
-            className="flex h-full place-items-center"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <AcceptPayments
-              isHovered={isHovered}
-              setIsHovered={setIsHovered}
-              other={other}
-              clickTrigger={clickTrigger}
-            />
-          </div>
-
-          <div className="h-[10px] w-[1px] bg-border-dark"></div>
-
-          <div
-            className="cursor-pointer text-center text-sm text-secondary-base transition duration-300 hover:text-primary-base"
-            onClick={() => handleOther('Developer')}
-          >
-            Developer
-          </div>
-          <div className="h-[10px] w-[1px] bg-border-dark"></div>
-          <Link href={`/faq`}>
-            <li
-              className="cursor-pointer text-center text-sm text-secondary-base transition duration-300 hover:text-primary-base"
-              onClick={() => handleOther('faq')}
-            >
-              FAQs
-            </li>
-          </Link>
-          <div className="h-[10px] w-[1px] bg-border-dark"></div>
-          {/* <div className='flex gap-4'>
-            <div className='flex border-[1px] rounded-2xl border-border-light px-4 py-2 gap-4'>
-              <div>
-              <div className='text-base text-secondary-base font-semibold'>
-                Babar azam
-              </div>
-              <div className='text-xs text-secondary-600 font-normal'>
-                babarazam@gmail.com
-              </div>
-              </div>
-              <div className='flex items-center'>
-                <Image
-                  src={arrowDown}
-                  alt={'arrow down'}
-                  // height={24}
-                  // width={24}
-                  // onClick={() => handleToggle(index)}
-                />
-              </div>
+              {item.title === 'Accept Payments' ? (
+                <div
+                  className="flex h-full place-items-center"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <AcceptPayments
+                    isHovered={isHovered}
+                    title={item.title}
+                    setIsHovered={setIsHovered}
+                  />
+                </div>
+              ) : (
+                <Link href={item.link}>
+                  <li className="cursor-pointer text-sm leading-tight text-secondary-base transition duration-300 hover:text-primary-base">
+                    {item.title}
+                  </li>
+                </Link>
+              )}
+              <div key={index} className="h-[10px] w-[1px] bg-border-dark" />
             </div>
-            <div className='flex items-center rounded-2xl px-2 py-3 border-[1px] border-border-light'>
-
-              <Image
-                src={bellIcon}
-                alt={'bell icon'}
-              height={32}
-              width={32}
-              // onClick={() => handleToggle(index)}
-              />
-            </div>
-          </div> */}
+          ))}
           <div className="flex flex-row gap-6">
             <Button
               label="Login"
@@ -145,45 +150,31 @@ const Navbar = () => {
           </div>
         </ul>
         <div
-          className="md:hidden xl:hidden 2xl:hidden"
+          className="md:hidden"
           onClick={() => {
-            setIsMobileView(!isMobileView);
+            setIsOpenMenu(!isOpenMenu);
             setIsMobileSubMenu(false);
           }}
         >
-          {isMobileView ? (
+          {isOpenMenu ? (
             <Image src={CloseIcon} width={24} height={24} alt="closeIcon" />
           ) : (
             <Image src={Menu} alt="menu" width={24} height={24} />
           )}
         </div>
       </div>
-      {isMobileView &&
+      {isOpenMenu &&
         (!isMobileSubMenu ? (
           <NavMobileMenu
             setIsMobileSubMenu={setIsMobileSubMenu}
-            setIsMobileView={setIsMobileView}
-            isMobileSubMenu={isMobileSubMenu}
-            setSelectedMenuItem={setSelectedMenuItem}
-            setSelectedSubMenuItem={setSelectedSubMenuItem}
+            setIsOpenMenu={setIsOpenMenu}
           />
         ) : (
           <NavMobileSubMenu
-            setSelectedSubMenuItem={setSelectedSubMenuItem}
-            selectedSubMenuItem={selectedSubMenuItem}
             setIsMobileSubMenu={setIsMobileSubMenu}
-            setIsMobileView={setIsMobileView}
-            isMobileSubMenu={isMobileSubMenu}
+            setIsOpenMenu={setIsOpenMenu}
           />
         ))}
-      {/* {isMobileView && !isMobileSubMenu ? (
-        <NavMobileMenu
-          setIsMobileSubMenu={setIsMobileSubMenu}
-          isMobileSubMenu={isMobileSubMenu}
-        />
-      ) : (
-        <NavMobileSubMenu />
-      )} */}
     </nav>
   );
 };

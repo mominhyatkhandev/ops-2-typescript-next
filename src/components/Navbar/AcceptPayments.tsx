@@ -1,41 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import useCurrentTab from '@/hooks/useCurrentTab';
 
 import Dropdown from './Dropdown';
+import { getDropDownMenu } from './Utils/utils';
 
 const AcceptPayments = ({
-  other,
-  clickTrigger,
   isHovered,
+  title,
   setIsHovered,
 }: {
-  other: string;
-  clickTrigger: boolean;
+  title: string;
   isHovered: boolean;
   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>;
 }): JSX.Element => {
-  // const [selectedOption, setSelectedOption] = useState<string | undefined>('');
-  const [selectedOption, setSelectedOption] = useState<string>('');
-  // const [isHovered, setIsHovered] = useState<boolean>(false);
-
-  useEffect(() => {
-    const pathArray = window.location.pathname.split('/');
-    const selectedTitle: string | undefined = pathArray[pathArray.length - 1];
-    let formattedTitle;
-
-    if (other !== 'AcceptPayments') {
-      formattedTitle = '';
-    } else {
-      formattedTitle =
-        selectedTitle
-          ?.replace(/-/g, ' ')
-          ?.replace(/(?:^|\s)\S/g, (match) => match.toUpperCase()) ?? '';
-    }
-    formattedTitle !== '' && setSelectedOption(formattedTitle);
-  }, [other, clickTrigger]);
+  const { currentTab } = useCurrentTab();
+  const dropDownList = getDropDownMenu();
 
   return (
     <div
@@ -48,22 +28,18 @@ const AcceptPayments = ({
           isHovered && 'text-primary-base'
         } duration-300 hover:text-primary-base hover:transition`}
       >
-        Accept Payments
+        {title}
       </div>
-      {selectedOption && (
-        <div className="absolute top-5 text-xs leading-tight text-primary-base">
-          {selectedOption}
-        </div>
-      )}
+      <div className="absolute top-5 text-xs leading-tight text-primary-base">
+        {currentTab &&
+          dropDownList.map((item, index) => {
+            return currentTab === item.link ? (
+              <span key={index}>{item.title}</span>
+            ) : null;
+          })}
+      </div>
 
-      <>
-        {isHovered && (
-          <Dropdown
-            isHovered={isHovered}
-            setSelectedOption={setSelectedOption}
-          />
-        )}
-      </>
+      <>{isHovered && <Dropdown isHovered={isHovered} />}</>
     </div>
   );
 };

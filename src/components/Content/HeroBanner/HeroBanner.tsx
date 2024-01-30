@@ -16,7 +16,7 @@ const HeroBanner = (): JSX.Element => {
           src={heroBanner}
           alt="Hero Background"
           layout="fill"
-          objectFit="cover"
+          objectFit="fill"
           // width={50}
           quality={100}
           className="absolute inset-0 max-w-full object-left"

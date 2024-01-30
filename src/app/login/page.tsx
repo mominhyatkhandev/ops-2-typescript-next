@@ -31,14 +31,14 @@ const Login = () => {
         },
       );
 
-      console.log('API Response:', response);
+      console.log('API Response Headers:', response.headers);
 
-      if (response?.config?.headers?.Responsecode == '000') {
+      if (response?.headers?.responsecode == '000') {
         // if (response?.headers.responseCode == '000') {
         console.log(response, 'successssssssssssssssss');
         router.push('/login/loginSuccess');
       } else {
-        console.log('hiiiiii  ');
+        console.log('Failure');
       }
       setApierror('');
     } catch (error: any) {
