@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+// import arrowDown from '@/assets/icons/arrow-down.svg';
+// import bellIcon from '@/assets/icons/bell-icon.svg';
 import ChevronLeft from '@/assets/icons/chevron-left.svg';
 import CloseIcon from '@/assets/icons/close-icon-nav.svg';
 import Logo from '@/assets/icons/logo.svg';
@@ -108,6 +110,39 @@ const Navbar = () => {
         )}
       </div>
       <div className="flex h-full items-center justify-between">
+        {/* <div className="flex gap-4">
+          <div className="flex gap-4 rounded-2xl border-[1px] border-border-light px-4 py-2">
+            <div>
+              <div className="text-base font-semibold text-secondary-base">
+                Babar azam
+              </div>
+              <div className="text-xs font-normal text-secondary-600">
+                babarazam@gmail.com
+              </div>
+            </div>
+            <div className="flex items-center">
+              <Image
+                src={arrowDown}
+                alt={'arrow down'}
+                // height={24}
+                // width={24}
+                // onClick={() => handleToggle(index)}
+              />
+            </div>
+          </div>
+          <div className="relative flex items-center rounded-2xl border-[1px] border-border-light px-2 py-3">
+            <div className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-danger-base text-[10px] leading-tight text-neutral-white-base">
+              5
+            </div>
+            <Image
+              src={bellIcon}
+              alt={'bell icon'}
+              height={32}
+              width={32}
+              // onClick={() => handleToggle(index)}
+            />
+          </div>
+        </div> */}
         <ul className="h-full items-center gap-6 sm:hidden md:flex">
           {navMenu.map((item, index) => (
             <div
