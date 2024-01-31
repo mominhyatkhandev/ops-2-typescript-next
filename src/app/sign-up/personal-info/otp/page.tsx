@@ -84,7 +84,7 @@ const OtpInputWithValidation = () => {
           show={true}
         />
         <FormLayout>
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col sm:gap-8 md:gap-12">
             <OTP
               description="Enter Email OTP here"
               setOtp={setEmailOtp}

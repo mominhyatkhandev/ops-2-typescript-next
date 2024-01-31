@@ -92,7 +92,7 @@ const PersonalInfo = () => {
       >
         {(formik) => (
           <Form>
-            <div className="flex w-full flex-col gap-6 pb-[76px]">
+            <div className="flex w-full flex-col gap-6 sm:pb-[60px] md:pb-[76px]">
               <HeaderWrapper
                 heading="Please fill in the Information below"
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmodtempor incididunt ut labore et dolore"
@@ -232,7 +232,7 @@ const PersonalInfo = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col items-center sm:md-max:items-center">
+                {/* <div className="flex flex-col items-center sm:md-max:items-center">
                   <div className="w-full">VERIFY COMPONENT</div>
                   <Button
                     label={`Next`}
@@ -242,14 +242,14 @@ const PersonalInfo = () => {
                       isLoading && 'bg-primary-300'
                     } w-[260px] px-4 py-[19px] text-sm leading-tight transition duration-300 sm:md-max:w-[270px] sm:md-max:px-[12px]`}
                   />
-                </div>
+                </div> */}
                 {/* {isLoading && (
                   <div className="h-100 w-full bg-primary-600 p-10 text-5xl font-semibold text-warning-200">
                   Loading..
                   </div>
                 )} */}
               </FormWrapper>
-              <div className="flex flex-col items-end gap-9 px-[150px]">
+              <div className="flex flex-col justify-center gap-9 sm:items-center sm:px-5 md:items-end md:px-[150px]">
                 <div className="w-full">VERIFY COMPONENT</div>
                 <Button
                   label={`Next`}
