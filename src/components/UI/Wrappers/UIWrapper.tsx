@@ -12,7 +12,7 @@ function UIWrapper({ children }: any) {
   return (
     <>
       <div className="flex flex-col">
-        <div className="flex flex-col px-[150px] pb-[120px] pt-[80px] sm:md-max:gap-[20px] sm:md-max:px-[24px] sm:md-max:pb-[80px]">
+        <div className="flex flex-col gap-9 px-[150px] pb-[120px] pt-[80px] sm:md-max:gap-5 sm:md-max:px-[24px] sm:md-max:pb-[80px]">
           {children}
         </div>
       </div>

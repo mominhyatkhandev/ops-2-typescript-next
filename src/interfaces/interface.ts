@@ -135,7 +135,7 @@ export interface ILoginCard {
 }
 
 export interface IHeaderProps {
-  title: string;
+  title: { main: string; sub: string };
   description: string;
   // routeName: string;
 }

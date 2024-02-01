@@ -2,10 +2,10 @@ import React from 'react';
 
 import type { IHeaderProps } from '@/interfaces/interface';
 // import Info from '@/components/Content/Info/Info';
-import { cards } from '@/utils/data';
+// import { cards } from '@/utils/data';
 
 // import Card from '@/UI/Card/Card';
-import Card from '../UI/Card/Card';
+// import Card from '../UI/Card/Card';
 
 function Header({ title, description }: IHeaderProps) {
   return (
@@ -13,14 +13,17 @@ function Header({ title, description }: IHeaderProps) {
     <div className="">
       <div className="flex flex-col justify-center gap-2 align-middle">
         <h1 className="text-5xl font-semibold sm:md-max:text-start sm:md-max:text-[32px]">
-          {title} <span className="text-primary-base">online brands</span>
+          <span>
+            {title.main} {''}
+          </span>
+          <span className=" text-primary-base">{title.sub}</span>
         </h1>
         <p className="text-base font-normal leading-tight text-secondary-600 sm:md-max:text-sm ">
           {description}
         </p>
       </div>
 
-      <div className="flex flex-row gap-5 sm:md-max:flex-col">
+      {/* <div className="flex flex-row gap-5 sm:md-max:flex-col">
         {cards?.map((item, index) => {
           return (
             <Card
@@ -31,7 +34,7 @@ function Header({ title, description }: IHeaderProps) {
             />
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 }

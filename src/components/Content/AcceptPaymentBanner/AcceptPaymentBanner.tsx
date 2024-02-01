@@ -22,7 +22,7 @@ function AcceptPaymentBanner({
           />
           <div className="relative flex w-[657px] flex-col items-start justify-center gap-9  rounded-lg">
             <div className="flex flex-col gap-2 ">
-              <p className="heading-primary sm:md-max:text-[32px]">
+              <p className="heading-primary text-5xl font-semibold sm:md-max:text-[32px]">
                 {/* {title} */}
 
                 <span className="block text-primary-base">
