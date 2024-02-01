@@ -32,7 +32,7 @@ const NavMobileMenu = ({
                     // setIsOpenMenu(false);
                   }}
                 >
-                  <div className="leading-tight text-secondary-base">
+                  <div className="text-sm leading-tight text-secondary-base">
                     {item.title}
                   </div>
                   <Image
