@@ -1,3 +1,19 @@
+import React from 'react';
+
+import DropdownInput from '@/components/UI/Inputs/DropdownInput';
+
+const test2 = () => {
+  return (
+    <>
+      <DropdownInput />
+    </>
+  );
+};
+
+export default test2;
+
+// dont touch it........................................................................................................
+
 // import Head from 'next/head';
 // import React from 'react';
 

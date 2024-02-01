@@ -116,8 +116,10 @@ export interface CustomModalProps {
   className: string;
 }
 
-export interface IAcceptPaymentWrapper {
-  children: ReactNode;
+export interface IAcceptPaymentBanner {
+  title: { main: string; sub: string };
+  description: string;
+  banner: StaticImageData | string;
   //   className?: string;
 }
 
@@ -130,6 +132,12 @@ export interface ILoginCard {
   title: string;
   description: string;
   routeName: string;
+}
+
+export interface IHeaderProps {
+  title: string;
+  description: string;
+  // routeName: string;
 }
 
 // export interface IAcceptPaymentsProps {
