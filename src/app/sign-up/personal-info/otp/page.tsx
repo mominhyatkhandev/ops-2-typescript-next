@@ -9,7 +9,7 @@ import SuccessModal from '@/components/UI/Modal/CustomModal';
 import FormLayout from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { resetFormData } from '@/redux/slices/signUpSlice';
+import { resetFormData } from '@/redux/features/signUpSlice';
 
 const OtpInputWithValidation = () => {
   const [emailOtp, setEmailOtp] = useState(new Array(6).fill(''));

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import apiClient from '@/api/apiClient';
 import eye from '@/assets/icons/eye.svg';
@@ -12,10 +13,12 @@ import LoginBg from '@/assets/images/login-bg.svg';
 import Button from '@/components/UI/Button/PrimaryButton';
 import Input from '@/components/UI/Inputs/Input';
 import type { LoginForm } from '@/interfaces/interface';
+import { loginSuccess } from '@/redux/features/authSlice';
 import loginSchema, { loginInitialValues } from '@/validations/loginSchema';
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [apierror, setApierror] = useState('');
 
   const onSubmit = async (values: LoginForm, { setSubmitting }: any) => {
@@ -35,6 +38,7 @@ const Login = () => {
 
       if (response?.headers?.responsecode == '000') {
         // if (response?.headers.responseCode == '000') {
+        dispatch(loginSuccess(response.headers));
         console.log(response, 'successssssssssssssssss');
         router.push('/login/loginSuccess');
       } else {
