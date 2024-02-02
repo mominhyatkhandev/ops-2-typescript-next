@@ -13,7 +13,7 @@ import CustomModal from '@/components/UI/Modal/CustomModal';
 import FormWrapper from '@/components/UI/Wrappers/FormLayout';
 import HeaderWrapper from '@/components/UI/Wrappers/HeaderWrapper';
 import { useAppDispatch } from '@/hooks/redux';
-import { addFormData } from '@/redux/slices/signUpSlice';
+import { addFormData } from '@/redux/features/signUpSlice';
 import { signUpInitialValues, signUpSchema } from '@/validations/signUpSchema';
 
 const PersonalInfo = () => {
