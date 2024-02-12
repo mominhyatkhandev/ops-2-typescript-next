@@ -1,11 +1,13 @@
 import React from 'react';
 
-import DropdownInput from '@/components/UI/Inputs/DropdownInput';
+// import DropdownInput from '@/components/UI/Inputs/DropdownInput';
+import Timeline from '@/components/Timeline/Timeline';
 
 const test2 = () => {
   return (
     <>
-      <DropdownInput />
+      {/* <DropdownInput /> */}
+      <Timeline />
     </>
   );
 };

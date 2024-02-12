@@ -62,9 +62,17 @@ export interface IInput {
 
 export interface ICheckboxInput {
   label: string;
-  logo: StaticImageData;
+  logo?: StaticImageData;
+  selectType?: string;
   selected: boolean;
   onSelect: () => void;
+
+  //  label: string;
+  // logo?: StaticImageData;
+  // selectType?:string;
+  // value?: string;
+  // isMulti:boolean;
+  // onChange: () => void;
 }
 
 // export interface IButton {
@@ -136,8 +144,13 @@ export interface ILoginCard {
 
 export interface IHeaderProps {
   title: { main: string; sub: string };
-  description: string;
+  description?: string;
+  centerTitle?: boolean;
   // routeName: string;
+}
+
+export interface IDropdownInputProps {
+  label: string;
 }
 
 // export interface IAcceptPaymentsProps {
@@ -145,3 +158,16 @@ export interface IHeaderProps {
 // heading
 // description
 // }
+
+export interface BusinessAccInfoForm {
+  fatherName: '';
+  gender: '';
+  purpose: '';
+  citizenship: '';
+  residency: '';
+  businessOwner: '';
+  businessName: '';
+  legalName: '';
+  incorporationDate: '';
+  ntnNumber: '';
+}
